@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>OOP4200_Tarneeb</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\BackgroundCropped.png" />
+    <None Remove="Images\MainMenuImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\BackgroundCropped.png" />
+    <Resource Include="Images\MainMenuImage.png" />
+  </ItemGroup>
+
+</Project>
