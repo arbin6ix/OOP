@@ -12,17 +12,15 @@
 
         <!-- Player Portraits -->
         <Image Source="/Images/Player1.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="600"/>
-        <Label Foreground="White" FontSize="16" Canvas.Left="465" Canvas.Top="564">Player 1</Label>
-
         <Image Source="/Images/Player2.png" Height="100" Width="100" Canvas.Left="54" Canvas.Top="350"/>
-        <Label Foreground="White" FontSize="16" Canvas.Left="71" Canvas.Top="309">Player 2</Label>
-
         <Image Source="/Images/Player3.png" Height="100" Width="100" Canvas.Left="876" Canvas.Top="350"/>
-        <Label Foreground="White" FontSize="16" Canvas.Left="893" Canvas.Top="314">Player 3</Label>
-
         <Image Source="/Images/Player4.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="81"/>
-        <Label Foreground="White" FontSize="16" Canvas.Left="467" Canvas.Top="45">Player 4</Label>
 
+        <!-- Player Labels -->
+        <Label Foreground="White" FontSize="16" Canvas.Left="465" Canvas.Top="564">Player 1</Label>
+        <Label Foreground="White" FontSize="16" Canvas.Left="71" Canvas.Top="309">Player 2</Label>
+        <Label Foreground="White" FontSize="16" Canvas.Left="893" Canvas.Top="314">Player 3</Label>
+        <Label Foreground="White" FontSize="16" Canvas.Left="467" Canvas.Top="45">Player 4</Label>
 
         <!-- Played Cards -->
         <Image Source="/Images/c01.bmp" Height="100" Width="100" Canvas.Left="450" Canvas.Top="440"/>
@@ -30,7 +28,6 @@
         <Image Source="/Images/s01.bmp" Height="100" Width="100" Canvas.Left="450" Canvas.Top="230"/>
         <Image Source="/Images/h01.bmp" Height="100" Width="100" Canvas.Left="318" Canvas.Top="350"/>
 
-        
         <!-- Back to menu button -->
         <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
                 Canvas.Left="20" Canvas.Top="700" Click="btnGameBackClick"></Button>
