@@ -23,9 +23,9 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Vertical StackPanel containing menu buttons -->
-                <StackPanel Grid.Column="0" Margin="40,140" HorizontalAlignment="Left">
+                <StackPanel Grid.Column="0" Margin="40,200" HorizontalAlignment="Left">
                     <Button Name="btnMainPlay" Content="Play" Margin="0,4"  
-                                Height="35" Width="130" FontSize="16" Background="PowderBlue"></Button>
+                                Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnPlayClick"></Button>
                     <Button Name="btnMainHowTo" Content="How To Play" Margin="0,4" 
                                 Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnHowToClick"></Button>
                     <Button Name="btnMainStats" Content="Statistics" Margin="0,4"  

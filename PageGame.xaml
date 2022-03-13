@@ -5,10 +5,31 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OOP4200_Tarneeb"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1000"
       Title="PageGame">
 
-    <Canvas Name="gameCanvas" Background="LightYellow">
-        
+    <Canvas>
+
+        <!-- Player Portraits -->
+        <Image Source="/Images/Player1.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="600"/>
+        <Label Foreground="White" FontSize="16" Canvas.Left="465" Canvas.Top="564">Player 1</Label>
+
+        <Image Source="/Images/Player2.png" Height="100" Width="100" Canvas.Left="54" Canvas.Top="350"/>
+        <Label Foreground="White" FontSize="16" Canvas.Left="71" Canvas.Top="309">Player 2</Label>
+
+        <Image Source="/Images/Player3.png" Height="100" Width="100" Canvas.Left="876" Canvas.Top="350"/>
+        <Label Foreground="White" FontSize="16" Canvas.Left="893" Canvas.Top="314">Player 3</Label>
+
+        <Image Source="/Images/Player4.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="81"/>
+        <Label Foreground="White" FontSize="16" Canvas.Left="467" Canvas.Top="45">Player 4</Label>
+
+
+        <!-- Played Cards -->
+        <Image Source="/Images/c01.bmp" Height="100" Width="100" Canvas.Left="450" Canvas.Top="440"/>
+        <Image Source="/Images/d01.bmp" Height="100" Width="100" Canvas.Left="572" Canvas.Top="350"/>
+        <Image Source="/Images/s01.bmp" Height="100" Width="100" Canvas.Left="450" Canvas.Top="230"/>
+        <Image Source="/Images/h01.bmp" Height="100" Width="100" Canvas.Left="318" Canvas.Top="350"/>
+
+
     </Canvas>
 </Page>

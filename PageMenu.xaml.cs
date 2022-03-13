@@ -39,5 +39,11 @@ namespace OOP4200_Tarneeb
         {
             Application.Current.Shutdown();
         }
+
+        private void btnPlayClick(object sender, RoutedEventArgs e)
+        {
+            PageGame gamePage = new PageGame();
+            NavigationService.Navigate(gamePage);
+        }
     }
 }
