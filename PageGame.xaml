@@ -30,6 +30,10 @@
         <Image Source="/Images/s01.bmp" Height="100" Width="100" Canvas.Left="450" Canvas.Top="230"/>
         <Image Source="/Images/h01.bmp" Height="100" Width="100" Canvas.Left="318" Canvas.Top="350"/>
 
-
+        
+        <!-- Back to menu button -->
+        <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
+                Canvas.Left="20" Canvas.Top="700" Click="btnGameBackClick"></Button>
+        
     </Canvas>
 </Page>

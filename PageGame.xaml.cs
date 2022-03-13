@@ -22,5 +22,11 @@ namespace OOP4200_Tarneeb
         {
             InitializeComponent();
         }
+
+        private void btnGameBackClick(object sender, RoutedEventArgs e)
+        {
+            PageMenu menuPage = new PageMenu();
+            NavigationService.Navigate(menuPage);
+        }
     }
 }
