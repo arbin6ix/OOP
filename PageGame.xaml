@@ -11,26 +11,41 @@
     <Canvas>
 
         <!-- Player Portraits -->
-        <Image Source="/Images/Player1.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="600"/>
-        <Image Source="/Images/Player2.png" Height="100" Width="100" Canvas.Left="54" Canvas.Top="350"/>
-        <Image Source="/Images/Player3.png" Height="100" Width="100" Canvas.Left="876" Canvas.Top="350"/>
-        <Image Source="/Images/Player4.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="81"/>
+        <Image Source="/Images/Player1.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="508"/>
+        <Image Source="/Images/Player2.png" Height="100" Width="100" Canvas.Left="54" Canvas.Top="278"/>
+        <Image Source="/Images/Player3.png" Height="100" Width="100" Canvas.Left="876" Canvas.Top="278"/>
+        <Image Source="/Images/Player4.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="47"/>
 
         <!-- Player Labels -->
-        <Label Foreground="White" FontSize="16" Canvas.Left="465" Canvas.Top="564">Player 1</Label>
-        <Label Foreground="White" FontSize="16" Canvas.Left="71" Canvas.Top="309">Player 2</Label>
-        <Label Foreground="White" FontSize="16" Canvas.Left="893" Canvas.Top="314">Player 3</Label>
-        <Label Foreground="White" FontSize="16" Canvas.Left="467" Canvas.Top="45">Player 4</Label>
+        <Label Foreground="White" FontSize="16" Canvas.Left="471" Canvas.Top="472">Player 1</Label>
+        <Label Foreground="White" FontSize="16" Canvas.Left="69" Canvas.Top="242">Player 2</Label>
+        <Label Foreground="White" FontSize="16" Canvas.Left="895" Canvas.Top="242">Player 3</Label>
+        <Label Foreground="White" FontSize="16" Canvas.Left="467" Canvas.Top="21">Player 4</Label>
 
         <!-- Played Cards -->
-        <Image Source="/Images/c01.bmp" Height="100" Width="100" Canvas.Left="450" Canvas.Top="440"/>
-        <Image Source="/Images/d01.bmp" Height="100" Width="100" Canvas.Left="572" Canvas.Top="350"/>
-        <Image Source="/Images/s01.bmp" Height="100" Width="100" Canvas.Left="450" Canvas.Top="230"/>
-        <Image Source="/Images/h01.bmp" Height="100" Width="100" Canvas.Left="318" Canvas.Top="350"/>
+        <Image Source="/Images/c01.bmp" Canvas.Left="468" Canvas.Top="356"/>
+        <Image Source="/Images/d01.bmp" Canvas.Left="598" Canvas.Top="266"/>
+        <Image Source="/Images/s01.bmp" Canvas.Left="468" Canvas.Top="166"/>
+        <Image Source="/Images/h01.bmp" Canvas.Left="338" Canvas.Top="266"/>
+
+        <!-- Player's Hand -->
+        <Image Name="p01" Source="/Images/h01.bmp" Canvas.Left="005" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p02" Source="/Images/h01.bmp" Canvas.Left="080" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p03" Source="/Images/h01.bmp" Canvas.Left="155" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p04" Source="/Images/h01.bmp" Canvas.Left="230" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p05" Source="/Images/h01.bmp" Canvas.Left="305" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p06" Source="/Images/h01.bmp" Canvas.Left="380" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p07" Source="/Images/h01.bmp" Canvas.Left="455" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p08" Source="/Images/h01.bmp" Canvas.Left="530" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p09" Source="/Images/h01.bmp" Canvas.Left="605" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p10" Source="/Images/h01.bmp" Canvas.Left="680" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p11" Source="/Images/h01.bmp" Canvas.Left="755" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p12" Source="/Images/h01.bmp" Canvas.Left="830" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p13" Source="/Images/h01.bmp" Canvas.Left="905" Canvas.Top="640" Visibility="Collapsed"/>
 
         <!-- Back to menu button -->
         <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
-                Canvas.Left="20" Canvas.Top="700" Click="btnGameBackClick"></Button>
-        
+                Canvas.Left="10" Canvas.Top="10" Click="btnGameBackClick"></Button>
+
     </Canvas>
 </Page>
