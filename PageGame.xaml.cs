@@ -25,12 +25,13 @@ namespace OOP4200_Tarneeb
 
         private void btnGameBackClick(object sender, RoutedEventArgs e)
         {
-            var c01 = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/c01.bmp");
-            //p01.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("/Images/c01.bmp");
-            p01.Source = c01;
-            p01.Visibility = Visibility.Visible;
-            //PageMenu menuPage = new PageMenu();
-            //NavigationService.Navigate(menuPage);
+            PageMenu menuPage = new PageMenu();
+            NavigationService.Navigate(menuPage);
         }
+
+        // TEST CODE - Display cards from player hand
+        // p01.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + playerCard[0] + ".bmp");
+        // p02.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + playerCard[1] + ".bmp");
+        // p01.Visibility = Visibility.Visible;
     }
 }
