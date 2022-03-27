@@ -132,8 +132,12 @@ namespace OOP4200_Tarneeb.Cards
 
         public List<Card> Sort(List<Card> listOfCards)
         {
-            List<Card> sorted = listOfCards.GroupBy(s => s.Suit).
-                OrderByDescending(c => c.Count()).SelectMany(g => g.OrderByDescending(c => c.CardNumber)).ToList();
+            List<Card> sorted = listOfCards
+                .GroupBy(s => s.Suit)
+                .OrderByDescending(c => c.Count())
+                .SelectMany(g => g
+                .OrderBy(c => c.CardNumber))
+                .ToList();
 
             return sorted;
 
