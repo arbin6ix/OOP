@@ -47,22 +47,19 @@ namespace OOP4200_Tarneeb
             deck.Shuffle();
 
             // Pass out 13 cards to each
-            List<Card> hand1 = deck.Sort(deck.TakeCards(13));
+            List<Card> playerHand = deck.Sort(deck.TakeCards(13));
             List<Card> hand2 = deck.Sort(deck.TakeCards(13));
             List<Card> hand3 = deck.Sort(deck.TakeCards(13));
             List<Card> hand4 = deck.Sort(deck.TakeCards(13));
 
             // Create 4 Players each with their hand of 13 shuffled cards
-            Player player1 = new Player(hand1);
+            Player player1 = new Player(playerHand);
             Player player2 = new Player(hand2);
             Player player3 = new Player(hand3);
             Player player4 = new Player(hand4);
 
-            // Display player 1's card images in the Image controls
-            for(int i = 0; i < playerCardImages.Count; i++)
-            {
-                playerCardImages[i].Source = Card.ToImage(hand1[i]);
-            }
+            // Display the player's cards
+            DisplayCards(playerHand);
 
             //Assign Players to Teams
             Teams firstTeam = new Teams(player1, player2);
@@ -70,8 +67,19 @@ namespace OOP4200_Tarneeb
 
             // Create a List of Players
             List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
+        }
 
-
+        /// <summary>
+        /// Displays the list of cards given
+        /// </summary>
+        /// <param name="hand">List of Cards to display</param>
+        public void DisplayCards(List<Card> hand)
+        {
+            // Display player 1's card images in the Image controls
+            for (int i = 0; i < playerCardImages.Count; i++)
+            {
+                playerCardImages[i].Source = Card.ToImage(hand[i]);
+            }
         }
 
         /// <summary>
