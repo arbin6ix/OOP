@@ -29,19 +29,19 @@
         <Image Source="/Images/h01.bmp" Canvas.Left="338" Canvas.Top="266"/>
 
         <!-- Player's Hand -->
-        <Image Name="p01" Source="/Images/h01.bmp" Canvas.Left="005" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p02" Source="/Images/h01.bmp" Canvas.Left="080" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p03" Source="/Images/h01.bmp" Canvas.Left="155" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p04" Source="/Images/h01.bmp" Canvas.Left="230" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p05" Source="/Images/h01.bmp" Canvas.Left="305" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p06" Source="/Images/h01.bmp" Canvas.Left="380" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p07" Source="/Images/h01.bmp" Canvas.Left="455" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p08" Source="/Images/h01.bmp" Canvas.Left="530" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p09" Source="/Images/h01.bmp" Canvas.Left="605" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p10" Source="/Images/h01.bmp" Canvas.Left="680" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p11" Source="/Images/h01.bmp" Canvas.Left="755" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p12" Source="/Images/h01.bmp" Canvas.Left="830" Canvas.Top="640" Visibility="Collapsed"/>
-        <Image Name="p13" Source="/Images/h01.bmp" Canvas.Left="905" Canvas.Top="640" Visibility="Collapsed"/>
+        <Image Name="p01" Source="/Images/h01.bmp" Canvas.Left="005" Canvas.Top="640" />
+        <Image Name="p02" Source="/Images/h01.bmp" Canvas.Left="080" Canvas.Top="640" />
+        <Image Name="p03" Source="/Images/h01.bmp" Canvas.Left="155" Canvas.Top="640" />
+        <Image Name="p04" Source="/Images/h01.bmp" Canvas.Left="230" Canvas.Top="640" />
+        <Image Name="p05" Source="/Images/h01.bmp" Canvas.Left="305" Canvas.Top="640" />
+        <Image Name="p06" Source="/Images/h01.bmp" Canvas.Left="380" Canvas.Top="640" />
+        <Image Name="p07" Source="/Images/h01.bmp" Canvas.Left="455" Canvas.Top="640" />
+        <Image Name="p08" Source="/Images/h01.bmp" Canvas.Left="530" Canvas.Top="640" />
+        <Image Name="p09" Source="/Images/h01.bmp" Canvas.Left="605" Canvas.Top="640" />
+        <Image Name="p10" Source="/Images/h01.bmp" Canvas.Left="680" Canvas.Top="640" />
+        <Image Name="p11" Source="/Images/h01.bmp" Canvas.Left="755" Canvas.Top="640" />
+        <Image Name="p12" Source="/Images/h01.bmp" Canvas.Left="830" Canvas.Top="640" />
+        <Image Name="p13" Source="/Images/h01.bmp" Canvas.Left="905" Canvas.Top="640" />
 
         <!-- Back to menu button -->
         <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
