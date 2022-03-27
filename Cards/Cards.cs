@@ -98,12 +98,12 @@ namespace OOP4200_Tarneeb.Cards
         }
 
         /// <summary>
-        /// Clears card slot of any card image stored in it
+        /// Empties card slot of any card image stored in it
         /// </summary>
         /// <returns>ImageSource of transparent (empty) card</returns>
-        public static ImageSource ClearImage()
+        public static ImageSource EmptyCard()
         {
-            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/CardSlot.png");
+            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/EmptyCard.png");
         }
     }
 

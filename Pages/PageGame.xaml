@@ -8,7 +8,7 @@
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="PageGame">
 
-    <Canvas>
+    <Canvas MouseDown="card02MouseDown">
 
         <!-- Player Portraits -->
         <Image Source="/Images/Player1.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="508"/>
@@ -23,25 +23,25 @@
         <Label Foreground="White" FontSize="16" Canvas.Left="467" Canvas.Top="21">Player 4</Label>
 
         <!-- Played Cards -->
-        <Image Source="/Images/CardSlot.png" Canvas.Left="468" Canvas.Top="356"/>
-        <Image Source="/Images/CardSlot.png" Canvas.Left="598" Canvas.Top="266"/>
-        <Image Source="/Images/CardSlot.png" Canvas.Left="468" Canvas.Top="166"/>
-        <Image Source="/Images/CardSlot.png" Canvas.Left="338" Canvas.Top="266"/>
+        <Image Name="playedCard1" Source="/Images/EmptyCard.png" Canvas.Left="468" Canvas.Top="356"/>
+        <Image Name="playedCard2" Source="/Images/EmptyCard.png" Canvas.Left="338" Canvas.Top="266"/>
+        <Image Name="playedCard3" Source="/Images/EmptyCard.png" Canvas.Left="598" Canvas.Top="266"/>
+        <Image Name="playedCard4" Source="/Images/EmptyCard.png" Canvas.Left="468" Canvas.Top="166"/>
 
         <!-- Player's Hand -->
-        <Image Name="p01" Source="/Images/CardSlot.png" Canvas.Left="005" Canvas.Top="640" />
-        <Image Name="p02" Source="/Images/CardSlot.png" Canvas.Left="080" Canvas.Top="640" />
-        <Image Name="p03" Source="/Images/CardSlot.png" Canvas.Left="155" Canvas.Top="640" />
-        <Image Name="p04" Source="/Images/CardSlot.png" Canvas.Left="230" Canvas.Top="640" />
-        <Image Name="p05" Source="/Images/CardSlot.png" Canvas.Left="305" Canvas.Top="640" />
-        <Image Name="p06" Source="/Images/CardSlot.png" Canvas.Left="380" Canvas.Top="640" />
-        <Image Name="p07" Source="/Images/CardSlot.png" Canvas.Left="455" Canvas.Top="640" />
-        <Image Name="p08" Source="/Images/CardSlot.png" Canvas.Left="530" Canvas.Top="640" />
-        <Image Name="p09" Source="/Images/CardSlot.png" Canvas.Left="605" Canvas.Top="640" />
-        <Image Name="p10" Source="/Images/CardSlot.png" Canvas.Left="680" Canvas.Top="640" />
-        <Image Name="p11" Source="/Images/CardSlot.png" Canvas.Left="755" Canvas.Top="640" />
-        <Image Name="p12" Source="/Images/CardSlot.png" Canvas.Left="830" Canvas.Top="640" />
-        <Image Name="p13" Source="/Images/CardSlot.png" Canvas.Left="905" Canvas.Top="640" />
+        <Image Name="p01" Source="/Images/EmptyCard.png" Canvas.Left="005" Canvas.Top="640" MouseDown="card01MouseDown" />
+        <Image Name="p02" Source="/Images/EmptyCard.png" Canvas.Left="080" Canvas.Top="640" />
+        <Image Name="p03" Source="/Images/EmptyCard.png" Canvas.Left="155" Canvas.Top="640" />
+        <Image Name="p04" Source="/Images/EmptyCard.png" Canvas.Left="230" Canvas.Top="640" />
+        <Image Name="p05" Source="/Images/EmptyCard.png" Canvas.Left="305" Canvas.Top="640" />
+        <Image Name="p06" Source="/Images/EmptyCard.png" Canvas.Left="380" Canvas.Top="640" />
+        <Image Name="p07" Source="/Images/EmptyCard.png" Canvas.Left="455" Canvas.Top="640" />
+        <Image Name="p08" Source="/Images/EmptyCard.png" Canvas.Left="530" Canvas.Top="640" />
+        <Image Name="p09" Source="/Images/EmptyCard.png" Canvas.Left="605" Canvas.Top="640" />
+        <Image Name="p10" Source="/Images/EmptyCard.png" Canvas.Left="680" Canvas.Top="640" />
+        <Image Name="p11" Source="/Images/EmptyCard.png" Canvas.Left="755" Canvas.Top="640" />
+        <Image Name="p12" Source="/Images/EmptyCard.png" Canvas.Left="830" Canvas.Top="640" />
+        <Image Name="p13" Source="/Images/EmptyCard.png" Canvas.Left="905" Canvas.Top="640" />
 
         <!-- Back to menu button -->
         <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"

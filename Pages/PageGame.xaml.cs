@@ -21,11 +21,21 @@ namespace OOP4200_Tarneeb
     {
         // List of String that holds Tarneeb suit betting (1. Tarneeb Suit, 2. Bet number, 3. Player who betted the most) global variable
         public static List<String> tarneebSuit = new List<String>() { };
+
         // Tarneeb played is a global variable
         public static bool tarneebPlayed = false;
 
+        // Counter for remaining cards in the hand
+        public static int cardsRemaining = 13;
+
         // Create a list of the player's cards Image controls from the PageGame.xaml form
         List<Image> playerCardImages = new List<Image>();
+
+        // List of all player's cards
+        List<Card> playerHand = new List<Card>();
+        List<Card> hand2 = new List<Card>();
+        List<Card> hand3 = new List<Card>();
+        List<Card> hand4 = new List<Card>();
 
 
         public PageGame()
@@ -47,10 +57,10 @@ namespace OOP4200_Tarneeb
             deck.Shuffle();
 
             // Pass out 13 cards to each
-            List<Card> playerHand = deck.Sort(deck.TakeCards(13));
-            List<Card> hand2 = deck.Sort(deck.TakeCards(13));
-            List<Card> hand3 = deck.Sort(deck.TakeCards(13));
-            List<Card> hand4 = deck.Sort(deck.TakeCards(13));
+            playerHand = deck.Sort(deck.TakeCards(13));
+            hand2 = deck.Sort(deck.TakeCards(13));
+            hand3 = deck.Sort(deck.TakeCards(13));
+            hand4 = deck.Sort(deck.TakeCards(13));
 
             // Create 4 Players each with their hand of 13 shuffled cards
             Player player1 = new Player(playerHand);
@@ -103,11 +113,41 @@ namespace OOP4200_Tarneeb
             playerCardImages.Add(p13);
         }
 
-
+        /// <summary>
+        /// Sends user back to main menu (exits current game)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGameBackClick(object sender, RoutedEventArgs e)
         {
             PageMenu menuPage = new PageMenu();
             NavigationService.Navigate(menuPage);
+        }
+
+        private void card01MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p01.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                // Note: I think the easiest way of doing this is finding the card played in the
+                //       card list playerHand and removing it, then re-displaying the current hand
+                //       using my function - DisplayCards(playerHand); 
+
+                playedCard1.Source = p01.Source;
+                p01.Source = null;
+            }
+        }
+
+        private void card02MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p02.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p02.Source;
+                p02.Source = null;
+            }
         }
     }
 }
