@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace OOP4200_Tarneeb.Cards
 {
@@ -48,7 +49,12 @@ namespace OOP4200_Tarneeb.Cards
             return "The Suit is: " + this.Suit + " The card number is: " + this.CardNumber;
         }
 
-        public static string ToImage(Card card)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="card">The card to convert to image</param>
+        /// <returns></returns>
+        public static ImageSource ToImage(Card card)
         {
             string formattedSuit = "";
             string formattedNumber;
@@ -87,8 +93,8 @@ namespace OOP4200_Tarneeb.Cards
                 formattedNumber = "01";
             }
 
-            // Return the card's suit + number formatted to retrieve the card's respective image
-            return formattedSuit + formattedNumber;
+            // Return the image source for the card
+            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + formattedSuit + formattedNumber + ".bmp");
         }
     }
 

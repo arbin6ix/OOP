@@ -46,19 +46,19 @@ namespace OOP4200_Tarneeb
             Player player4 = new Player(hand4);
 
             // Display player 1's hand for the human player
-            p01.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[0]) + ".bmp");
-            p02.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[1]) + ".bmp");
-            p03.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[2]) + ".bmp");
-            p04.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[3]) + ".bmp");
-            p05.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[4]) + ".bmp");
-            p06.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[5]) + ".bmp");
-            p07.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[6]) + ".bmp");
-            p08.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[7]) + ".bmp");
-            p09.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[8]) + ".bmp");
-            p10.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[9]) + ".bmp");
-            p11.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[10]) + ".bmp");
-            p12.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[11]) + ".bmp");
-            p13.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + Card.ToImage(hand1[12]) + ".bmp");
+            p01.Source = Card.ToImage(hand1[0]);
+            p02.Source = Card.ToImage(hand1[1]);
+            p03.Source = Card.ToImage(hand1[2]);
+            p04.Source = Card.ToImage(hand1[3]);
+            p05.Source = Card.ToImage(hand1[4]);
+            p06.Source = Card.ToImage(hand1[5]);
+            p07.Source = Card.ToImage(hand1[6]);
+            p08.Source = Card.ToImage(hand1[7]);
+            p09.Source = Card.ToImage(hand1[8]);
+            p10.Source = Card.ToImage(hand1[9]);
+            p11.Source = Card.ToImage(hand1[10]);
+            p12.Source = Card.ToImage(hand1[11]);
+            p13.Source = Card.ToImage(hand1[12]);
         }
 
         private void btnGameBackClick(object sender, RoutedEventArgs e)
