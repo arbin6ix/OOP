@@ -53,7 +53,7 @@ namespace OOP4200_Tarneeb.Cards
         /// 
         /// </summary>
         /// <param name="card">The card to convert to image</param>
-        /// <returns></returns>
+        /// <returns>ImageSource of entered card</returns>
         public static ImageSource ToImage(Card card)
         {
             string formattedSuit = "";
@@ -95,6 +95,15 @@ namespace OOP4200_Tarneeb.Cards
 
             // Return the image source for the card
             return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + formattedSuit + formattedNumber + ".bmp");
+        }
+
+        /// <summary>
+        /// Clears card slot of any card image stored in it
+        /// </summary>
+        /// <returns>ImageSource of transparent (empty) card</returns>
+        public static ImageSource ClearImage()
+        {
+            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/CardSlot.png");
         }
     }
 

@@ -19,13 +19,26 @@ namespace OOP4200_Tarneeb
     /// </summary>
     public partial class PageGame : Page
     {
+        // List of String that holds Tarneeb suit betting (1. Tarneeb Suit, 2. Bet number, 3. Player who betted the most) global variable
+        public static List<String> tarneebSuit = new List<String>() { };
+        // Tarneeb played is a global variable
+        public static bool tarneebPlayed = false;
+
+        // Create a list of the player's cards Image controls from the PageGame.xaml form
+        List<Image> playerCardImages = new List<Image>();
+
+
         public PageGame()
         {
             InitializeComponent();
-            DealCards();
+            CreateImageList();
+            NewRound();
         }
 
-        private void DealCards()
+        /// <summary>
+        /// Initiates a new round of Tarneeb, including shuffling deck, dealing cards, making teams, etc..
+        /// </summary>
+        public void NewRound()
         {
             // Create a deck
             var deck = new Deck();
@@ -45,21 +58,43 @@ namespace OOP4200_Tarneeb
             Player player3 = new Player(hand3);
             Player player4 = new Player(hand4);
 
-            // Display player 1's hand for the human player
-            p01.Source = Card.ToImage(hand1[0]);
-            p02.Source = Card.ToImage(hand1[1]);
-            p03.Source = Card.ToImage(hand1[2]);
-            p04.Source = Card.ToImage(hand1[3]);
-            p05.Source = Card.ToImage(hand1[4]);
-            p06.Source = Card.ToImage(hand1[5]);
-            p07.Source = Card.ToImage(hand1[6]);
-            p08.Source = Card.ToImage(hand1[7]);
-            p09.Source = Card.ToImage(hand1[8]);
-            p10.Source = Card.ToImage(hand1[9]);
-            p11.Source = Card.ToImage(hand1[10]);
-            p12.Source = Card.ToImage(hand1[11]);
-            p13.Source = Card.ToImage(hand1[12]);
+            // Display player 1's card images in the Image controls
+            for(int i = 0; i < playerCardImages.Count; i++)
+            {
+                playerCardImages[i].Source = Card.ToImage(hand1[i]);
+            }
+
+            //Assign Players to Teams
+            Teams firstTeam = new Teams(player1, player2);
+            Teams secondTeam = new Teams(player3, player4);
+
+            // Create a List of Players
+            List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
+
+
         }
+
+        /// <summary>
+        /// Create a list of the player's cards Image controls from the PageGame.xaml form
+        /// </summary>
+        public void CreateImageList()
+        {
+            // Add all Image controls to the list
+            playerCardImages.Add(p01);
+            playerCardImages.Add(p02);
+            playerCardImages.Add(p03);
+            playerCardImages.Add(p04);
+            playerCardImages.Add(p05);
+            playerCardImages.Add(p06);
+            playerCardImages.Add(p07);
+            playerCardImages.Add(p08);
+            playerCardImages.Add(p09);
+            playerCardImages.Add(p10);
+            playerCardImages.Add(p11);
+            playerCardImages.Add(p12);
+            playerCardImages.Add(p13);
+        }
+
 
         private void btnGameBackClick(object sender, RoutedEventArgs e)
         {
