@@ -22,10 +22,10 @@ namespace OOP4200_Tarneeb
         public PageGame()
         {
             InitializeComponent();
-            GameStart();
+            DealCards();
         }
 
-        private void GameStart()
+        private void DealCards()
         {
             // Create a deck
             var deck = new Deck();
@@ -39,7 +39,7 @@ namespace OOP4200_Tarneeb
             List<Card> hand3 = deck.Sort(deck.TakeCards(13));
             List<Card> hand4 = deck.Sort(deck.TakeCards(13));
 
-            // Create 4 Players each with their hand of 13 shuffled cards           
+            // Create 4 Players each with their hand of 13 shuffled cards
             Player player1 = new Player(hand1);
             Player player2 = new Player(hand2);
             Player player3 = new Player(hand3);
@@ -66,10 +66,5 @@ namespace OOP4200_Tarneeb
             PageMenu menuPage = new PageMenu();
             NavigationService.Navigate(menuPage);
         }
-
-        // TEST CODE - Display cards from player hand
-        // p01.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + playerHand[0] + ".bmp");
-        // p02.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + playerHand[1] + ".bmp");
-        // p01.Visibility = Visibility.Visible;
     }
 }

@@ -53,6 +53,7 @@ namespace OOP4200_Tarneeb.Cards
             string formattedSuit = "";
             string formattedNumber;
 
+            // Determine suit char representation by card.Suit int enum value
             if ((int)card.Suit == 1)
             {
                 formattedSuit = "c";
@@ -70,14 +71,23 @@ namespace OOP4200_Tarneeb.Cards
                 formattedSuit = "s";
             }
 
-            if ((int)card.CardNumber <= 9)
+            // If card is between 2 and 9, prepend a "0"
+            if ((int)card.CardNumber <= 8)
             {
-                formattedNumber = "0" + (int)card.CardNumber;
+                formattedNumber = "0" + ((int)card.CardNumber + 1);
             }
+            // If card is 10 to KING, return number as is
+            else if ((int)card.CardNumber <= 12)
+            {
+                formattedNumber = "" + ((int)card.CardNumber + 1);
+            }
+            // If card is ACE, return "01" since Ace is valued as 13 in the enum but 01 in the image .bmp
             else
             {
-                formattedNumber = "" + (int)card.CardNumber;
+                formattedNumber = "01";
             }
+
+            // Return the card's suit + number formatted to retrieve the card's respective image
             return formattedSuit + formattedNumber;
         }
     }
