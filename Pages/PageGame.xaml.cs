@@ -1,16 +1,12 @@
-﻿using System;
+﻿using OOP4200_Tarneeb.Cards;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using OOP4200_Tarneeb.Cards;
 
 namespace OOP4200_Tarneeb
 {
@@ -36,6 +32,9 @@ namespace OOP4200_Tarneeb
         List<Card> hand2 = new List<Card>();
         List<Card> hand3 = new List<Card>();
         List<Card> hand4 = new List<Card>();
+
+        // Random class object instantiation
+        Random rand = new Random();
 
 
         public PageGame()
@@ -86,9 +85,15 @@ namespace OOP4200_Tarneeb
         public void DisplayCards(List<Card> hand)
         {
             // Display player 1's card images in the Image controls
-            for (int i = 0; i < playerCardImages.Count; i++)
+            for (int i = 0; i < playerHand.Count; i++)
             {
                 playerCardImages[i].Source = Card.ToImage(hand[i]);
+            }
+
+            // If player's hand is less than 13, set remaining card image controls to null
+            for (int i = playerHand.Count; i < 13; i++)
+            {
+                playerCardImages[i].Source = null;
             }
         }
 
@@ -114,6 +119,50 @@ namespace OOP4200_Tarneeb
         }
 
         /// <summary>
+        /// Completes the turns of the computer players 2-4. This function is async
+        /// so that I can wait a certain amount of time between/after turns
+        /// </summary>
+        /// <returns></returns>
+        public async Task ComputerTurns()
+        {
+            int cardPick;
+
+            // Wait X milliseconds before AI turn
+            await Task.Delay(700);
+            // Play card for AI player 2
+            cardPick = rand.Next(1, hand2.Count);
+            playedCard2.Source = Card.ToImage(hand2[cardPick]);
+
+            hand2.RemoveAt(cardPick);
+
+            // Wait X milliseconds before AI turn
+            await Task.Delay(700);
+            // Play card for AI player 3
+            cardPick = rand.Next(1, hand3.Count);
+            playedCard3.Source = Card.ToImage(hand3[cardPick]);
+            hand3.RemoveAt(cardPick);
+
+            // Wait X milliseconds before AI turn
+            await Task.Delay(700);
+            // Play card for AI player 4
+            cardPick = rand.Next(1, hand4.Count);
+            playedCard4.Source = Card.ToImage(hand4[cardPick]);
+            hand4.RemoveAt(cardPick);
+
+            // Wait X milliseconds before end of turn
+            await Task.Delay(2500);
+
+            // Clear all cards played
+            playedCard1.Source = null;
+            playedCard2.Source = null;
+            playedCard3.Source = null;
+            playedCard4.Source = null;
+
+            // Refresh card display with remaining cards in hand
+            DisplayCards(playerHand);
+        }
+
+        /// <summary>
         /// Sends user back to main menu (exits current game)
         /// </summary>
         /// <param name="sender"></param>
@@ -124,21 +173,37 @@ namespace OOP4200_Tarneeb
             NavigationService.Navigate(menuPage);
         }
 
+
+        #region Card Click Functionality
+
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void card01MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p01.Source != null && playedCard1.Source == null)
             {
                 // ...play the card.
-                // Note: I think the easiest way of doing this is finding the card played in the
-                //       card list playerHand and removing it, then re-displaying the current hand
-                //       using my function - DisplayCards(playerHand); 
-
                 playedCard1.Source = p01.Source;
                 p01.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(0);
+
+                // Complete computer turns (async)
+                ComputerTurns();
             }
         }
 
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void card02MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
@@ -147,7 +212,260 @@ namespace OOP4200_Tarneeb
                 // ...play the card.
                 playedCard1.Source = p02.Source;
                 p02.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(1);
+
+                // Complete computer turns (async)
+                ComputerTurns();
             }
         }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card03MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p03.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p03.Source;
+                p03.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(2);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card04MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p04.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p04.Source;
+                p04.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(3);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card05MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p05.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p05.Source;
+                p05.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(4);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card06MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p06.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p06.Source;
+                p06.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(5);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card07MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p07.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p07.Source;
+                p07.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(6);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card08MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p08.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p08.Source;
+                p08.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(7);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card09MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p09.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p09.Source;
+                p09.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(8);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card10MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p10.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p10.Source;
+                p10.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(9);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card11MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p11.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p11.Source;
+                p11.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(10);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card12MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p12.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p12.Source;
+                p12.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(11);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+        /// <summary>
+        /// Plays the card that is clicked on
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void card13MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // If this slot has a card in it and there's no currently played card...
+            if (p13.Source != null && playedCard1.Source == null)
+            {
+                // ...play the card.
+                playedCard1.Source = p13.Source;
+                p13.Source = null;
+
+                // Remove card from hand
+                playerHand.RemoveAt(12);
+
+                // Complete computer turns (async)
+                ComputerTurns();
+            }
+        }
+
+
+        #endregion
+
+
     }
 }

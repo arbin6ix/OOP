@@ -111,9 +111,9 @@
     <Resource Include="Images\h13.bmp" />
     <Resource Include="Images\MainMenuImage.png" />
     <Resource Include="Images\Player1.png" />
+    <Resource Include="Images\Player4.png" />
     <Resource Include="Images\Player2.png" />
     <Resource Include="Images\Player3.png" />
-    <Resource Include="Images\Player4.png" />
     <Resource Include="Images\s01.bmp" />
     <Resource Include="Images\s02.bmp" />
     <Resource Include="Images\s03.bmp" />
