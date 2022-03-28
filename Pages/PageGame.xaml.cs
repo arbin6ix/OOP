@@ -175,7 +175,7 @@ namespace OOP4200_Tarneeb
         {
             // Properties of card that has been played by the player
             int suitPlayed = (int)cardToBeat.Suit;
-            int numPlayed = (int)cardToBeat.CardNumber;
+            int numToBeat = (int)cardToBeat.CardNumber;
 
             // The card chosen by the AI to play
             Card chosenCard = new Card();
@@ -195,14 +195,24 @@ namespace OOP4200_Tarneeb
             // Loop through the new list of matching cards...
             for (int i = 0; i < matchingSuits.Count; i++)
             {
-                // If a card hasn't been chosen, or if the current card beats the card played AND
-                // the current card does NOT beat the card played (so as to not waste a better card)
-                if (i == 0 
-                    || numPlayed < (int)matchingSuits[i].CardNumber
+                // If a card hasn't been chosen...
+                if (i == 0)
+                {
+                    // ...choose the current card to play
+                    chosenCard = matchingSuits[i];
+                }
+
+                // If the current card beats the card played AND the current card does NOT
+                // beat the card played (so as to not waste a better card)...
+                if (numToBeat < (int)matchingSuits[i].CardNumber
+                    || numToBeat < (int)matchingSuits[i].CardNumber
                     && (int)matchingSuits[i].CardNumber < (int)chosenCard.CardNumber)
                 {
-                    // Choose the current card to play
+                    // ...choose the current card to play
                     chosenCard = matchingSuits[i];
+
+                    // Since this card is better, set it to the new cardToBeat
+                    cardToBeat = chosenCard;
                 }
             }
 
@@ -212,14 +222,15 @@ namespace OOP4200_Tarneeb
                 // ...loop through the remaining cards and pick out the lowest value card
                 for (int i = 0; i < hand.Count; i++)
                 {
-                    if (i == 0 || (int)chosenCard.Suit > (int)hand[i].Suit)
+                    // If a card hasn't been chosen OR the current card's number is lower than
+                    // the chosen card's number...
+                    if (i == 0 || (int)hand[i].CardNumber < (int)chosenCard.CardNumber)
                     {
+                        // ... choose the current card to play
                         chosenCard = hand[i];
                     }
                 }
             }
-
-
 
             return chosenCard;
         }
