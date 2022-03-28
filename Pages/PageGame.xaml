@@ -17,7 +17,7 @@
         <Image Source="/Images/Player4.png" Height="100" Width="100" Canvas.Left="54" Canvas.Top="278"/>
 
         <!-- Player Labels -->
-        <Label Foreground="White" FontSize="16" Canvas.Left="471" Canvas.Top="472">Player 1</Label>
+        <Label Name="testLabel" Foreground="White" FontSize="16" Canvas.Left="471" Canvas.Top="472">Player 1</Label>
         <Label Foreground="White" FontSize="16" Canvas.Left="895" Canvas.Top="242">Player 2</Label>
         <Label Foreground="White" FontSize="16" Canvas.Left="467" Canvas.Top="21">Player 3</Label>
         <Label Foreground="White" FontSize="16" Canvas.Left="69" Canvas.Top="242">Player 4</Label>

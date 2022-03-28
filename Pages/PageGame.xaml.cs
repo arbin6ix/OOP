@@ -21,6 +21,8 @@ namespace OOP4200_Tarneeb
         // Tarneeb played is a global variable
         public static bool tarneebPlayed = false;
 
+        public static Card cardToBeat;
+
         // Counter for remaining cards in the hand
         public static int cardsRemaining = 13;
 
@@ -125,29 +127,31 @@ namespace OOP4200_Tarneeb
         /// <returns></returns>
         public async Task ComputerTurns()
         {
-            int cardPick;
+            Card chosenCard;
 
-            // Wait X milliseconds before AI turn
-            await Task.Delay(700);
-            // Play card for AI player 2
-            cardPick = rand.Next(1, hand2.Count);
-            playedCard2.Source = Card.ToImage(hand2[cardPick]);
+            // Wait X milliseconds
+            await Task.Delay(500);
 
-            hand2.RemoveAt(cardPick);
+            // Play card for AI player 2 using AI logic
+            chosenCard = AIChooseCard(hand2);
+            playedCard2.Source = Card.ToImage(chosenCard);
+            hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
 
-            // Wait X milliseconds before AI turn
-            await Task.Delay(700);
-            // Play card for AI player 3
-            cardPick = rand.Next(1, hand3.Count);
-            playedCard3.Source = Card.ToImage(hand3[cardPick]);
-            hand3.RemoveAt(cardPick);
+            // Wait X milliseconds
+            await Task.Delay(500);
 
-            // Wait X milliseconds before AI turn
-            await Task.Delay(700);
-            // Play card for AI player 4
-            cardPick = rand.Next(1, hand4.Count);
-            playedCard4.Source = Card.ToImage(hand4[cardPick]);
-            hand4.RemoveAt(cardPick);
+            // Play card for AI player 3 using AI logic
+            chosenCard = AIChooseCard(hand3);
+            playedCard3.Source = Card.ToImage(chosenCard);
+            hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+
+            // Wait X milliseconds
+            await Task.Delay(500);
+
+            // Play card for AI player 4 using AI logic
+            chosenCard = AIChooseCard(hand4);
+            playedCard4.Source = Card.ToImage(chosenCard);
+            hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
 
             // Wait X milliseconds before end of turn
             await Task.Delay(2500);
@@ -160,6 +164,64 @@ namespace OOP4200_Tarneeb
 
             // Refresh card display with remaining cards in hand
             DisplayCards(playerHand);
+        }
+
+        /// <summary>
+        /// Returns the AI's choice of card to play with given hand
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public Card AIChooseCard(List<Card> hand)
+        {
+            // Properties of card that has been played by the player
+            int suitPlayed = (int)cardToBeat.Suit;
+            int numPlayed = (int)cardToBeat.CardNumber;
+
+            // The card chosen by the AI to play
+            Card chosenCard = new Card();
+
+            // Create new list of cards to hold the cards that match the suit played
+            List<Card> matchingSuits = new List<Card>();
+
+            // Loop through the hand, adding any matching cards to the new list
+            for (int i = 0; i < hand.Count; i++)
+            {
+                if ((int)hand[i].Suit == suitPlayed)
+                {
+                    matchingSuits.Add(hand[i]);
+                }
+            }
+
+            // Loop through the new list of matching cards...
+            for (int i = 0; i < matchingSuits.Count; i++)
+            {
+                // If a card hasn't been chosen, or if the current card beats the card played AND
+                // the current card does NOT beat the card played (so as to not waste a better card)
+                if (i == 0 
+                    || numPlayed < (int)matchingSuits[i].CardNumber
+                    && (int)matchingSuits[i].CardNumber < (int)chosenCard.CardNumber)
+                {
+                    // Choose the current card to play
+                    chosenCard = matchingSuits[i];
+                }
+            }
+
+            // If there are no cards with a matching suit...
+            if (matchingSuits.Count == 0)
+            {
+                // ...loop through the remaining cards and pick out the lowest value card
+                for (int i = 0; i < hand.Count; i++)
+                {
+                    if (i == 0 || (int)chosenCard.Suit > (int)hand[i].Suit)
+                    {
+                        chosenCard = hand[i];
+                    }
+                }
+            }
+
+
+
+            return chosenCard;
         }
 
         /// <summary>
@@ -192,6 +254,7 @@ namespace OOP4200_Tarneeb
                 p01.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[0];
                 playerHand.RemoveAt(0);
 
                 // Complete computer turns (async)
@@ -214,6 +277,7 @@ namespace OOP4200_Tarneeb
                 p02.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[1];
                 playerHand.RemoveAt(1);
 
                 // Complete computer turns (async)
@@ -236,6 +300,7 @@ namespace OOP4200_Tarneeb
                 p03.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[2];
                 playerHand.RemoveAt(2);
 
                 // Complete computer turns (async)
@@ -257,7 +322,9 @@ namespace OOP4200_Tarneeb
                 playedCard1.Source = p04.Source;
                 p04.Source = null;
 
+
                 // Remove card from hand
+                cardToBeat = playerHand[3];
                 playerHand.RemoveAt(3);
 
                 // Complete computer turns (async)
@@ -280,6 +347,7 @@ namespace OOP4200_Tarneeb
                 p05.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[4];
                 playerHand.RemoveAt(4);
 
                 // Complete computer turns (async)
@@ -302,6 +370,7 @@ namespace OOP4200_Tarneeb
                 p06.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[5];
                 playerHand.RemoveAt(5);
 
                 // Complete computer turns (async)
@@ -324,6 +393,7 @@ namespace OOP4200_Tarneeb
                 p07.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[6];
                 playerHand.RemoveAt(6);
 
                 // Complete computer turns (async)
@@ -346,6 +416,7 @@ namespace OOP4200_Tarneeb
                 p08.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[7];
                 playerHand.RemoveAt(7);
 
                 // Complete computer turns (async)
@@ -368,6 +439,7 @@ namespace OOP4200_Tarneeb
                 p09.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[8];
                 playerHand.RemoveAt(8);
 
                 // Complete computer turns (async)
@@ -390,6 +462,7 @@ namespace OOP4200_Tarneeb
                 p10.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[9];
                 playerHand.RemoveAt(9);
 
                 // Complete computer turns (async)
@@ -412,6 +485,7 @@ namespace OOP4200_Tarneeb
                 p11.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[10];
                 playerHand.RemoveAt(10);
 
                 // Complete computer turns (async)
@@ -434,6 +508,7 @@ namespace OOP4200_Tarneeb
                 p12.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[11];
                 playerHand.RemoveAt(11);
 
                 // Complete computer turns (async)
@@ -456,6 +531,7 @@ namespace OOP4200_Tarneeb
                 p13.Source = null;
 
                 // Remove card from hand
+                cardToBeat = playerHand[12];
                 playerHand.RemoveAt(12);
 
                 // Complete computer turns (async)
