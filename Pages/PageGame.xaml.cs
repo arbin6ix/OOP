@@ -67,6 +67,16 @@ namespace OOP4200_Tarneeb
         Player player3 = new Player();
         Player player4 = new Player();
 
+        // Team round scores
+        public int team1Score = 0;
+        public int team2Score = 0;
+
+        // Team total scores (game is to 31)
+        public int team1Total = 0;
+        public int team2Total = 0;
+
+
+
         public PageGame()
         {
             InitializeComponent();
@@ -244,7 +254,7 @@ namespace OOP4200_Tarneeb
                 {
 
                 }
-            }            
+            }
         }
 
         
@@ -398,7 +408,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnGameBackClick(object sender, RoutedEventArgs e)
+        private void BtnGameBackClick(object sender, RoutedEventArgs e)
         {
             PageMenu menuPage = new PageMenu();
             NavigationService.Navigate(menuPage);
@@ -409,7 +419,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnNextRoundClick(object sender, RoutedEventArgs e)
+        private void BtnNextRoundClick(object sender, RoutedEventArgs e)
         {
             if (roundDone)
             {

@@ -16,17 +16,39 @@
         <Image Source="/Images/Player3.png" Height="100" Width="100" Canvas.Left="450" Canvas.Top="47"/>
         <Image Source="/Images/Player4.png" Height="100" Width="100" Canvas.Left="54" Canvas.Top="278"/>
 
-        <!-- Player Labels -->
-        <Label Name="testLabel" Foreground="White" FontSize="16" Canvas.Left="471" Canvas.Top="472">Player 1</Label>
-        <Label Foreground="White" FontSize="16" Canvas.Left="895" Canvas.Top="242">Player 2</Label>
-        <Label Foreground="White" FontSize="16" Canvas.Left="467" Canvas.Top="21">Player 3</Label>
-        <Label Foreground="White" FontSize="16" Canvas.Left="69" Canvas.Top="242">Player 4</Label>
+        <!-- Player 1 Labels (with outline) -->
+        <Label Foreground="Black"   FontFamily="Arial" FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="474">Player 1</Label>
+        <Label Foreground="Black"   FontFamily="Arial" FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="474">Player 1</Label>
+        <Label Foreground="Black"   FontFamily="Arial" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="473">Player 1</Label>
+        <Label Foreground="Black"   FontFamily="Arial" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="475">Player 1</Label>
+        <Label Foreground="#33BCFF" FontFamily="Arial" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="474">Player 1</Label>
+
+        <!-- Player 2 Labels (with outline) -->
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="888" Canvas.Top="246">Player 2</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="890" Canvas.Top="246">Player 2</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="889" Canvas.Top="245">Player 2</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="889" Canvas.Top="247">Player 2</Label>
+        <Label Foreground="#FF5A5A" FontWeight="Bold" FontSize="18" Canvas.Left="889" Canvas.Top="246">Player 2</Label>
+
+        <!-- Player 3 Labels (with outline) -->
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="24">Player 3</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="24">Player 3</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="23">Player 3</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="25">Player 3</Label>
+        <Label Foreground="#33BCFF" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="24">Player 3</Label>
+
+        <!-- Player 4 Labels (with outline) -->
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="66" Canvas.Top="243">Player 4</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="68" Canvas.Top="243">Player 4</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="67" Canvas.Top="242">Player 4</Label>
+        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="67" Canvas.Top="244">Player 4</Label>
+        <Label Foreground="#FF5A5A" FontWeight="Bold" FontSize="18" Canvas.Left="67" Canvas.Top="243">Player 4</Label>
 
         <!-- Played Cards -->
-        <Image Name="playedCard1" Source="/Images/EmptyCard.png" Canvas.Left="468" Canvas.Top="356"/>
-        <Image Name="playedCard2" Source="/Images/EmptyCard.png" Canvas.Left="598" Canvas.Top="266"/>
-        <Image Name="playedCard3" Source="/Images/EmptyCard.png" Canvas.Left="468" Canvas.Top="166"/>
-        <Image Name="playedCard4" Source="/Images/EmptyCard.png" Canvas.Left="338" Canvas.Top="266"/>
+        <Image Name="playedCard1" Source="/Images/EmptyCard.png" Canvas.Left="466" Canvas.Top="356"/>
+        <Image Name="playedCard2" Source="/Images/EmptyCard.png" Canvas.Left="596" Canvas.Top="266"/>
+        <Image Name="playedCard3" Source="/Images/EmptyCard.png" Canvas.Left="466" Canvas.Top="166"/>
+        <Image Name="playedCard4" Source="/Images/EmptyCard.png" Canvas.Left="336" Canvas.Top="266"/>
 
         <!-- Player's Hand -->
         <Image Name="p01" Source="/Images/EmptyCard.png" Canvas.Left="005" Canvas.Top="640" MouseDown="card01MouseDown" />
@@ -45,12 +67,12 @@
 
         <!-- Back to menu button -->
         <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
-                Canvas.Left="10" Canvas.Top="10" Click="btnGameBackClick"></Button>
+                Canvas.Left="10" Canvas.Top="10" Click="BtnGameBackClick"></Button>
 
         <!-- Next Round button & Label-->
-        <Label Name="lblWinner" Foreground="White" FontSize="16" Canvas.Left="451" Canvas.Top="270"></Label>
+        <Label Name="lblWinner" Foreground="White" FontSize="16" Canvas.Left="447" Canvas.Top="270"></Label>
         <Button Name="btnNextRound" Content="Next Round" Height="35" Width="110" FontSize="16" Background="ForestGreen"
-                Canvas.Left="450" Canvas.Top="313" Visibility="Hidden" IsEnabled="False" Click="btnNextRoundClick"></Button>
+                Canvas.Left="447" Canvas.Top="310" Visibility="Hidden" IsEnabled="False" Click="BtnNextRoundClick"></Button>
 
     </Canvas>
 </Page>

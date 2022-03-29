@@ -12,7 +12,13 @@
         <!-- StackPanel that contains Tarneeb title at top and Main Menu contents on bottom -->
         <StackPanel>
 
-            <TextBlock Text="Tarneeb" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Foreground="White"/>
+            <Canvas Height="150">
+                <TextBlock Text="Tarneeb" Canvas.Left="370" Canvas.Top="22" FontSize="72" Foreground="Black"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="374" Canvas.Top="22" FontSize="70" Foreground="Black"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="372" Canvas.Top="20" FontSize="70" Foreground="Black"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="372" Canvas.Top="24" FontSize="70" Foreground="Black"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="372" Canvas.Top="22" FontSize="70" Foreground="White"/>
+            </Canvas>
 
             <!-- Grid to have buttons on left and image on right -->
             <Grid>
