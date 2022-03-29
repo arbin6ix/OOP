@@ -18,34 +18,48 @@ namespace OOP4200_Tarneeb
         // List of String that holds Tarneeb suit betting (1. Tarneeb Suit, 2. Bet number, 3. Player who betted the most) global variable
         public static List<String> tarneebSuit = new List<String>() { };
 
+        public string message = "";
+
         // Tarneeb played is a global variable
         public static bool tarneebPlayed = false;
 
+        // The first card played in the round
+        public static Card firstCard;
+
+        // The best card played in the round
         public static Card cardToBeat;
 
+        // The winner of the betting or the round
+        // winner = 0 means new round (betting)
+        public static int winner = 1;
+
         // Counter for remaining cards in the hand
-        public static int cardsRemaining = 13;
+        public static int cardsDone = 0;
+
+        // Bool for player's turn completed and round completed
+        public static bool playerDone = false;
+        public static bool roundDone = false;
 
         // Create a list of the player's cards Image controls from the PageGame.xaml form
-        List<Image> playerCardImages = new List<Image>();
+        public List<Image> playerCardImages = new List<Image>();
 
         // List of all player's cards
-        List<Card> playerHand = new List<Card>();
-        List<Card> hand2 = new List<Card>();
-        List<Card> hand3 = new List<Card>();
-        List<Card> hand4 = new List<Card>();
+        public List<Card> playerHand = new List<Card>();
+        public List<Card> hand2 = new List<Card>();
+        public List<Card> hand3 = new List<Card>();
+        public List<Card> hand4 = new List<Card>();
 
         // Random class object instantiation
-        Random rand = new Random();
+        public Random rand = new Random();
 
         // Played Cards each turn
-        Card player1Card = new Card();
-        Card player2Card = new Card();
-        Card player3Card = new Card();
-        Card player4Card = new Card();
+        public Card player1Card = new Card();
+        public Card player2Card = new Card();
+        public Card player3Card = new Card();
+        public Card player4Card = new Card();
 
         // Tarneeb (Trump)
-        Cards.Enums.Suit tarneeb;
+        public Cards.Enums.Suit tarneeb;
 
         // Create 4 Players each with their hand of 13 shuffled cards
         Player player1 = new Player();
@@ -140,53 +154,137 @@ namespace OOP4200_Tarneeb
             playerCardImages.Add(p13);
         }
 
+        #region ComputerTurnLogic
+
         /// <summary>
         /// Completes the turns of the computer players 2-4. This function is async
         /// so that I can wait a certain amount of time between/after turns
         /// </summary>
         /// <returns></returns>
-        public async Task ComputerTurns()
+        public void ComputerTurns()
+        {
+            if (!roundDone)
+            {
+                // If the winner is 1, the player has chosen their card, and computers haven't
+                if (winner == 1 && playerDone)
+                {
+                    // Set first card and card to beat to the player's card played
+                    firstCard = player1Card;
+                    cardToBeat = player1Card;
+
+                    // Play the turns in order from player 2
+                    Player2Turn();
+                    Player3Turn();
+                    Player4Turn();
+
+                    roundDone = true;
+                }
+                // If the winner of the previous round was player 2:
+                else if (winner == 2 && !playerDone)
+                {
+                    // Play the turns in order from player 2
+                    Player2Turn();
+                    Player3Turn();
+                    Player4Turn();
+                }
+                // If the winner is 3 and the player HAS NOT completed their turn
+                else if (winner == 3 && !playerDone)
+                {
+                    // Play the AI turns up the player's turn
+                    Player3Turn();
+                    Player4Turn();
+                }
+                // If the winner is 4 and the player HAS NOT completed their turn
+                else if (winner == 4 && !playerDone)
+                {
+                    // Play the AI turns up the player's turn
+                    Player4Turn();
+                }
+                else if (winner == 2 && playerDone)
+                {
+                    roundDone = true;
+                }
+                // If the winner is 3 and the player HAS completed their turn
+                else if (winner == 3 && playerDone)
+                {
+                    // Play the remaining AI turns
+                    Player2Turn();
+
+                    roundDone = true;
+                }
+                // If the winner is 4 and the player HAS completed their turn
+                else if (winner == 4 && playerDone)
+                {
+                    // Play the remaining AI turns
+                    Player2Turn();
+                    Player3Turn();
+
+                    roundDone = true;
+                }
+            }
+
+            // If all 4 players are done their turns and we reach the end of this function, start next round
+            if (roundDone)
+            {
+                // Determine winner of round
+                DetermineWinner(tarneeb, player1Card, player2Card, player3Card, player4Card);
+
+                // Increment number of cards done
+                cardsDone += 1;
+
+                // If there are more cards to play, continue the game
+                if (cardsDone < 13)
+                {
+                    // Show the Next Round button which starts the next round
+                    btnNextRound.Visibility = Visibility.Visible;
+                    btnNextRound.IsEnabled = true;
+                }
+                // If the cards are finished, end the game
+                else
+                {
+
+                }
+            }            
+        }
+
+        
+
+        
+
+        /// <summary>
+        /// Turn logic for Player 2 AI
+        /// </summary>
+        public void Player2Turn()
         {
             Card chosenCard;
-
-            // Wait X milliseconds
-            await Task.Delay(500);
-
-            // Play card for AI player 2 using AI logic
             chosenCard = AIChooseCard(hand2);
             player2Card = chosenCard;
             playedCard2.Source = Card.ToImage(chosenCard);
             hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+        }
 
-            // Wait X milliseconds
-            await Task.Delay(500);
-
-            // Play card for AI player 3 using AI logic
+        /// <summary>
+        /// Turn logic for Player 3 AI
+        /// </summary>
+        public void Player3Turn()
+        {
+            Card chosenCard;
             chosenCard = AIChooseCard(hand3);
             player3Card = chosenCard;
             playedCard3.Source = Card.ToImage(chosenCard);
             hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+        }
 
-            // Wait X milliseconds
-            await Task.Delay(500);
-
-            // Play card for AI player 4 using AI logic
+        /// <summary>
+        /// Turn logic for Player 4 AI
+        /// </summary>
+        public void Player4Turn()
+        {
+            Card chosenCard;
             chosenCard = AIChooseCard(hand4);
             player4Card = chosenCard;
             playedCard4.Source = Card.ToImage(chosenCard);
             hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-
-            // Wait X milliseconds before end of turn
-            await Task.Delay(2500);
-
-            // Clear all cards played
-            playedCard1.Source = null;
-            playedCard2.Source = null;
-            playedCard3.Source = null;
-            playedCard4.Source = null;
-
-            // Refresh card display with remaining cards in hand
-            DisplayCards(playerHand);
         }
 
         /// <summary>
@@ -196,72 +294,104 @@ namespace OOP4200_Tarneeb
         /// <returns></returns>
         public Card AIChooseCard(List<Card> hand)
         {
-            // Properties of card that has been played by the player
-            int suitPlayed = (int)cardToBeat.Suit;
-            int numToBeat = (int)cardToBeat.CardNumber;
-
             // The card chosen by the AI to play
             Card chosenCard = new Card();
 
-            // Create new list of cards to hold the cards that match the suit played
-            List<Card> matchingSuits = new List<Card>();
+            // Create new list of cards that match the suit played, and a list of tarneebs
+            List<Card> matchingList = new List<Card>();
+            List<Card> tarneebList = new List<Card>();
 
-            if ((int)cardToBeat.Suit == (int)tarneeb)
+            // Properties of card to beat
+            int playedSuit;
+            int playedNumber;
+
+            // If a card to beat has been played
+            if (cardToBeat != null)
             {
-
+                // Set properties of card to beat
+                playedSuit = (int)cardToBeat.Suit;
+                playedNumber = (int)cardToBeat.CardNumber;
             }
-            else {
-                // Loop through the hand, adding any matching cards to the new list
+            // If a card has not been played
+            else
+            {
+                // Loop through the remaining cards and pick out the lowest value card
                 for (int i = 0; i < hand.Count; i++)
                 {
-                    if ((int)hand[i].Suit == suitPlayed)
+                    // If a card hasn't been chosen OR the current card's number is lower than
+                    // the chosen card's number...
+                    if (i == 0 || (int)hand[i].CardNumber < (int)chosenCard.CardNumber)
                     {
-                        matchingSuits.Add(hand[i]);
+                        // ... choose the current card to play
+                        chosenCard = hand[i];
+
+                        // Set this card to the card to beat and the first card
+                        cardToBeat = hand[i];
+                        firstCard = hand[i];
+
+                        // Set the tarneeb
+                        tarneeb = hand[i].Suit;
                     }
                 }
 
-                // Loop through the new list of matching cards...
-                for (int i = 0; i < matchingSuits.Count; i++)
+                // Set properties of card to beat
+                playedSuit = (int)cardToBeat.Suit;
+                playedNumber = (int)cardToBeat.CardNumber;
+            }
+
+            // Add any matching cards to the new list
+            for (int i = 0; i < hand.Count; i++)
+            {
+                if ((int)hand[i].Suit == playedSuit)
                 {
-                    // If a card hasn't been chosen...
-                    if (i == 0)
-                    {
-                        // ...choose the current card to play
-                        chosenCard = matchingSuits[i];
-                    }
+                    matchingList.Add(hand[i]);
+                }
+            }
 
-                    // If the current card beats the card played AND the current card does NOT
-                    // beat the card played (so as to not waste a better card)...
-                    if (numToBeat < (int)matchingSuits[i].CardNumber
-                        || numToBeat < (int)matchingSuits[i].CardNumber
-                        && (int)matchingSuits[i].CardNumber < (int)chosenCard.CardNumber)
-                    {
-                        // ...choose the current card to play
-                        chosenCard = matchingSuits[i];
-
-                        // Since this card is better, set it to the new cardToBeat
-                        cardToBeat = chosenCard;
-                    }
+            // Loop through the new list of matching cards...
+            for (int i = 0; i < matchingList.Count; i++)
+            {
+                // If a card hasn't been chosen...
+                if (i == 0)
+                {
+                    // ...choose the current card to play
+                    chosenCard = matchingList[i];
                 }
 
-                // If there are no cards with a matching suit...
-                if (matchingSuits.Count == 0)
+                // If the current card beats the card played AND the current card does NOT
+                // beat the card played (so as to not waste a better card)...
+                if (playedNumber < (int)matchingList[i].CardNumber
+                    || playedNumber < (int)matchingList[i].CardNumber
+                    && (int)matchingList[i].CardNumber < (int)chosenCard.CardNumber)
                 {
-                    // ...loop through the remaining cards and pick out the lowest value card
-                    for (int i = 0; i < hand.Count; i++)
+                    // ...choose the current card to play
+                    chosenCard = matchingList[i];
+
+                    // Since this card is better, set it to the new cardToBeat
+                    cardToBeat = chosenCard;
+                }
+            }
+
+            // If there are no cards with a matching suit...
+            if (matchingList.Count == 0)
+            {
+                // ...loop through the remaining cards and pick out the lowest value card
+                for (int i = 0; i < hand.Count; i++)
+                {
+                    // If a card hasn't been chosen OR the current card's number is lower than
+                    // the chosen card's number...
+                    if (i == 0 || (int)hand[i].CardNumber < (int)chosenCard.CardNumber)
                     {
-                        // If a card hasn't been chosen OR the current card's number is lower than
-                        // the chosen card's number...
-                        if (i == 0 || (int)hand[i].CardNumber < (int)chosenCard.CardNumber)
-                        {
-                            // ... choose the current card to play
-                            chosenCard = hand[i];
-                        }
+                        // ... choose the current card to play
+                        chosenCard = hand[i];
                     }
                 }
             }
+
             return chosenCard;
         }
+
+        #endregion
 
         /// <summary>
         /// Sends user back to main menu (exits current game)
@@ -274,6 +404,50 @@ namespace OOP4200_Tarneeb
             NavigationService.Navigate(menuPage);
         }
 
+        /// <summary>
+        /// Starts the next round of Tarneeb
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNextRoundClick(object sender, RoutedEventArgs e)
+        {
+            if (roundDone)
+            {
+                // Clear cards played
+                player1Card = null;
+                player2Card = null;
+                player3Card = null;
+                player4Card = null;
+                firstCard = null;
+                cardToBeat = null;
+
+                // Clear respective card's images
+                playedCard1.Source = null;
+                playedCard2.Source = null;
+                playedCard3.Source = null;
+                playedCard4.Source = null;
+
+                // Refresh card display with remaining cards in hand
+                DisplayCards(playerHand);
+
+                // Reset round completion bools to false
+                playerDone = false;
+                roundDone = false;
+
+                // If a computer won, loop this function to complete the computer turns again
+                if (winner > 1)
+                {
+                    ComputerTurns();
+                }
+
+                // Remove winner text
+                lblWinner.Content = "";
+
+                // Hide the button again
+                btnNextRound.Visibility = Visibility.Hidden;
+                btnNextRound.IsEnabled = false;
+            }
+        }
 
         #region Card Click Functionality
 
@@ -293,8 +467,9 @@ namespace OOP4200_Tarneeb
                 p01.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[0];
+                player1Card = playerHand[0];
                 playerHand.RemoveAt(0);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -316,8 +491,9 @@ namespace OOP4200_Tarneeb
                 p02.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[1];
+                player1Card = playerHand[1];
                 playerHand.RemoveAt(1);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -339,8 +515,9 @@ namespace OOP4200_Tarneeb
                 p03.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[2];
+                player1Card = playerHand[2];
                 playerHand.RemoveAt(2);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -363,8 +540,9 @@ namespace OOP4200_Tarneeb
 
 
                 // Remove card from hand
-                cardToBeat = playerHand[3];
+                player1Card = playerHand[3];
                 playerHand.RemoveAt(3);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -386,8 +564,9 @@ namespace OOP4200_Tarneeb
                 p05.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[4];
+                player1Card = playerHand[4];
                 playerHand.RemoveAt(4);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -409,8 +588,9 @@ namespace OOP4200_Tarneeb
                 p06.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[5];
+                player1Card = playerHand[5];
                 playerHand.RemoveAt(5);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -432,8 +612,9 @@ namespace OOP4200_Tarneeb
                 p07.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[6];
+                player1Card = playerHand[6];
                 playerHand.RemoveAt(6);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -455,8 +636,9 @@ namespace OOP4200_Tarneeb
                 p08.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[7];
+                player1Card = playerHand[7];
                 playerHand.RemoveAt(7);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -478,8 +660,9 @@ namespace OOP4200_Tarneeb
                 p09.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[8];
+                player1Card = playerHand[8];
                 playerHand.RemoveAt(8);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -501,8 +684,9 @@ namespace OOP4200_Tarneeb
                 p10.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[9];
+                player1Card = playerHand[9];
                 playerHand.RemoveAt(9);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -524,8 +708,9 @@ namespace OOP4200_Tarneeb
                 p11.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[10];
+                player1Card = playerHand[10];
                 playerHand.RemoveAt(10);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -547,8 +732,9 @@ namespace OOP4200_Tarneeb
                 p12.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[11];
+                player1Card = playerHand[11];
                 playerHand.RemoveAt(11);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -570,8 +756,9 @@ namespace OOP4200_Tarneeb
                 p13.Source = null;
 
                 // Remove card from hand
-                cardToBeat = playerHand[12];
+                player1Card = playerHand[12];
                 playerHand.RemoveAt(12);
+                playerDone = true;
 
                 // Complete computer turns (async)
                 ComputerTurns();
@@ -582,11 +769,14 @@ namespace OOP4200_Tarneeb
         #endregion
 
         // returns Card that won the hand. (Returns Card to be used to match player that played it. Winner starts next round)
-        private Card handWinner(Cards.Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
+        private Card DetermineWinner(Cards.Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
         {
-            Card winner = card1;
+            Card winningCard = card1;
+            winner = 1;
+            lblWinner.Content = "Player 1 Wins!";
 
             Cards.Enums.Suit suit;
+            
 
             if(card2.Suit == tarneeb)
             {
@@ -608,27 +798,34 @@ namespace OOP4200_Tarneeb
 
             if(card2.Suit == suit)
             {
-                if(card2.CardNumber > winner.CardNumber)
+                if(card2.CardNumber > winningCard.CardNumber)
                 {
-                    winner = card2;
+                    winningCard = card2;
+                    lblWinner.Content = "Player 2 Wins!";
+                    winner = 2;
                 }
             }
             if(card3.Suit == suit)
             {
-                if (card3.CardNumber > winner.CardNumber)
+                if (card3.CardNumber > winningCard.CardNumber)
                 {
-                    winner = card3;
+                    winningCard = card3;
+                    lblWinner.Content = "Player 3 Wins!";
+                    winner = 3;
                 }
             }
             if(card4.Suit == suit)
             {
-                if (card4.CardNumber > winner.CardNumber)
+                if (card4.CardNumber > winningCard.CardNumber)
                 {
-                    winner = card4;
+                    winningCard = card4;
+                    lblWinner.Content = "Player 4 Wins!";
+                    winner = 4;
                 }
             }
 
-            return winner;
+            return winningCard;
         }
+
     }
 }

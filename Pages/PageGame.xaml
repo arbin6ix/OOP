@@ -47,5 +47,10 @@
         <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
                 Canvas.Left="10" Canvas.Top="10" Click="btnGameBackClick"></Button>
 
+        <!-- Next Round button & Label-->
+        <Label Name="lblWinner" Foreground="White" FontSize="16" Canvas.Left="451" Canvas.Top="270"></Label>
+        <Button Name="btnNextRound" Content="Next Round" Height="35" Width="110" FontSize="16" Background="ForestGreen"
+                Canvas.Left="450" Canvas.Top="313" Visibility="Hidden" IsEnabled="False" Click="btnNextRoundClick"></Button>
+
     </Canvas>
 </Page>

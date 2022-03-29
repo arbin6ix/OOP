@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP4200_Tarneeb"
         mc:Ignorable="d"
-        Title="Tarneeb" Height="800" Width="1000">
+        Title="Tarneeb" Height="800" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/BackgroundCropped.png"/>
