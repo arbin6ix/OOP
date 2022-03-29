@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Navigation;
 
 namespace OOP4200_Tarneeb
@@ -39,6 +40,10 @@ namespace OOP4200_Tarneeb
         // Bool for player's turn completed and round completed
         public static bool playerDone = false;
         public static bool roundDone = false;
+
+        // Team Colours
+        public SolidColorBrush team1Color = new SolidColorBrush(Color.FromRgb(51, 188, 255));
+        public SolidColorBrush team2Color = new SolidColorBrush(Color.FromRgb(255, 90, 90));
 
         // Create a list of the player's cards Image controls from the PageGame.xaml form
         public List<Image> playerCardImages = new List<Image>();
@@ -784,6 +789,7 @@ namespace OOP4200_Tarneeb
             Card winningCard = card1;
             winner = 1;
             lblWinner.Content = "Player 1 Wins!";
+            lblWinner.Foreground = team1Color;
 
             Cards.Enums.Suit suit;
             
@@ -812,6 +818,7 @@ namespace OOP4200_Tarneeb
                 {
                     winningCard = card2;
                     lblWinner.Content = "Player 2 Wins!";
+                    lblWinner.Foreground = team2Color;
                     winner = 2;
                 }
             }
@@ -821,6 +828,7 @@ namespace OOP4200_Tarneeb
                 {
                     winningCard = card3;
                     lblWinner.Content = "Player 3 Wins!";
+                    lblWinner.Foreground = team1Color;
                     winner = 3;
                 }
             }
@@ -830,6 +838,7 @@ namespace OOP4200_Tarneeb
                 {
                     winningCard = card4;
                     lblWinner.Content = "Player 4 Wins!";
+                    lblWinner.Foreground = team2Color;
                     winner = 4;
                 }
             }
