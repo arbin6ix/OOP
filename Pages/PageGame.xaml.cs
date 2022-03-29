@@ -38,10 +38,28 @@ namespace OOP4200_Tarneeb
         // Random class object instantiation
         Random rand = new Random();
 
+        // Played Cards each turn
+        Card player1Card = new Card();
+        Card player2Card = new Card();
+        Card player3Card = new Card();
+        Card player4Card = new Card();
+
+        // Tarneeb (Trump)
+        Cards.Enums.Suit tarneeb;
+
+        // Create 4 Players each with their hand of 13 shuffled cards
+        Player player1 = new Player();
+        Player player2 = new Player();
+        Player player3 = new Player();
+        Player player4 = new Player();
 
         public PageGame()
         {
             InitializeComponent();
+
+            // Create both teams
+            Team team1 = new Team();
+            Team team2 = new Team();
             CreateImageList();
             NewRound();
         }
@@ -73,11 +91,13 @@ namespace OOP4200_Tarneeb
             DisplayCards(playerHand);
 
             //Assign Players to Teams
-            Teams firstTeam = new Teams(player1, player2);
-            Teams secondTeam = new Teams(player3, player4);
+            Team team1 = new Team(player1, player2);
+            Team team2 = new Team(player3, player4);
 
             // Create a List of Players
             List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
+
+            
         }
 
         /// <summary>
@@ -134,6 +154,7 @@ namespace OOP4200_Tarneeb
 
             // Play card for AI player 2 using AI logic
             chosenCard = AIChooseCard(hand2);
+            player2Card = chosenCard;
             playedCard2.Source = Card.ToImage(chosenCard);
             hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
 
@@ -142,6 +163,7 @@ namespace OOP4200_Tarneeb
 
             // Play card for AI player 3 using AI logic
             chosenCard = AIChooseCard(hand3);
+            player3Card = chosenCard;
             playedCard3.Source = Card.ToImage(chosenCard);
             hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
 
@@ -150,6 +172,7 @@ namespace OOP4200_Tarneeb
 
             // Play card for AI player 4 using AI logic
             chosenCard = AIChooseCard(hand4);
+            player4Card = chosenCard;
             playedCard4.Source = Card.ToImage(chosenCard);
             hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
 
@@ -183,55 +206,60 @@ namespace OOP4200_Tarneeb
             // Create new list of cards to hold the cards that match the suit played
             List<Card> matchingSuits = new List<Card>();
 
-            // Loop through the hand, adding any matching cards to the new list
-            for (int i = 0; i < hand.Count; i++)
+            if ((int)cardToBeat.Suit == (int)tarneeb)
             {
-                if ((int)hand[i].Suit == suitPlayed)
-                {
-                    matchingSuits.Add(hand[i]);
-                }
+
             }
-
-            // Loop through the new list of matching cards...
-            for (int i = 0; i < matchingSuits.Count; i++)
-            {
-                // If a card hasn't been chosen...
-                if (i == 0)
-                {
-                    // ...choose the current card to play
-                    chosenCard = matchingSuits[i];
-                }
-
-                // If the current card beats the card played AND the current card does NOT
-                // beat the card played (so as to not waste a better card)...
-                if (numToBeat < (int)matchingSuits[i].CardNumber
-                    || numToBeat < (int)matchingSuits[i].CardNumber
-                    && (int)matchingSuits[i].CardNumber < (int)chosenCard.CardNumber)
-                {
-                    // ...choose the current card to play
-                    chosenCard = matchingSuits[i];
-
-                    // Since this card is better, set it to the new cardToBeat
-                    cardToBeat = chosenCard;
-                }
-            }
-
-            // If there are no cards with a matching suit...
-            if (matchingSuits.Count == 0)
-            {
-                // ...loop through the remaining cards and pick out the lowest value card
+            else {
+                // Loop through the hand, adding any matching cards to the new list
                 for (int i = 0; i < hand.Count; i++)
                 {
-                    // If a card hasn't been chosen OR the current card's number is lower than
-                    // the chosen card's number...
-                    if (i == 0 || (int)hand[i].CardNumber < (int)chosenCard.CardNumber)
+                    if ((int)hand[i].Suit == suitPlayed)
                     {
-                        // ... choose the current card to play
-                        chosenCard = hand[i];
+                        matchingSuits.Add(hand[i]);
+                    }
+                }
+
+                // Loop through the new list of matching cards...
+                for (int i = 0; i < matchingSuits.Count; i++)
+                {
+                    // If a card hasn't been chosen...
+                    if (i == 0)
+                    {
+                        // ...choose the current card to play
+                        chosenCard = matchingSuits[i];
+                    }
+
+                    // If the current card beats the card played AND the current card does NOT
+                    // beat the card played (so as to not waste a better card)...
+                    if (numToBeat < (int)matchingSuits[i].CardNumber
+                        || numToBeat < (int)matchingSuits[i].CardNumber
+                        && (int)matchingSuits[i].CardNumber < (int)chosenCard.CardNumber)
+                    {
+                        // ...choose the current card to play
+                        chosenCard = matchingSuits[i];
+
+                        // Since this card is better, set it to the new cardToBeat
+                        cardToBeat = chosenCard;
+                    }
+                }
+
+                // If there are no cards with a matching suit...
+                if (matchingSuits.Count == 0)
+                {
+                    // ...loop through the remaining cards and pick out the lowest value card
+                    for (int i = 0; i < hand.Count; i++)
+                    {
+                        // If a card hasn't been chosen OR the current card's number is lower than
+                        // the chosen card's number...
+                        if (i == 0 || (int)hand[i].CardNumber < (int)chosenCard.CardNumber)
+                        {
+                            // ... choose the current card to play
+                            chosenCard = hand[i];
+                        }
                     }
                 }
             }
-
             return chosenCard;
         }
 
@@ -553,6 +581,54 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
+        // returns Card that won the hand. (Returns Card to be used to match player that played it. Winner starts next round)
+        private Card handWinner(Cards.Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
+        {
+            Card winner = card1;
 
+            Cards.Enums.Suit suit;
+
+            if(card2.Suit == tarneeb)
+            {
+                suit = tarneeb;
+            }
+            else if (card3.Suit == tarneeb)
+            {
+                suit = tarneeb;
+            }
+            else if (card4.Suit == tarneeb)
+            {
+                suit = tarneeb;
+            }
+            else
+            {
+                suit = card1.Suit;
+            }
+
+
+            if(card2.Suit == suit)
+            {
+                if(card2.CardNumber > winner.CardNumber)
+                {
+                    winner = card2;
+                }
+            }
+            if(card3.Suit == suit)
+            {
+                if (card3.CardNumber > winner.CardNumber)
+                {
+                    winner = card3;
+                }
+            }
+            if(card4.Suit == suit)
+            {
+                if (card4.CardNumber > winner.CardNumber)
+                {
+                    winner = card4;
+                }
+            }
+
+            return winner;
+        }
     }
 }

@@ -13,5 +13,10 @@ namespace OOP4200_Tarneeb.Cards
         {
             this.playersCards = playersCards;
         }
+
+        public Player()
+        {
+            this.playersCards = null;
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OOP4200_Tarneeb.Cards
 {
-    class Teams
+    class Team
     {
         // Fields
         public Player player1 { get; set; }
@@ -12,7 +12,7 @@ namespace OOP4200_Tarneeb.Cards
         public int score { get; set; }
 
         // Constructor
-        public Teams(Player player1, Player player2)
+        public Team(Player player1, Player player2)
         {
             this.player1 = player1;
             this.player2 = player2;
@@ -20,7 +20,7 @@ namespace OOP4200_Tarneeb.Cards
         }
 
         // No param constructor
-        public Teams()
+        public Team()
         {
             player1 = null;
             player2 = null;
