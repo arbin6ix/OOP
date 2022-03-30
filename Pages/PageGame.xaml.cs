@@ -950,9 +950,14 @@ namespace OOP4200_Tarneeb
             {
                 suit = tarneeb;
             }
+            else if(card1.Suit == tarneeb)
+            {
+                suit = tarneeb;
+            }
             else
             {
-                suit = card1.Suit;
+                suit = firstCard.Suit;
+
             }
 
 
