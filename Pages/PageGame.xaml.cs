@@ -169,6 +169,30 @@ namespace OOP4200_Tarneeb
             playerCardImages.Add(p13);
         }
 
+        /// <summary>
+        /// Updates the score labels for Team 1's score
+        /// </summary>
+        public void UpdateTeam1Score()
+        {
+            lblTeam1Score1.Content = team1Score;
+            lblTeam1Score2.Content = team1Score;
+            lblTeam1Score3.Content = team1Score;
+            lblTeam1Score4.Content = team1Score;
+            lblTeam1Score5.Content = team1Score;
+        }
+
+        /// <summary>
+        /// Updates the score labels for Team 2's score
+        /// </summary>
+        public void UpdateTeam2Score()
+        {
+            lblTeam2Score1.Content = team2Score;
+            lblTeam2Score2.Content = team2Score;
+            lblTeam2Score3.Content = team2Score;
+            lblTeam2Score4.Content = team2Score;
+            lblTeam2Score5.Content = team2Score;
+        }
+
         #region ComputerTurnLogic
 
         /// <summary>
