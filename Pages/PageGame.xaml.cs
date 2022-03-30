@@ -867,6 +867,29 @@ namespace OOP4200_Tarneeb
                 }
             }
 
+            switch (winner)
+            {
+                case 1:
+                    team1Score ++;
+                    
+                    break;
+                case 2:
+                    team2Score++;
+                    break;
+                case 3:
+                    team1Score++;
+                    break;
+                case 4:
+                    team2Score++;
+                    break;
+                default:
+                    break;
+            }
+
+            UpdateTeam1Score();
+            UpdateTeam2Score();
+
+
             return winningCard;
         }
 
