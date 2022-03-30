@@ -812,8 +812,6 @@ namespace OOP4200_Tarneeb
         {
             Card winningCard = card1;
             winner = 1;
-            lblWinner.Content = "Player 1 Wins!";
-            lblWinner.Foreground = team1Color;
 
             Cards.Enums.Suit suit;
             
@@ -841,8 +839,8 @@ namespace OOP4200_Tarneeb
                 if(card2.CardNumber > winningCard.CardNumber)
                 {
                     winningCard = card2;
-                    lblWinner.Content = "Player 2 Wins!";
-                    lblWinner.Foreground = team2Color;
+
+                    if (cardsDone < 13)
                     winner = 2;
                 }
             }
@@ -851,8 +849,6 @@ namespace OOP4200_Tarneeb
                 if (card3.CardNumber > winningCard.CardNumber)
                 {
                     winningCard = card3;
-                    lblWinner.Content = "Player 3 Wins!";
-                    lblWinner.Foreground = team1Color;
                     winner = 3;
                 }
             }
@@ -861,9 +857,48 @@ namespace OOP4200_Tarneeb
                 if (card4.CardNumber > winningCard.CardNumber)
                 {
                     winningCard = card4;
-                    lblWinner.Content = "Player 4 Wins!";
-                    lblWinner.Foreground = team2Color;
                     winner = 4;
+                }
+            }
+
+            // Show the round winner label if the game isn't over
+            if (cardsDone < 12)
+            {
+                switch (winner)
+                {
+                    case 1:
+                        lblWinner.Content = "Player 1 Wins!";
+                        lblWinner.Foreground = team1Color;
+                        break;
+                    case 2:
+                        lblWinner.Content = "Player 2 Wins!";
+                        lblWinner.Foreground = team2Color;
+                        break;
+                    case 3:
+                        lblWinner.Content = "Player 3 Wins!";
+                        lblWinner.Foreground = team1Color;
+                        break;
+                    case 4:
+                        lblWinner.Content = "Player 4 Wins!";
+                        lblWinner.Foreground = team2Color;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            // If the game is over...
+            else
+            {
+                // ...determine the winning team
+                if (team1Score > team2Score)
+                {
+                    lblWinner.Content = "Team 1 Wins!";
+                    lblWinner.Foreground = team1Color;
+                }
+                else
+                {
+                    lblWinner.Content = "Team 2 Wins!";
+                    lblWinner.Foreground = team2Color;
                 }
             }
 
