@@ -17,6 +17,26 @@ namespace OOP4200_Tarneeb
     public partial class PageGame : Page
     {
 
+        #region TODO:
+
+        /*
+        
+        List of things still needed:
+
+         - Log & Stats (tough)
+
+         - How To Play (easy)
+
+         - Betting (tough)
+
+         - Multiple Round Tarneeb to 31 Points(tough): right now it's single round, also idk if this is needed
+
+         - Better AI (I [Kellen] plan on doing at least this)
+
+        */
+
+        #endregion
+
         #region Fields & Properties
 
         public Cards.Enums.Suit tarneeb;    // Tarneeb (trump card)
