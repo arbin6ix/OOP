@@ -21,7 +21,7 @@ namespace OOP4200_Tarneeb
 
         /*
         
-        List of things still needed:
+        TODO: List of things still needed:
 
          - Log & Stats (tough)
 
@@ -270,22 +270,19 @@ namespace OOP4200_Tarneeb
                     case 2:
                         // Play the turns in order from player 2 and set Tarneeb / firstCard
                         Player2Turn();
+                        firstCard = player2Card;
                         Player3Turn();
                         Player4Turn();
-                        SetTarneeb(player2Card.Suit);
-                        firstCard = player2Card;
                         break;
                     case 3:
                         // Play the turns in order from player 3 and set Tarneeb / firstCard
                         Player3Turn();
-                        Player4Turn();
-                        SetTarneeb(player3Card.Suit);
                         firstCard = player3Card;
+                        Player4Turn();
                         break;
                     case 4:
                         // Play the first turn and set Tarneeb / firstCard
                         Player4Turn();
-                        SetTarneeb(player4Card.Suit);
                         firstCard = player4Card;
                         break;
                     default:
@@ -347,7 +344,6 @@ namespace OOP4200_Tarneeb
 
                         // Set this card to the card to beat and the first card
                         cardToBeat = hand[i];
-                        firstCard = hand[i];
                     }
                 }
 
@@ -957,7 +953,6 @@ namespace OOP4200_Tarneeb
             else
             {
                 suit = firstCard.Suit;
-
             }
 
 
