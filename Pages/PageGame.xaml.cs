@@ -49,7 +49,7 @@ namespace OOP4200_Tarneeb
         public bool playerDone = false;
         public bool roundDone = false;
 
-        // The winner of the betting or the round
+        // The winner of the betting or the round. Winner places the first card of a new turn.
         // winner = 0 means new round (betting)
         public static int winner = 1;
 
