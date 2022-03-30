@@ -33,8 +33,6 @@ namespace OOP4200_Tarneeb
 
          - Better AI (I [Kellen] plan on doing at least this)
 
-         - DetermineWinner() Line ~917 needs to look at suit of first card played (non-tarneeb)
-
         */
 
         #endregion
@@ -927,12 +925,12 @@ namespace OOP4200_Tarneeb
         /// <param name="card2">Player 2's card played</param>
         /// <param name="card3">Player 3's card played</param>
         /// <param name="card4">Player 4's card played</param>
-        public void DetermineWinner(Cards.Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
+        public void DetermineWinner(Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
         {
             Card winningCard = card1;
             winner = 1;
 
-            Cards.Enums.Suit suit;
+            Enums.Suit suit;
 
             if (card2.Suit == tarneeb)
             {
@@ -946,13 +944,9 @@ namespace OOP4200_Tarneeb
             {
                 suit = tarneeb;
             }
-            else if(card1.Suit == tarneeb)
-            {
-                suit = tarneeb;
-            }
             else
             {
-                suit = firstCard.Suit;
+                suit = card1.Suit;
             }
 
 
@@ -960,16 +954,20 @@ namespace OOP4200_Tarneeb
             {
                 if (card2.CardNumber > winningCard.CardNumber)
                 {
+                    winningCard = card2;
                     winner = 2;
                 }
             }
+
             if (card3.Suit == suit)
             {
                 if (card3.CardNumber > winningCard.CardNumber)
                 {
+                    winningCard = card3;
                     winner = 3;
                 }
             }
+
             if (card4.Suit == suit)
             {
                 if (card4.CardNumber > winningCard.CardNumber)
