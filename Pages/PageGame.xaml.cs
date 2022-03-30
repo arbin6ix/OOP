@@ -315,7 +315,7 @@ namespace OOP4200_Tarneeb
         /// <summary>
         /// Returns the AI's choice of card to play with given hand
         /// </summary>
-        /// <param name=""></param>
+        /// <param name="hand">The computer's current hand</param>
         /// <returns></returns>
         public Card AIChooseCard(List<Card> hand)
         {
@@ -330,7 +330,7 @@ namespace OOP4200_Tarneeb
             int playedSuit;
             int playedNumber;
 
-            // If a card to beat has been played
+            // If a card has already been played this round
             if (cardToBeat != null)
             {
                 // Set properties of card to beat
