@@ -213,8 +213,9 @@ namespace OOP4200_Tarneeb
             {
                 DoComputerTurns();
             }
+
             // If the round is completed, start the next round
-            else
+            if (roundDone)
             {
                 NextRound();
             }
