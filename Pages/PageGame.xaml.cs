@@ -68,7 +68,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region Round Initialization
+        #region Game Initialization
 
         public PageGame()
         {
@@ -163,8 +163,7 @@ namespace OOP4200_Tarneeb
         #region AI Logic
 
         /// <summary>
-        /// Completes the turns of the computer players 2-4. This function is async
-        /// so that I can wait a certain amount of time between/after turns
+        /// Completes the turns of the computer players 2-4 and starts the next round
         /// </summary>
         /// <returns></returns>
         public void ComputerTurnLogic()
