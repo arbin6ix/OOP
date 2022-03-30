@@ -204,142 +204,72 @@ namespace OOP4200_Tarneeb
         /// </summary>
         public void DoComputerTurns()
         {
-            // If the winner is 1 and the player has chosen their card
-            if (winner == 1 && playerDone)
+            // If player has made their turn already...
+            if (playerDone)
             {
-                // Set first card and card to beat to the player's card played
-                firstCard = player1Card;
-                cardToBeat = player1Card;
-
-                // Set the tarneeb
-                SetTarneeb(player1Card.Suit);
-
-                // Play the turns in order from player 2
-                Player2Turn();
-                Player3Turn();
-                Player4Turn();
-
-                roundDone = true;
+                // ...switch depending on winner (player who places first)
+                switch (winner)
+                {
+                    case 1:
+                        // Set first card and card to beat to the player's card played
+                        firstCard = player1Card;
+                        cardToBeat = player1Card;
+                        // Play the AI turns and set the tarneeb
+                        SetTarneeb(player1Card.Suit);
+                        Player2Turn();
+                        Player3Turn();
+                        Player4Turn();
+                        roundDone = true;
+                        break;
+                    case 2:
+                        roundDone = true;
+                        break;
+                    case 3:
+                        // Play the remaining AI turn
+                        Player2Turn();
+                        roundDone = true;
+                        break;
+                    case 4:
+                        // Play the remaining AI turns
+                        Player2Turn();
+                        Player3Turn();
+                        roundDone = true;
+                        break;
+                    default:
+                        break;
+                }
             }
-            // If the winner of the previous round was player 2:
-            else if (winner == 2 && !playerDone)
+            // If player has NOT made their turn already...
+            else if (!playerDone)
             {
-                // Set the tarneeb
-                SetTarneeb(player2Card.Suit);
-
-                // Play the turns in order from player 2
-                firstCard = player2Card;
-                Player2Turn();
-                Player3Turn();
-                Player4Turn();
+                // ...switch depending on winner (player who places first)
+                switch (winner)
+                {
+                    case 2:
+                        // Play the turns in order from player 2 and set Tarneeb / firstCard
+                        Player2Turn();
+                        Player3Turn();
+                        Player4Turn();
+                        SetTarneeb(player2Card.Suit);
+                        firstCard = player2Card;
+                        break;
+                    case 3:
+                        // Play the turns in order from player 3 and set Tarneeb / firstCard
+                        Player3Turn();
+                        Player4Turn();
+                        SetTarneeb(player3Card.Suit);
+                        firstCard = player3Card;
+                        break;
+                    case 4:
+                        // Play the first turn and set Tarneeb / firstCard
+                        Player4Turn();
+                        SetTarneeb(player4Card.Suit);
+                        firstCard = player4Card;
+                        break;
+                    default:
+                        break;
+                }
             }
-            // If the winner is 3 and the player HAS NOT completed their turn
-            else if (winner == 3 && !playerDone)
-            {
-                // Set the tarneeb
-                SetTarneeb(player3Card.Suit);
-
-                // Play the AI turns up the player's turn
-                firstCard = player3Card;
-                Player3Turn();
-                Player4Turn();
-            }
-            // If the winner is 4 and the player HAS NOT completed their turn
-            else if (winner == 4 && !playerDone)
-            {
-                // Set the tarneeb
-                SetTarneeb(player4Card.Suit);
-
-                // Play the AI turns up the player's turn
-                firstCard = player4Card;
-                Player4Turn();
-            }
-            else if (winner == 2 && playerDone)
-            {
-                roundDone = true;
-            }
-            // If the winner is 3 and the player HAS completed their turn
-            else if (winner == 3 && playerDone)
-            {
-                // Play the remaining AI turns
-                Player2Turn();
-
-                roundDone = true;
-            }
-            // If the winner is 4 and the player HAS completed their turn
-            else if (winner == 4 && playerDone)
-            {
-                // Play the remaining AI turns
-                Player2Turn();
-                Player3Turn();
-
-                roundDone = true;
-            }
-        }
-
-        public void NextRound()
-        {
-            // Determine winner of round
-            EndOfRoundCleanup(tarneeb, player1Card, player2Card, player3Card, player4Card);
-
-            // Increment number of cards done
-            cardsDone += 1;
-
-            // If there are more cards to play, continue the game
-            if (cardsDone < 13)
-            {
-                // Show the Next Round button which starts the next round
-                btnNextRound.Background = greenColor;
-                btnNextRound.Foreground = blackColor;
-                btnNextRound.Visibility = Visibility.Visible;
-                btnNextRound.IsEnabled = true;
-            }
-            // If the cards are finished, prompt for new game
-            else
-            {
-                // Show the New Game button which creates a new fresh PageGame page
-                btnNextRound.Background = scoreColor;
-                btnNextRound.Foreground = blackColor;
-                btnNextRound.Content = "New Game?";
-                btnNextRound.Visibility = Visibility.Visible;
-                btnNextRound.IsEnabled = true;
-            }
-        }
-
-        /// <summary>
-        /// Turn logic for Player 2 AI
-        /// </summary>
-        public void Player2Turn()
-        {
-            Card chosenCard;
-            chosenCard = AIChooseCard(hand2);
-            player2Card = chosenCard;
-            playedCard2.Source = Card.ToImage(chosenCard);
-            hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-        }
-
-        /// <summary>
-        /// Turn logic for Player 3 AI
-        /// </summary>
-        public void Player3Turn()
-        {
-            Card chosenCard;
-            chosenCard = AIChooseCard(hand3);
-            player3Card = chosenCard;
-            playedCard3.Source = Card.ToImage(chosenCard);
-            hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-        }
-
-        /// <summary>
-        /// Turn logic for Player 4 AI
-        /// </summary>
-        public void Player4Turn()
-        {
-            Card chosenCard;
-            chosenCard = AIChooseCard(hand4);
-            player4Card = chosenCard;
-            playedCard4.Source = Card.ToImage(chosenCard);
-            hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
         }
 
         /// <summary>
@@ -359,6 +289,19 @@ namespace OOP4200_Tarneeb
             // Properties of card to beat
             int playedSuit;
             int playedNumber;
+
+            // If the tarneeb has been selected...
+            if (tarneebPlayed)
+            {
+                // ... make a list of tarneebs in hand
+                for (int i = 0; i < hand.Count; i++)
+                {
+                    if (hand[i].Suit == tarneeb)
+                    {
+                        tarneebList.Add(hand[i]);
+                    }
+                }
+            }
 
             // If a card has already been played this round
             if (cardToBeat != null)
@@ -443,6 +386,75 @@ namespace OOP4200_Tarneeb
             return chosenCard;
         }
 
+        /// <summary>
+        /// Turn logic for Player 2 AI
+        /// </summary>
+        public void Player2Turn()
+        {
+            Card chosenCard;
+            chosenCard = AIChooseCard(hand2);
+            player2Card = chosenCard;
+            playedCard2.Source = Card.ToImage(chosenCard);
+            hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+        }
+
+        /// <summary>
+        /// Turn logic for Player 3 AI
+        /// </summary>
+        public void Player3Turn()
+        {
+            Card chosenCard;
+            chosenCard = AIChooseCard(hand3);
+            player3Card = chosenCard;
+            playedCard3.Source = Card.ToImage(chosenCard);
+            hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+        }
+
+        /// <summary>
+        /// Turn logic for Player 4 AI
+        /// </summary>
+        public void Player4Turn()
+        {
+            Card chosenCard;
+            chosenCard = AIChooseCard(hand4);
+            player4Card = chosenCard;
+            playedCard4.Source = Card.ToImage(chosenCard);
+            hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+        }
+
+        /// <summary>
+        /// Starts the next round
+        /// </summary>
+        public void NextRound()
+        {
+            // Determine winner of round
+            EndOfRoundCleanup(tarneeb, player1Card, player2Card, player3Card, player4Card);
+
+            // Increment number of cards done
+            cardsDone += 1;
+
+            // If there are more cards to play, continue the game
+            if (cardsDone < 13)
+            {
+                // Show the Next Round button which starts the next round
+                btnNextRound.Background = greenColor;
+                btnNextRound.Foreground = blackColor;
+                btnNextRound.Visibility = Visibility.Visible;
+                btnNextRound.IsEnabled = true;
+            }
+            // If the cards are finished, prompt for new game
+            else
+            {
+                // Show the New Game button which creates a new fresh PageGame page
+                btnNextRound.Background = scoreColor;
+                btnNextRound.Foreground = blackColor;
+                btnNextRound.Content = "New Game?";
+                btnNextRound.Visibility = Visibility.Visible;
+                btnNextRound.IsEnabled = true;
+            }
+        }
+
+
         #endregion
 
         #region Button Functionality
@@ -513,16 +525,54 @@ namespace OOP4200_Tarneeb
 
         #region Card Click Functionality
 
+        /// <summary>
+        /// Determines if the card clicked is playable based on first card played on the current round
+        /// </summary>
+        /// <param name="card">The card that was selected by the player</param>
+        /// <returns></returns>
+        private bool IsPlayable(Card card)
+        {
+            // If the first card has already been placed...
+            if (firstCard != null)
+            {
+                // ... check player's remaining hand for matching suits
+                bool hasSuit = false;
+                for (int i = 0; i < playerHand.Count; i++)
+                {
+                    // If there is a matching suit, set bool to true
+                    if (playerHand[i].Suit == firstCard.Suit)
+                    {
+                        hasSuit = true;
+                    }
+                }
+
+                // If the player doesn't have a matching suit, card is playable
+                if (!hasSuit)
+                {
+                    return true;
+                }
+                // If the card the player is trying to play matches, card is playable
+                else
+                {
+                    return card.Suit == firstCard.Suit;
+                }
+            }
+            // If the card hasn't been played, card is playable
+            else
+            {
+                return true;
+            }
+        }
 
         /// <summary>
         /// Plays the card that is clicked on
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card01MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card01MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p01.Source != null && playedCard1.Source == null)
+            if (p01.Source != null && playedCard1.Source == null && IsPlayable(playerHand[0]))
             {
                 // ...play the card.
                 playedCard1.Source = p01.Source;
@@ -543,10 +593,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card02MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card02MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p02.Source != null && playedCard1.Source == null)
+            if (p02.Source != null && playedCard1.Source == null && IsPlayable(playerHand[1]))
             {
                 // ...play the card.
                 playedCard1.Source = p02.Source;
@@ -567,10 +617,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card03MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card03MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p03.Source != null && playedCard1.Source == null)
+            if (p03.Source != null && playedCard1.Source == null && IsPlayable(playerHand[2]))
             {
                 // ...play the card.
                 playedCard1.Source = p03.Source;
@@ -591,10 +641,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card04MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card04MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p04.Source != null && playedCard1.Source == null)
+            if (p04.Source != null && playedCard1.Source == null && IsPlayable(playerHand[3]))
             {
                 // ...play the card.
                 playedCard1.Source = p04.Source;
@@ -616,10 +666,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card05MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card05MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p05.Source != null && playedCard1.Source == null)
+            if (p05.Source != null && playedCard1.Source == null && IsPlayable(playerHand[4]))
             {
                 // ...play the card.
                 playedCard1.Source = p05.Source;
@@ -640,10 +690,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card06MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card06MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p06.Source != null && playedCard1.Source == null)
+            if (p06.Source != null && playedCard1.Source == null && IsPlayable(playerHand[5]))
             {
                 // ...play the card.
                 playedCard1.Source = p06.Source;
@@ -664,10 +714,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card07MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card07MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p07.Source != null && playedCard1.Source == null)
+            if (p07.Source != null && playedCard1.Source == null && IsPlayable(playerHand[6]))
             {
                 // ...play the card.
                 playedCard1.Source = p07.Source;
@@ -688,10 +738,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card08MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card08MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p08.Source != null && playedCard1.Source == null)
+            if (p08.Source != null && playedCard1.Source == null && IsPlayable(playerHand[7]))
             {
                 // ...play the card.
                 playedCard1.Source = p08.Source;
@@ -712,10 +762,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card09MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card09MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p09.Source != null && playedCard1.Source == null)
+            if (p09.Source != null && playedCard1.Source == null && IsPlayable(playerHand[8]))
             {
                 // ...play the card.
                 playedCard1.Source = p09.Source;
@@ -736,10 +786,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card10MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card10MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p10.Source != null && playedCard1.Source == null)
+            if (p10.Source != null && playedCard1.Source == null && IsPlayable(playerHand[9]))
             {
                 // ...play the card.
                 playedCard1.Source = p10.Source;
@@ -760,10 +810,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card11MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card11MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p11.Source != null && playedCard1.Source == null)
+            if (p11.Source != null && playedCard1.Source == null && IsPlayable(playerHand[10]))
             {
                 // ...play the card.
                 playedCard1.Source = p11.Source;
@@ -784,10 +834,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card12MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card12MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p12.Source != null && playedCard1.Source == null)
+            if (p12.Source != null && playedCard1.Source == null && IsPlayable(playerHand[11]))
             {
                 // ...play the card.
                 playedCard1.Source = p12.Source;
@@ -808,10 +858,10 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void card13MouseDown(object sender, MouseButtonEventArgs e)
+        private void Card13MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
-            if (p13.Source != null && playedCard1.Source == null)
+            if (p13.Source != null && playedCard1.Source == null && IsPlayable(playerHand[12]))
             {
                 // ...play the card.
                 playedCard1.Source = p13.Source;
@@ -826,7 +876,6 @@ namespace OOP4200_Tarneeb
                 ComputerTurnLogic();
             }
         }
-
 
         #endregion
 
@@ -1007,6 +1056,84 @@ namespace OOP4200_Tarneeb
             lblTeam2Score4.Content = team2Score;
             lblTeam2Score5.Content = team2Score;
         }
+
+        #endregion
+
+        #region Alternate (Saved) Code
+
+        // Code for DoComputerTurns()
+
+        //// If the winner is 1 and the player has chosen their card
+        //if (winner == 1 && playerDone)
+        //{
+        //    // Set first card and card to beat to the player's card played
+        //    firstCard = player1Card;
+        //    cardToBeat = player1Card;
+
+        //    // Set the tarneeb
+        //    SetTarneeb(player1Card.Suit);
+
+        //    // Play the turns in order from player 2
+        //    Player2Turn();
+        //    Player3Turn();
+        //    Player4Turn();
+
+        //    roundDone = true;
+        //}
+        //// If the winner of the previous round was player 2:
+        //else if (winner == 2 && !playerDone)
+        //{
+        //    // Set the tarneeb
+        //    SetTarneeb(player2Card.Suit);
+
+        //    // Play the turns in order from player 2
+        //    firstCard = player2Card;
+        //    Player2Turn();
+        //    Player3Turn();
+        //    Player4Turn();
+        //}
+        //// If the winner is 3 and the player HAS NOT completed their turn
+        //else if (winner == 3 && !playerDone)
+        //{
+        //    // Set the tarneeb
+        //    SetTarneeb(player3Card.Suit);
+
+        //    // Play the AI turns up the player's turn
+        //    firstCard = player3Card;
+        //    Player3Turn();
+        //    Player4Turn();
+        //}
+        //// If the winner is 4 and the player HAS NOT completed their turn
+        //else if (winner == 4 && !playerDone)
+        //{
+        //    // Set the tarneeb
+        //    SetTarneeb(player4Card.Suit);
+
+        //    // Play the AI turns up the player's turn
+        //    firstCard = player4Card;
+        //    Player4Turn();
+        //}
+        //else if (winner == 2 && playerDone)
+        //{
+        //    roundDone = true;
+        //}
+        //// If the winner is 3 and the player HAS completed their turn
+        //else if (winner == 3 && playerDone)
+        //{
+        //    // Play the remaining AI turns
+        //    Player2Turn();
+
+        //    roundDone = true;
+        //}
+        //// If the winner is 4 and the player HAS completed their turn
+        //else if (winner == 4 && playerDone)
+        //{
+        //    // Play the remaining AI turns
+        //    Player2Turn();
+        //    Player3Turn();
+
+        //    roundDone = true;
+        //}
 
         #endregion
 
