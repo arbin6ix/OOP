@@ -160,7 +160,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region Computer Player Logic
+        #region AI Logic
 
         /// <summary>
         /// Completes the turns of the computer players 2-4. This function is async
