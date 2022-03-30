@@ -41,9 +41,13 @@ namespace OOP4200_Tarneeb
         public static bool playerDone = false;
         public static bool roundDone = false;
 
-        // Team Colours
+        // Team Colours + Misc Colours
         public SolidColorBrush team1Color = new SolidColorBrush(Color.FromRgb(51, 188, 255));
         public SolidColorBrush team2Color = new SolidColorBrush(Color.FromRgb(255, 90, 90));
+        public SolidColorBrush scoreColor = new SolidColorBrush(Color.FromRgb(232, 193, 51));
+        public SolidColorBrush greenColor = new SolidColorBrush(Color.FromRgb(61, 184, 93));
+        public SolidColorBrush blackColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
 
         // Create a list of the player's cards Image controls from the PageGame.xaml form
         public List<Image> playerCardImages = new List<Image>();
@@ -85,10 +89,6 @@ namespace OOP4200_Tarneeb
         public PageGame()
         {
             InitializeComponent();
-
-            // Create both teams
-            Team team1 = new Team();
-            Team team2 = new Team();
             CreateImageList();
             NewRound();
         }
@@ -119,14 +119,16 @@ namespace OOP4200_Tarneeb
             // Display the player's cards
             DisplayCards(playerHand);
 
-            //Assign Players to Teams
+            //Assign Players to Teams (defunct?)
             Team team1 = new Team(player1, player2);
             Team team2 = new Team(player3, player4);
 
-            // Create a List of Players
+            // Create a List of Players (defunct?)
             List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
 
-            
+            // Reset btnNextRound text
+            btnNextRound.Content = "Next Round";
+
         }
 
         /// <summary>
@@ -275,13 +277,20 @@ namespace OOP4200_Tarneeb
                 if (cardsDone < 13)
                 {
                     // Show the Next Round button which starts the next round
+                    btnNextRound.Background = greenColor;
+                    btnNextRound.Foreground = blackColor;
                     btnNextRound.Visibility = Visibility.Visible;
                     btnNextRound.IsEnabled = true;
                 }
-                // If the cards are finished, end the game
+                // If the cards are finished, prompt for new game
                 else
                 {
-
+                    // Show the New Game button which creates a new fresh PageGame page
+                    btnNextRound.Background = scoreColor;
+                    btnNextRound.Foreground = blackColor;
+                    btnNextRound.Content = "New Game?";
+                    btnNextRound.Visibility = Visibility.Visible;
+                    btnNextRound.IsEnabled = true;
                 }
             }
         }
@@ -450,7 +459,7 @@ namespace OOP4200_Tarneeb
         /// <param name="e"></param>
         private void BtnNextRoundClick(object sender, RoutedEventArgs e)
         {
-            if (roundDone)
+            if (cardsDone < 13 && roundDone)
             {
                 // Clear cards played
                 player1Card = null;
@@ -485,6 +494,12 @@ namespace OOP4200_Tarneeb
                 // Hide the button again
                 btnNextRound.Visibility = Visibility.Hidden;
                 btnNextRound.IsEnabled = false;
+            }
+            else if (roundDone)
+            {
+                // Create a new game from scratch
+                PageGame gamePage = new PageGame();
+                NavigationService.Navigate(gamePage);
             }
         }
 

@@ -71,7 +71,7 @@
 
         <!-- Next Round button & Label-->
         <Label Name="lblWinner" Foreground="#33BCFF" FontWeight="Bold" FontSize="16" Canvas.Left="444" Canvas.Top="270"></Label>
-        <Button Name="btnNextRound" Content="Next Round" Height="35" Width="110" FontSize="16" Background="ForestGreen"
+        <Button Name="btnNextRound" Content="Next Round" Height="35" Width="110" FontSize="16" Background="#3db85d"
                 Canvas.Left="447" Canvas.Top="310" Visibility="Hidden" IsEnabled="False" Click="BtnNextRoundClick"></Button>
 
         <!-- SCORE label -->
