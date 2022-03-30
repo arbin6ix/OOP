@@ -160,6 +160,24 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
+        #region Betting
+
+        /// <summary>
+        /// Sets the tarneeb suit
+        /// </summary>
+        /// <param name="suit">The tarneeb suit</param>
+        public void SetTarneeb(Enums.Suit suit)
+        {
+            // Set tarneeb if it hasn't already been set
+            if (!tarneebPlayed)
+            {
+                tarneeb = suit;
+                tarneebPlayed = true;
+            }
+        }
+
+        #endregion
+
         #region AI Logic
 
         /// <summary>
@@ -186,12 +204,15 @@ namespace OOP4200_Tarneeb
         /// </summary>
         public void DoComputerTurns()
         {
-            // If the winner is 1, the player has chosen their card, and computers haven't
+            // If the winner is 1 and the player has chosen their card
             if (winner == 1 && playerDone)
             {
                 // Set first card and card to beat to the player's card played
                 firstCard = player1Card;
                 cardToBeat = player1Card;
+
+                // Set the tarneeb
+                SetTarneeb(player1Card.Suit);
 
                 // Play the turns in order from player 2
                 Player2Turn();
@@ -203,6 +224,9 @@ namespace OOP4200_Tarneeb
             // If the winner of the previous round was player 2:
             else if (winner == 2 && !playerDone)
             {
+                // Set the tarneeb
+                SetTarneeb(player2Card.Suit);
+
                 // Play the turns in order from player 2
                 firstCard = player2Card;
                 Player2Turn();
@@ -212,6 +236,9 @@ namespace OOP4200_Tarneeb
             // If the winner is 3 and the player HAS NOT completed their turn
             else if (winner == 3 && !playerDone)
             {
+                // Set the tarneeb
+                SetTarneeb(player3Card.Suit);
+
                 // Play the AI turns up the player's turn
                 firstCard = player3Card;
                 Player3Turn();
@@ -220,6 +247,9 @@ namespace OOP4200_Tarneeb
             // If the winner is 4 and the player HAS NOT completed their turn
             else if (winner == 4 && !playerDone)
             {
+                // Set the tarneeb
+                SetTarneeb(player4Card.Suit);
+
                 // Play the AI turns up the player's turn
                 firstCard = player4Card;
                 Player4Turn();
@@ -353,9 +383,6 @@ namespace OOP4200_Tarneeb
                         // Set this card to the card to beat and the first card
                         cardToBeat = hand[i];
                         firstCard = hand[i];
-
-                        // Set the tarneeb
-                        tarneeb = hand[i].Suit;
                     }
                 }
 
