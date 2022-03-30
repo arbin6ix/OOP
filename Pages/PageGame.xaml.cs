@@ -224,6 +224,7 @@ namespace OOP4200_Tarneeb
                 else if (winner == 2 && !playerDone)
                 {
                     // Play the turns in order from player 2
+                    firstCard = player2Card;
                     Player2Turn();
                     Player3Turn();
                     Player4Turn();
@@ -232,6 +233,7 @@ namespace OOP4200_Tarneeb
                 else if (winner == 3 && !playerDone)
                 {
                     // Play the AI turns up the player's turn
+                    firstCard = player3Card;
                     Player3Turn();
                     Player4Turn();
                 }
@@ -239,6 +241,7 @@ namespace OOP4200_Tarneeb
                 else if (winner == 4 && !playerDone)
                 {
                     // Play the AI turns up the player's turn
+                    firstCard = player4Card;
                     Player4Turn();
                 }
                 else if (winner == 2 && playerDone)
