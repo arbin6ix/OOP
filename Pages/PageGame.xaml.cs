@@ -17,7 +17,7 @@ namespace OOP4200_Tarneeb
     public partial class PageGame : Page
     {
 
-        #region TODO:
+        #region READ ME:
 
         /*
         
