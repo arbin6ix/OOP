@@ -867,11 +867,11 @@ namespace OOP4200_Tarneeb
                 }
             }
 
+            // Add score to whichever team won the round
             switch (winner)
             {
                 case 1:
                     team1Score ++;
-                    
                     break;
                 case 2:
                     team2Score++;
@@ -886,10 +886,11 @@ namespace OOP4200_Tarneeb
                     break;
             }
 
+            // Update both scores
             UpdateTeam1Score();
             UpdateTeam2Score();
 
-
+            // Return the winning card (Returning winning card = defunct?)
             return winningCard;
         }
 
