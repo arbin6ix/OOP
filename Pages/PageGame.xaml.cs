@@ -33,6 +33,8 @@ namespace OOP4200_Tarneeb
 
          - Better AI (I [Kellen] plan on doing at least this)
 
+         - DetermineWinner() Line ~917 needs to look at suit of first card played (non-tarneeb)
+
         */
 
         #endregion
