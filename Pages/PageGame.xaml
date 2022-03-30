@@ -73,6 +73,41 @@
         <Label Name="lblWinner" Foreground="#33BCFF" FontWeight="Bold" FontSize="16" Canvas.Left="444" Canvas.Top="270"></Label>
         <Button Name="btnNextRound" Content="Next Round" Height="35" Width="110" FontSize="16" Background="ForestGreen"
                 Canvas.Left="447" Canvas.Top="310" Visibility="Hidden" IsEnabled="False" Click="BtnNextRoundClick"></Button>
+        
+        <!-- SCORE label -->
+        <Label Foreground="Black"   Canvas.Left="900" Canvas.Top="09" FontFamily="Arial" FontWeight="Bold" FontSize="16" >SCORE</Label>
+        <Label Foreground="Black"   Canvas.Left="902" Canvas.Top="09" FontFamily="Arial" FontWeight="Bold" FontSize="16" >SCORE</Label>
+        <Label Foreground="Black"   Canvas.Left="901" Canvas.Top="10" FontFamily="Arial" FontWeight="Bold" FontSize="16" >SCORE</Label>
+        <Label Foreground="Black"   Canvas.Left="901" Canvas.Top="08" FontFamily="Arial" FontWeight="Bold" FontSize="16" >SCORE</Label>
+        <Label Foreground="#e8c133" Canvas.Left="901" Canvas.Top="09" FontFamily="Arial" FontWeight="Bold" FontSize="16" >SCORE</Label>
+
+        <!-- SCORE Pipe Divider label -->
+        <Label Foreground="Black"   Canvas.Left="925" Canvas.Top="30" FontFamily="Arial" FontSize="32" >|</Label>
+        <Label Foreground="Black"   Canvas.Left="927" Canvas.Top="30" FontFamily="Arial" FontSize="32" >|</Label>
+        <Label Foreground="Black"   Canvas.Left="926" Canvas.Top="31" FontFamily="Arial" FontSize="32" >|</Label>
+        <Label Foreground="Black"   Canvas.Left="926" Canvas.Top="29" FontFamily="Arial" FontSize="32" >|</Label>
+        <Label Foreground="#e8c133" Canvas.Left="926" Canvas.Top="30" FontFamily="Arial" FontSize="32" >|</Label>
+
+        <!-- Team 1 Score label -->
+        <Label Name="lblTeam1Score5" Foreground="Black"   Canvas.Left="894" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Score4" Foreground="Black"   Canvas.Left="896" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Score3" Foreground="Black"   Canvas.Left="895" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Score2" Foreground="Black"   Canvas.Left="895" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Score1" Foreground="#33BCFF" Canvas.Left="895" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
+
+        <!-- Team 2 Score label -->
+        <Label Name="lblTeam2Score5" Foreground="Black"   Canvas.Left="947" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Score4" Foreground="Black"   Canvas.Left="949" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Score3" Foreground="Black"   Canvas.Left="948" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Score2" Foreground="Black"   Canvas.Left="948" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Score1" Foreground="#FF5A5A" Canvas.Left="948" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
+        
+        <!-- SCORE "To 31" text -->
+        <Label Foreground="Black"   Canvas.Left="901" Canvas.Top="75" FontFamily="Arial" FontWeight="Bold" FontSize="11" >First To 31</Label>
+        <Label Foreground="Black"   Canvas.Left="903" Canvas.Top="75" FontFamily="Arial" FontWeight="Bold" FontSize="11" >First To 31</Label>
+        <Label Foreground="Black"   Canvas.Left="902" Canvas.Top="74" FontFamily="Arial" FontWeight="Bold" FontSize="11" >First To 31</Label>
+        <Label Foreground="Black"   Canvas.Left="902" Canvas.Top="76" FontFamily="Arial" FontWeight="Bold" FontSize="11" >First To 31</Label>
+        <Label Foreground="#e8c133" Canvas.Left="902" Canvas.Top="75" FontFamily="Arial" FontWeight="Bold" FontSize="11" >First To 31</Label>
 
     </Canvas>
 </Page>
