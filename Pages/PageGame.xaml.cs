@@ -295,10 +295,6 @@ namespace OOP4200_Tarneeb
             }
         }
 
-        
-
-        
-
         /// <summary>
         /// Turn logic for Player 2 AI
         /// </summary>

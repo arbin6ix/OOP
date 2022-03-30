@@ -13,11 +13,11 @@
         <StackPanel>
 
             <Canvas Height="150">
-                <TextBlock Text="Tarneeb" Canvas.Left="370" Canvas.Top="22" FontSize="72" Foreground="Black"/>
-                <TextBlock Text="Tarneeb" Canvas.Left="374" Canvas.Top="22" FontSize="70" Foreground="Black"/>
-                <TextBlock Text="Tarneeb" Canvas.Left="372" Canvas.Top="20" FontSize="70" Foreground="Black"/>
-                <TextBlock Text="Tarneeb" Canvas.Left="372" Canvas.Top="24" FontSize="70" Foreground="Black"/>
-                <TextBlock Text="Tarneeb" Canvas.Left="372" Canvas.Top="22" FontSize="70" Foreground="White"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="360" Canvas.Top="20" FontSize="80" Foreground="Black"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="360" Canvas.Top="24" FontSize="80" Foreground="Black"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="364" Canvas.Top="20" FontSize="80" Foreground="Black"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="364" Canvas.Top="24" FontSize="80" Foreground="Black"/>
+                <TextBlock Text="Tarneeb" Canvas.Left="362" Canvas.Top="22" FontSize="80" Foreground="#e8c133"/>
             </Canvas>
 
             <!-- Grid to have buttons on left and image on right -->
