@@ -16,30 +16,33 @@ namespace OOP4200_Tarneeb
     /// </summary>
     public partial class PageGame : Page
     {
-        // List of String that holds Tarneeb suit betting (1. Tarneeb Suit, 2. Bet number, 3. Player who betted the most) global variable
-        public static List<String> tarneebSuit = new List<String>() { };
 
-        public string message = "";
+        #region Fields & Properties
 
-        // Tarneeb played is a global variable
-        public static bool tarneebPlayed = false;
+        public Cards.Enums.Suit tarneeb;    // Tarneeb (trump card)
+        public bool tarneebPlayed = false;  // Tarneeb played bool
+        public Card firstCard;              // The first card played in the round
+        public Card cardToBeat;             // The best card played in the round
+        public int cardsDone = 0;           // # of remaining cards in the hand
+        public Random rand = new Random();  // Random class object instantiation
 
-        // The first card played in the round
-        public static Card firstCard;
-
-        // The best card played in the round
-        public static Card cardToBeat;
+        public bool playerDone = false;
+        public bool roundDone = false;
 
         // The winner of the betting or the round
         // winner = 0 means new round (betting)
         public static int winner = 1;
 
-        // Counter for remaining cards in the hand
-        public static int cardsDone = 0;
+        // Team round scores
+        public int team1Score = 0;
+        public int team2Score = 0;
 
-        // Bool for player's turn completed and round completed
-        public static bool playerDone = false;
-        public static bool roundDone = false;
+        // Team total scores (game is to 31)
+        public int team1Total = 0;
+        public int team2Total = 0;
+
+        // List of String that holds Tarneeb suit betting (1. Tarneeb Suit, 2. Bet number, 3. Player who betted the most) global variable
+        public static List<String> tarneebSuit = new List<String>() { };
 
         // Team Colours + Misc Colours
         public SolidColorBrush team1Color = new SolidColorBrush(Color.FromRgb(51, 188, 255));
@@ -47,7 +50,6 @@ namespace OOP4200_Tarneeb
         public SolidColorBrush scoreColor = new SolidColorBrush(Color.FromRgb(232, 193, 51));
         public SolidColorBrush greenColor = new SolidColorBrush(Color.FromRgb(61, 184, 93));
         public SolidColorBrush blackColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-
 
         // Create a list of the player's cards Image controls from the PageGame.xaml form
         public List<Image> playerCardImages = new List<Image>();
@@ -58,33 +60,15 @@ namespace OOP4200_Tarneeb
         public List<Card> hand3 = new List<Card>();
         public List<Card> hand4 = new List<Card>();
 
-        // Random class object instantiation
-        public Random rand = new Random();
-
         // Played Cards each turn
         public Card player1Card = new Card();
         public Card player2Card = new Card();
         public Card player3Card = new Card();
         public Card player4Card = new Card();
 
-        // Tarneeb (Trump)
-        public Cards.Enums.Suit tarneeb;
+        #endregion
 
-        // Create 4 Players each with their hand of 13 shuffled cards
-        Player player1 = new Player();
-        Player player2 = new Player();
-        Player player3 = new Player();
-        Player player4 = new Player();
-
-        // Team round scores
-        public int team1Score = 0;
-        public int team2Score = 0;
-
-        // Team total scores (game is to 31)
-        public int team1Total = 0;
-        public int team2Total = 0;
-
-
+        #region Round Initialization
 
         public PageGame()
         {
@@ -128,27 +112,11 @@ namespace OOP4200_Tarneeb
 
             // Reset btnNextRound text
             btnNextRound.Content = "Next Round";
-
         }
 
-        /// <summary>
-        /// Displays the list of cards given
-        /// </summary>
-        /// <param name="hand">List of Cards to display</param>
-        public void DisplayCards(List<Card> hand)
-        {
-            // Display player 1's card images in the Image controls
-            for (int i = 0; i < playerHand.Count; i++)
-            {
-                playerCardImages[i].Source = Card.ToImage(hand[i]);
-            }
+        #endregion
 
-            // If player's hand is less than 13, set remaining card image controls to null
-            for (int i = playerHand.Count; i < 13; i++)
-            {
-                playerCardImages[i].Source = null;
-            }
-        }
+        #region Card Display
 
         /// <summary>
         /// Create a list of the player's cards Image controls from the PageGame.xaml form
@@ -172,129 +140,140 @@ namespace OOP4200_Tarneeb
         }
 
         /// <summary>
-        /// Updates the score labels for Team 1's score
+        /// Displays the list of cards given
         /// </summary>
-        public void UpdateTeam1Score()
+        /// <param name="hand">List of Cards to display</param>
+        public void DisplayCards(List<Card> hand)
         {
-            lblTeam1Score1.Content = team1Score;
-            lblTeam1Score2.Content = team1Score;
-            lblTeam1Score3.Content = team1Score;
-            lblTeam1Score4.Content = team1Score;
-            lblTeam1Score5.Content = team1Score;
+            // Display player 1's card images in the Image controls
+            for (int i = 0; i < playerHand.Count; i++)
+            {
+                playerCardImages[i].Source = Card.ToImage(hand[i]);
+            }
+
+            // If player's hand is less than 13, set remaining card image controls to null
+            for (int i = playerHand.Count; i < 13; i++)
+            {
+                playerCardImages[i].Source = null;
+            }
         }
 
-        /// <summary>
-        /// Updates the score labels for Team 2's score
-        /// </summary>
-        public void UpdateTeam2Score()
-        {
-            lblTeam2Score1.Content = team2Score;
-            lblTeam2Score2.Content = team2Score;
-            lblTeam2Score3.Content = team2Score;
-            lblTeam2Score4.Content = team2Score;
-            lblTeam2Score5.Content = team2Score;
-        }
+        #endregion
 
-        #region ComputerTurnLogic
+        #region Computer Player Logic
 
         /// <summary>
         /// Completes the turns of the computer players 2-4. This function is async
         /// so that I can wait a certain amount of time between/after turns
         /// </summary>
         /// <returns></returns>
-        public void ComputerTurns()
+        public void ComputerTurnLogic()
         {
+            // If the round isn't over, execute the computer turns
             if (!roundDone)
             {
-                // If the winner is 1, the player has chosen their card, and computers haven't
-                if (winner == 1 && playerDone)
-                {
-                    // Set first card and card to beat to the player's card played
-                    firstCard = player1Card;
-                    cardToBeat = player1Card;
-
-                    // Play the turns in order from player 2
-                    Player2Turn();
-                    Player3Turn();
-                    Player4Turn();
-
-                    roundDone = true;
-                }
-                // If the winner of the previous round was player 2:
-                else if (winner == 2 && !playerDone)
-                {
-                    // Play the turns in order from player 2
-                    firstCard = player2Card;
-                    Player2Turn();
-                    Player3Turn();
-                    Player4Turn();
-                }
-                // If the winner is 3 and the player HAS NOT completed their turn
-                else if (winner == 3 && !playerDone)
-                {
-                    // Play the AI turns up the player's turn
-                    firstCard = player3Card;
-                    Player3Turn();
-                    Player4Turn();
-                }
-                // If the winner is 4 and the player HAS NOT completed their turn
-                else if (winner == 4 && !playerDone)
-                {
-                    // Play the AI turns up the player's turn
-                    firstCard = player4Card;
-                    Player4Turn();
-                }
-                else if (winner == 2 && playerDone)
-                {
-                    roundDone = true;
-                }
-                // If the winner is 3 and the player HAS completed their turn
-                else if (winner == 3 && playerDone)
-                {
-                    // Play the remaining AI turns
-                    Player2Turn();
-
-                    roundDone = true;
-                }
-                // If the winner is 4 and the player HAS completed their turn
-                else if (winner == 4 && playerDone)
-                {
-                    // Play the remaining AI turns
-                    Player2Turn();
-                    Player3Turn();
-
-                    roundDone = true;
-                }
+                DoComputerTurns();
             }
 
-            // If all 4 players are done their turns and we reach the end of this function, start next round
+            // If the round is completed, start the next round
             if (roundDone)
             {
-                // Determine winner of round
-                DetermineWinner(tarneeb, player1Card, player2Card, player3Card, player4Card);
+                NextRound();
+            }
+        }
 
-                // Increment number of cards done
-                cardsDone += 1;
+        /// <summary>
+        /// Executes the computer player 2-4's turns
+        /// </summary>
+        public void DoComputerTurns()
+        {
+            // If the winner is 1, the player has chosen their card, and computers haven't
+            if (winner == 1 && playerDone)
+            {
+                // Set first card and card to beat to the player's card played
+                firstCard = player1Card;
+                cardToBeat = player1Card;
 
-                // If there are more cards to play, continue the game
-                if (cardsDone < 13)
-                {
-                    // Show the Next Round button which starts the next round
-                    btnNextRound.Background = greenColor;
-                    btnNextRound.Foreground = blackColor;
-                    btnNextRound.Visibility = Visibility.Visible;
-                    btnNextRound.IsEnabled = true;
-                }
-                // If the cards are finished, prompt for new game
-                else
-                {
-                    // Show the New Game button which creates a new fresh PageGame page
-                    btnNextRound.Background = scoreColor;
-                    btnNextRound.Foreground = blackColor;
-                    btnNextRound.Content = "New Game?";
-                    btnNextRound.Visibility = Visibility.Visible;
-                    btnNextRound.IsEnabled = true;
-                }
+                // Play the turns in order from player 2
+                Player2Turn();
+                Player3Turn();
+                Player4Turn();
+
+                roundDone = true;
+            }
+            // If the winner of the previous round was player 2:
+            else if (winner == 2 && !playerDone)
+            {
+                // Play the turns in order from player 2
+                firstCard = player2Card;
+                Player2Turn();
+                Player3Turn();
+                Player4Turn();
+            }
+            // If the winner is 3 and the player HAS NOT completed their turn
+            else if (winner == 3 && !playerDone)
+            {
+                // Play the AI turns up the player's turn
+                firstCard = player3Card;
+                Player3Turn();
+                Player4Turn();
+            }
+            // If the winner is 4 and the player HAS NOT completed their turn
+            else if (winner == 4 && !playerDone)
+            {
+                // Play the AI turns up the player's turn
+                firstCard = player4Card;
+                Player4Turn();
+            }
+            else if (winner == 2 && playerDone)
+            {
+                roundDone = true;
+            }
+            // If the winner is 3 and the player HAS completed their turn
+            else if (winner == 3 && playerDone)
+            {
+                // Play the remaining AI turns
+                Player2Turn();
+
+                roundDone = true;
+            }
+            // If the winner is 4 and the player HAS completed their turn
+            else if (winner == 4 && playerDone)
+            {
+                // Play the remaining AI turns
+                Player2Turn();
+                Player3Turn();
+
+                roundDone = true;
+            }
+        }
+
+        public void NextRound()
+        {
+            // Determine winner of round
+            EndOfRoundCleanup(tarneeb, player1Card, player2Card, player3Card, player4Card);
+
+            // Increment number of cards done
+            cardsDone += 1;
+
+            // If there are more cards to play, continue the game
+            if (cardsDone < 13)
+            {
+                // Show the Next Round button which starts the next round
+                btnNextRound.Background = greenColor;
+                btnNextRound.Foreground = blackColor;
+                btnNextRound.Visibility = Visibility.Visible;
+                btnNextRound.IsEnabled = true;
+            }
+            // If the cards are finished, prompt for new game
+            else
+            {
+                // Show the New Game button which creates a new fresh PageGame page
+                btnNextRound.Background = scoreColor;
+                btnNextRound.Foreground = blackColor;
+                btnNextRound.Content = "New Game?";
+                btnNextRound.Visibility = Visibility.Visible;
+                btnNextRound.IsEnabled = true;
             }
         }
 
@@ -440,6 +419,8 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
+        #region Button Functionality
+
         /// <summary>
         /// Sends user back to main menu (exits current game)
         /// </summary>
@@ -484,7 +465,7 @@ namespace OOP4200_Tarneeb
                 // If a computer won, loop this function to complete the computer turns again
                 if (winner > 1)
                 {
-                    ComputerTurns();
+                    ComputerTurnLogic();
                 }
 
                 // Remove winner text
@@ -501,6 +482,8 @@ namespace OOP4200_Tarneeb
                 NavigationService.Navigate(gamePage);
             }
         }
+
+        #endregion
 
         #region Card Click Functionality
 
@@ -525,7 +508,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -549,7 +532,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -573,7 +556,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -598,7 +581,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -622,7 +605,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -646,7 +629,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -670,7 +653,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -694,7 +677,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -718,7 +701,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -742,7 +725,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -766,7 +749,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -790,7 +773,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
@@ -814,23 +797,51 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
 
                 // Complete computer turns (async)
-                ComputerTurns();
+                ComputerTurnLogic();
             }
         }
 
 
         #endregion
 
-        // returns Card that won the hand. (Returns Card to be used to match player that played it. Winner starts next round)
-        private Card DetermineWinner(Cards.Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
+        #region Scoring & Win Determination
+
+        /// <summary>
+        /// Main Scoring & Win Determination function that performs the end of round functions
+        /// </summary>
+        /// <param name="tarneeb">The current Tarneeb</param>
+        /// <param name="card1">Player 1's card played</param>
+        /// <param name="card2">Player 2's card played</param>
+        /// <param name="card3">Player 3's card played</param>
+        /// <param name="card4">Player 4's card played</param>
+        private void EndOfRoundCleanup(Cards.Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
+        {
+            // Determines the winner of the round when passed parent function's parameters
+            DetermineWinner(tarneeb, card1, card2, card3, card4);
+
+            // Displays the winner of the round
+            DisplayWinner();
+
+            // Adds points to the winning team and updates scores accordingly
+            HandleScores();
+        }
+
+        /// <summary>
+        /// Determines the winner of the round
+        /// </summary>
+        /// <param name="tarneeb">The current Tarneeb</param>
+        /// <param name="card1">Player 1's card played</param>
+        /// <param name="card2">Player 2's card played</param>
+        /// <param name="card3">Player 3's card played</param>
+        /// <param name="card4">Player 4's card played</param>
+        public void DetermineWinner(Cards.Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
         {
             Card winningCard = card1;
             winner = 1;
 
             Cards.Enums.Suit suit;
-            
 
-            if(card2.Suit == tarneeb)
+            if (card2.Suit == tarneeb)
             {
                 suit = tarneeb;
             }
@@ -848,33 +859,34 @@ namespace OOP4200_Tarneeb
             }
 
 
-            if(card2.Suit == suit)
+            if (card2.Suit == suit)
             {
-                if(card2.CardNumber > winningCard.CardNumber)
+                if (card2.CardNumber > winningCard.CardNumber)
                 {
-                    winningCard = card2;
-
-                    if (cardsDone < 13)
                     winner = 2;
                 }
             }
-            if(card3.Suit == suit)
+            if (card3.Suit == suit)
             {
                 if (card3.CardNumber > winningCard.CardNumber)
                 {
-                    winningCard = card3;
                     winner = 3;
                 }
             }
-            if(card4.Suit == suit)
+            if (card4.Suit == suit)
             {
                 if (card4.CardNumber > winningCard.CardNumber)
                 {
-                    winningCard = card4;
                     winner = 4;
                 }
             }
+        }
 
+        /// <summary>
+        /// Updates and displays winner labels based on the winner of the round
+        /// </summary>
+        public void DisplayWinner()
+        {
             // Show the round winner label if the game isn't over
             if (cardsDone < 12)
             {
@@ -915,12 +927,18 @@ namespace OOP4200_Tarneeb
                     lblWinner.Foreground = team2Color;
                 }
             }
+        }
 
+        /// <summary>
+        /// Adds and updates scores based on the winner of the round
+        /// </summary>
+        public void HandleScores()
+        {
             // Add score to whichever team won the round
             switch (winner)
             {
                 case 1:
-                    team1Score ++;
+                    team1Score++;
                     break;
                 case 2:
                     team2Score++;
@@ -938,10 +956,33 @@ namespace OOP4200_Tarneeb
             // Update both scores
             UpdateTeam1Score();
             UpdateTeam2Score();
-
-            // Return the winning card (Returning winning card = defunct?)
-            return winningCard;
         }
+
+        /// <summary>
+        /// Updates the score labels for Team 1's score
+        /// </summary>
+        public void UpdateTeam1Score()
+        {
+            lblTeam1Score1.Content = team1Score;
+            lblTeam1Score2.Content = team1Score;
+            lblTeam1Score3.Content = team1Score;
+            lblTeam1Score4.Content = team1Score;
+            lblTeam1Score5.Content = team1Score;
+        }
+
+        /// <summary>
+        /// Updates the score labels for Team 2's score
+        /// </summary>
+        public void UpdateTeam2Score()
+        {
+            lblTeam2Score1.Content = team2Score;
+            lblTeam2Score2.Content = team2Score;
+            lblTeam2Score3.Content = team2Score;
+            lblTeam2Score4.Content = team2Score;
+            lblTeam2Score5.Content = team2Score;
+        }
+
+        #endregion
 
     }
 }
