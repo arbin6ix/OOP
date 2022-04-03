@@ -130,6 +130,7 @@ namespace OOP4200_Tarneeb
             // Create a List of Players (defunct?)
             List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
 
+
             // Reset btnNextRound text
             btnNextRound.Content = "Next Round";
         }
@@ -181,6 +182,46 @@ namespace OOP4200_Tarneeb
         #endregion
 
         #region Betting
+
+        int bet = 7;
+
+        private void BtnBetAddClick(object sender, RoutedEventArgs e)
+        {
+            if (bet < 13)
+            {
+                bet += 1;
+                lblBetting1.Content = bet.ToString();
+                lblBetting2.Content = bet.ToString();
+                lblBetting3.Content = bet.ToString();
+                lblBetting4.Content = bet.ToString();
+                lblBetting5.Content = bet.ToString();
+            }
+        }
+        private void BtnBetSubClick(object sender, RoutedEventArgs e)
+        {
+            if (bet > 7)
+            {
+                bet -= 1;
+                lblBetting1.Content = bet.ToString();
+                lblBetting2.Content = bet.ToString();
+                lblBetting3.Content = bet.ToString();
+                lblBetting4.Content = bet.ToString();
+                lblBetting5.Content = bet.ToString();
+            }
+        }
+        private void BtnPassClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void BtnBetClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void Betting()
+        {
+
+        }
 
         /// <summary>
         /// Sets the tarneeb suit

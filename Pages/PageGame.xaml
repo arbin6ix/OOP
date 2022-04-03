@@ -45,14 +45,16 @@
         <Label Foreground="#FF5A5A" FontWeight="Bold" FontSize="18" Canvas.Left="067" Canvas.Top="243" FontFamily="Arial">Player 4</Label>
 
         <!-- Betting -->
-        <Label Name="lblBetting5" Foreground="Black"   Canvas.Left="592" Canvas.Top="408" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
-        <Label Name="lblBetting4" Foreground="Black"   Canvas.Left="592" Canvas.Top="410" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
-        <Label Name="lblBetting3" Foreground="Black"   Canvas.Left="594" Canvas.Top="408" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
-        <Label Name="lblBetting2" Foreground="Black"   Canvas.Left="594" Canvas.Top="410" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
-        <Label Name="lblBetting1" Foreground="#e8c133" Canvas.Left="593" Canvas.Top="409" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
+        <Label Name="lblBetting5" Foreground="Black"   Canvas.Left="442" Canvas.Top="308" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
+        <Label Name="lblBetting4" Foreground="Black"   Canvas.Left="442" Canvas.Top="310" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
+        <Label Name="lblBetting3" Foreground="Black"   Canvas.Left="444" Canvas.Top="308" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
+        <Label Name="lblBetting2" Foreground="Black"   Canvas.Left="444" Canvas.Top="310" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
+        <Label Name="lblBetting1" Foreground="#e8c133" Canvas.Left="443" Canvas.Top="309" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
 
-        <Button Name="btnBetAdd" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="660" Canvas.Top="350" Width="75" Height="70">+</Button>
-        <Button Name="btnBetSub" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="660" Canvas.Top="450" Width="75" Height="70">-</Button>
+        <Button Name="btnBetAdd" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="250" Width="75" Height="70" Click="BtnBetAddClick">+</Button>
+        <Button Name="btnBetSub" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="650" Canvas.Top="250" Width="75" Height="70" Click="BtnBetSubClick">-</Button>
+        <Button Name="btnBet" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="330" Width="165" Height="70" Click="BtnBetClick">Bet</Button>
+        <Button Name="btnPass" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="410" Width="165" Height="70" Click="BtnPassClick">Pass</Button>
 
         <!-- Played Cards -->
         <Image Name="playedCard1" Source="/Images/EmptyCard.png" Canvas.Left="466" Canvas.Top="356"/>
