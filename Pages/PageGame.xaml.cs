@@ -29,7 +29,7 @@ namespace OOP4200_Tarneeb
 
          - Betting (tough)
             - Disable Cards that are clickable
-            - Add AI functionality
+            - Line 275, Add AI functionality (The three functions are made, but are empty)
 
          - Multiple Round Tarneeb to 31 Points(tough): right now it's single round, also idk if this is needed
 
@@ -88,6 +88,17 @@ namespace OOP4200_Tarneeb
         public Card player3Card = new Card();
         public Card player4Card = new Card();
 
+        // Betting
+        int bettingPlayer = 0;
+        int player1Betting = 1;
+        int player2Betting = 2;
+        int player3Betting = 3;
+        int player4Betting = 4;
+        int bet = 7;
+        int minimumBet = 7;
+        int maximumBet = 13;
+        int startingPlayerBetting = 1;
+
         #endregion
 
         #region Game Initialization
@@ -135,6 +146,20 @@ namespace OOP4200_Tarneeb
 
             // Reset btnNextRound text
             btnNextRound.Content = "Next Round";
+
+            // Starting Player bet
+            if(startingPlayerBetting == player2Betting)
+            {
+                Player2Bet();
+            }
+            else if (startingPlayerBetting == player3Betting)
+            {
+                Player3Bet();
+            }
+            else if (startingPlayerBetting == player4Betting)
+            {
+                Player4Bet();
+            }
         }
 
         #endregion
@@ -185,15 +210,6 @@ namespace OOP4200_Tarneeb
 
         #region Betting
 
-        int bettingPlayer = 0;
-        int player1 = 1;
-        int player2 = 2;
-        int player3 = 3;
-        int player4 = 4;
-        int bet = 7;
-        int minimumBet = 7;
-        int maximumBet = 13;
-
         private void BtnBetAddClick(object sender, RoutedEventArgs e)
         {
             if (bet < maximumBet)
@@ -221,7 +237,9 @@ namespace OOP4200_Tarneeb
         private void BtnPassClick(object sender, RoutedEventArgs e)
         {
             // AI betting functionality
-
+            Player2Bet();
+            Player3Bet();
+            Player4Bet();
 
             // if one player made a bet
             if (bettingPlayer != 0)
@@ -238,9 +256,12 @@ namespace OOP4200_Tarneeb
         private void BtnBetClick(object sender, RoutedEventArgs e)
         {
             int originalBet = bet;
-            bettingPlayer = player1;
+            bettingPlayer = player1Betting;
 
             // AI betting functionality
+            Player2Bet();
+            Player3Bet();
+            Player4Bet();
 
 
             // Player1 won the bet. 
@@ -249,6 +270,21 @@ namespace OOP4200_Tarneeb
                 HideBettingButtons();
             }
         }
+        
+        // Betting AI functionality
+        public void Player2Bet()
+        {
+
+        }
+        public void Player3Bet()
+        {
+
+        }
+        public void Player4Bet()
+        {
+
+        }
+
 
         public void HideBettingButtons()
         {
