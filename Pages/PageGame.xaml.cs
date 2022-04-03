@@ -1167,6 +1167,12 @@ namespace OOP4200_Tarneeb
                     lblWinner.Content = "Team 2 Wins!";
                     lblWinner.Foreground = team2Color;
                 }
+
+                startingPlayerBetting += 1;
+                if (startingPlayerBetting > 4)
+                {
+                    startingPlayerBetting = 1;
+                }
             }
         }
 
