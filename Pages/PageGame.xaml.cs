@@ -151,10 +151,13 @@ namespace OOP4200_Tarneeb
             if(startingPlayerBetting == player2Betting)
             {
                 Player2Bet();
+                Player3Bet();
+                Player4Bet();
             }
             else if (startingPlayerBetting == player3Betting)
             {
                 Player3Bet();
+                Player4Bet();
             }
             else if (startingPlayerBetting == player4Betting)
             {
