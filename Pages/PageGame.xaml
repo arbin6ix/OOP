@@ -22,27 +22,37 @@
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="473" FontFamily="Arial">Player 1</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="475" FontFamily="Arial">Player 1</Label>
         <Label Foreground="#33BCFF" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="474" FontFamily="Arial">Player 1</Label>
-                                                                                                         
-        <!-- Player 2 Labels (with outline) -->                                                          
+
+        <!-- Player 2 Labels (with outline) -->
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="888" Canvas.Top="245" FontFamily="Arial">Player 2</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="888" Canvas.Top="247" FontFamily="Arial">Player 2</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="891" Canvas.Top="245" FontFamily="Arial">Player 2</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="891" Canvas.Top="247" FontFamily="Arial">Player 2</Label>
         <Label Foreground="#FF5A5A" FontWeight="Bold" FontSize="18" Canvas.Left="889" Canvas.Top="246" FontFamily="Arial">Player 2</Label>
-                                                                                                         
-        <!-- Player 3 Labels (with outline) -->                                                          
+
+        <!-- Player 3 Labels (with outline) -->
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="023" FontFamily="Arial">Player 3</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="025" FontFamily="Arial">Player 3</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="023" FontFamily="Arial">Player 3</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="025" FontFamily="Arial">Player 3</Label>
         <Label Foreground="#33BCFF" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="024" FontFamily="Arial">Player 3</Label>
-                                                                                                         
-        <!-- Player 4 Labels (with outline) -->                                                          
+
+        <!-- Player 4 Labels (with outline) -->
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="066" Canvas.Top="242" FontFamily="Arial">Player 4</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="066" Canvas.Top="244" FontFamily="Arial">Player 4</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="068" Canvas.Top="242" FontFamily="Arial">Player 4</Label>
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="068" Canvas.Top="244" FontFamily="Arial">Player 4</Label>
         <Label Foreground="#FF5A5A" FontWeight="Bold" FontSize="18" Canvas.Left="067" Canvas.Top="243" FontFamily="Arial">Player 4</Label>
+
+        <!-- Betting -->
+        <Label Name="lblBetting5" Foreground="Black"   Canvas.Left="592" Canvas.Top="408" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
+        <Label Name="lblBetting4" Foreground="Black"   Canvas.Left="592" Canvas.Top="410" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
+        <Label Name="lblBetting3" Foreground="Black"   Canvas.Left="594" Canvas.Top="408" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
+        <Label Name="lblBetting2" Foreground="Black"   Canvas.Left="594" Canvas.Top="410" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
+        <Label Name="lblBetting1" Foreground="#e8c133" Canvas.Left="593" Canvas.Top="409" FontFamily="Arial" FontWeight="Bold" FontSize="50" >7</Label>
+
+        <Button Name="btnBetAdd" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="660" Canvas.Top="350" Width="75" Height="70">+</Button>
+        <Button Name="btnBetSub" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="660" Canvas.Top="450" Width="75" Height="70">-</Button>
 
         <!-- Played Cards -->
         <Image Name="playedCard1" Source="/Images/EmptyCard.png" Canvas.Left="466" Canvas.Top="356"/>
