@@ -28,6 +28,8 @@ namespace OOP4200_Tarneeb
          - How To Play (easy)
 
          - Betting (tough)
+            - Disable Cards that are clickable
+            - Add AI functionality
 
          - Multiple Round Tarneeb to 31 Points(tough): right now it's single round, also idk if this is needed
 
@@ -183,11 +185,18 @@ namespace OOP4200_Tarneeb
 
         #region Betting
 
+        int bettingPlayer = 0;
+        int player1 = 1;
+        int player2 = 2;
+        int player3 = 3;
+        int player4 = 4;
         int bet = 7;
+        int minimumBet = 7;
+        int maximumBet = 13;
 
         private void BtnBetAddClick(object sender, RoutedEventArgs e)
         {
-            if (bet < 13)
+            if (bet < maximumBet)
             {
                 bet += 1;
                 lblBetting1.Content = bet.ToString();
@@ -199,7 +208,7 @@ namespace OOP4200_Tarneeb
         }
         private void BtnBetSubClick(object sender, RoutedEventArgs e)
         {
-            if (bet > 7)
+            if (bet > minimumBet)
             {
                 bet -= 1;
                 lblBetting1.Content = bet.ToString();
@@ -211,17 +220,77 @@ namespace OOP4200_Tarneeb
         }
         private void BtnPassClick(object sender, RoutedEventArgs e)
         {
+            // AI betting functionality
+
+
+            // if one player made a bet
+            if (bettingPlayer != 0)
+            {
+                HideBettingButtons();
+            }
+            // No bets were made, re-shuffle
+            else
+            {
+
+            }
 
         }
         private void BtnBetClick(object sender, RoutedEventArgs e)
         {
+            int originalBet = bet;
+            bettingPlayer = player1;
 
+            // AI betting functionality
+
+
+            // Player1 won the bet. 
+            if (originalBet == bet)
+            {
+                HideBettingButtons();
+            }
         }
 
-        public void Betting()
+        public void HideBettingButtons()
         {
+            // Hide the buttons
+            btnBetAdd.Visibility = Visibility.Hidden;
+            btnBetAdd.IsEnabled = false;
+            btnBetSub.Visibility = Visibility.Hidden;
+            btnBetSub.IsEnabled = false;
+            btnBet.Visibility = Visibility.Hidden;
+            btnBet.IsEnabled = false;
+            btnPass.Visibility = Visibility.Hidden;
+            btnPass.IsEnabled = false;
+            lblBetting1.Visibility = Visibility.Hidden;
+            lblBetting2.Visibility = Visibility.Hidden;
+            lblBetting3.Visibility = Visibility.Hidden;
+            lblBetting4.Visibility = Visibility.Hidden;
+            lblBetting5.Visibility = Visibility.Hidden;
 
+            lblBet1.Content = bet.ToString();
+            lblBet2.Content = bet.ToString();
+            lblBet3.Content = bet.ToString();
+            lblBet4.Content = bet.ToString();
+            lblBet5.Content = bet.ToString();
+            lblBet2.Visibility = Visibility.Visible;
+            lblBet3.Visibility = Visibility.Visible;
+            lblBet4.Visibility = Visibility.Visible;
+            lblBet5.Visibility = Visibility.Visible;
+            // Change label colour based on team that won bet
+            if (bettingPlayer == 1 || bettingPlayer == 3)
+            {
+                lblBet1.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#33BCFF"));
+            }
+            else if (bettingPlayer == 2 || bettingPlayer == 4)
+            {
+                lblBet1.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5A5A"));
+            }
+            lblBet1.Visibility = Visibility.Visible;
         }
+
+        #endregion
+
+        #region Tarneeb Selection
 
         /// <summary>
         /// Sets the tarneeb suit
