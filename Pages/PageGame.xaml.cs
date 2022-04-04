@@ -705,6 +705,14 @@ namespace OOP4200_Tarneeb
         /// <returns></returns>
         private bool IsPlayable(Card card)
         {
+            // If the variable "winner" is set to 0, don't allow cards to be clicked
+            // In the betting phase, setting winner to 0 will prevent the player from playing
+            // Set winner equal to the player # of the winner of the betting
+            if (winner == 0)
+            {
+                return false;
+            }
+            
             // If the first card has already been placed...
             if (firstCard != null)
             {
