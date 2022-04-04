@@ -678,11 +678,19 @@ namespace OOP4200_Tarneeb
                 btnNextRound.Visibility = Visibility.Hidden;
                 btnNextRound.IsEnabled = false;
             }
+            // All 4 players are out of cards. Create new game
             else if (roundDone)
             {
                 // Create a new game from scratch
                 PageGame gamePage = new PageGame();
                 NavigationService.Navigate(gamePage);
+            }
+
+            // Next player starts betting
+            startingPlayerBetting += 1;
+            if (startingPlayerBetting > 4)
+            {
+                startingPlayerBetting = 1;
             }
         }
 
@@ -1169,12 +1177,6 @@ namespace OOP4200_Tarneeb
                 {
                     lblWinner.Content = "Team 2 Wins!";
                     lblWinner.Foreground = team2Color;
-                }
-
-                startingPlayerBetting += 1;
-                if (startingPlayerBetting > 4)
-                {
-                    startingPlayerBetting = 1;
                 }
             }
         }
