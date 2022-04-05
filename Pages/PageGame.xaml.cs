@@ -140,6 +140,9 @@ namespace OOP4200_Tarneeb
             // Display the player's cards
             DisplayCards(playerHand);
 
+            // Set winner to 1
+            winner = 1;
+
             //Assign Players to Teams (defunct?)
             Team team1 = new Team(player1, player2);
             Team team2 = new Team(player3, player4);
@@ -388,7 +391,6 @@ namespace OOP4200_Tarneeb
                         firstCard = player1Card;
                         cardToBeat = player1Card;
                         // Play the AI turns and set the tarneeb
-                        SetTarneeb(player1Card.Suit);
                         Player2Turn();
                         Player3Turn();
                         Player4Turn();
@@ -720,6 +722,7 @@ namespace OOP4200_Tarneeb
                 NavigationService.Navigate(gamePage);
             }
 
+
             // Next player starts betting
             startingPlayerBetting += 1;
             if (startingPlayerBetting > 4)
@@ -797,6 +800,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[0];
                 playerHand.RemoveAt(0);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -821,6 +825,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[1];
                 playerHand.RemoveAt(1);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -845,6 +850,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[2];
                 playerHand.RemoveAt(2);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -870,6 +876,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[3];
                 playerHand.RemoveAt(3);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -894,6 +901,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[4];
                 playerHand.RemoveAt(4);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -918,6 +926,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[5];
                 playerHand.RemoveAt(5);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -942,6 +951,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[6];
                 playerHand.RemoveAt(6);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -966,6 +976,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[7];
                 playerHand.RemoveAt(7);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -990,6 +1001,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[8];
                 playerHand.RemoveAt(8);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1014,6 +1026,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[9];
                 playerHand.RemoveAt(9);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1038,6 +1051,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[10];
                 playerHand.RemoveAt(10);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1062,6 +1076,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[11];
                 playerHand.RemoveAt(11);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1086,6 +1101,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[12];
                 playerHand.RemoveAt(12);
                 playerDone = true;
+                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1130,6 +1146,7 @@ namespace OOP4200_Tarneeb
             winner = 1;
 
             Enums.Suit suit;
+
 
             if (card2.Suit == tarneeb)
             {
