@@ -61,13 +61,16 @@
         <Button Name="btnBetSub" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="650" Canvas.Top="250" Width="75" Height="70" Click="BtnBetSubClick">-</Button>
         <Button Name="btnBet" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="330" Width="165" Height="70" Click="BtnBetClick">Bet</Button>
         <Button Name="btnPass" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="410" Width="165" Height="70" Click="BtnPassClick">Pass</Button>
-        
-        <!-- Tarneeb -->
+
+        <!-- Tarneeb Suit Label -->
         <Label Foreground="Black"   Canvas.Left="32" Canvas.Top="58" FontFamily="Arial" FontWeight="Bold" FontSize="20" >Tarneeb</Label>
         <Label Foreground="Black"   Canvas.Left="32" Canvas.Top="60" FontFamily="Arial" FontWeight="Bold" FontSize="20" >Tarneeb</Label>
         <Label Foreground="Black"   Canvas.Left="34" Canvas.Top="58" FontFamily="Arial" FontWeight="Bold" FontSize="20" >Tarneeb</Label>
         <Label Foreground="Black"   Canvas.Left="34" Canvas.Top="60" FontFamily="Arial" FontWeight="Bold" FontSize="20" >Tarneeb</Label>
         <Label Foreground="#e8c133" Canvas.Left="33" Canvas.Top="59" FontFamily="Arial" FontWeight="Bold" FontSize="20" >Tarneeb</Label>
+
+        <!-- Tarneeb Suit Image -->
+        <Image Name="tarneebImage" Source="/Images/EmptyCard.png" Canvas.Left="50" Canvas.Top="97" Height="50"/>
 
         <!-- Played Cards -->
         <Image Name="playedCard1" Source="/Images/EmptyCard.png" Canvas.Left="466" Canvas.Top="356"/>

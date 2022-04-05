@@ -120,7 +120,7 @@ namespace OOP4200_Tarneeb
         public void NewRound()
         {
             // Create a deck
-            var deck = new Deck();
+            Deck deck = new Deck();
 
             // Shuffle the deck
             deck.Shuffle();
@@ -146,7 +146,6 @@ namespace OOP4200_Tarneeb
 
             // Create a List of Players (defunct?)
             List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
-
 
             // Reset btnNextRound text
             btnNextRound.Content = "Next Round";
@@ -345,6 +344,7 @@ namespace OOP4200_Tarneeb
             if (!tarneebPlayed)
             {
                 tarneeb = suit;
+                tarneebImage.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + ".png");
                 tarneebPlayed = true;
             }
         }
