@@ -51,12 +51,12 @@
         <Label Name="lblBetting2" Foreground="Black"   Canvas.Left="444" Canvas.Top="310" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
         <Label Name="lblBetting1" Foreground="#33BCFF" Canvas.Left="443" Canvas.Top="309" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
 
-        <Label Name="lblBet5" Foreground="Black"   Canvas.Left="878" Canvas.Top="109" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
-        <Label Name="lblBet4" Foreground="Black"   Canvas.Left="878" Canvas.Top="111" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
-        <Label Name="lblBet3" Foreground="Black"   Canvas.Left="882" Canvas.Top="109" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
-        <Label Name="lblBet2" Foreground="Black"   Canvas.Left="882" Canvas.Top="111" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
-        <Label Name="lblBet1" Foreground="#33BCFF" Canvas.Left="880" Canvas.Top="110" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
-
+        <Label Name="lblBet5" Foreground="Black"   Canvas.Left="899" Canvas.Top="93" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
+        <Label Name="lblBet4" Foreground="Black"   Canvas.Left="899" Canvas.Top="95" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
+        <Label Name="lblBet3" Foreground="Black"   Canvas.Left="903" Canvas.Top="93" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
+        <Label Name="lblBet2" Foreground="Black"   Canvas.Left="903" Canvas.Top="95" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
+        <Label Name="lblBet1" Foreground="#33BCFF" Canvas.Left="901" Canvas.Top="94" FontFamily="Arial" FontWeight="Bold" FontSize="80" Visibility="Hidden" >7</Label>
+                                                                                                                                          
         <Button Name="btnBetAdd" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="250" Width="75" Height="70" Click="BtnBetAddClick">+</Button>
         <Button Name="btnBetSub" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="650" Canvas.Top="250" Width="75" Height="70" Click="BtnBetSubClick">-</Button>
         <Button Name="btnBet" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="330" Width="165" Height="70" Click="BtnBetClick">Bet</Button>
@@ -99,7 +99,7 @@
 
         <!-- Next Round button & Label-->
         <Label Name="lblWinner" Foreground="#33BCFF" FontWeight="Bold" FontSize="16" Canvas.Left="444" Canvas.Top="270"></Label>
-        <Button Name="btnNextRound" Content="Next Round" Height="35" Width="110" FontSize="16" Background="#3db85d"
+        <Button Name="btnNextRound" IsDefault="True" Content="Next Round" Height="35" Width="110" FontSize="16" Background="#3db85d"
                 Canvas.Left="447" Canvas.Top="310" Visibility="Hidden" IsEnabled="False" Click="BtnNextRoundClick"></Button>
 
         <!-- SCORE label -->

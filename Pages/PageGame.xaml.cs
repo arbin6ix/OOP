@@ -35,7 +35,13 @@ namespace OOP4200_Tarneeb
 
          - Better AI (I [Kellen] plan on doing at least this)
 
+         - Win determination not working. Playing a card that is not the played suit results in win even if it's not tarneeb.
+            See: https://i.imgur.com/nDYQ7tu.png
+            Player 4 started the hand with 9 of Diamonds. Tarneeb was Hearts. I played 5 of Spades and won.
+            Another one (p4 started with 9 of Diamonds again): https://i.imgur.com/OInmmLN.png
+
         */
+        
 
         #endregion
 
@@ -115,7 +121,7 @@ namespace OOP4200_Tarneeb
         }
 
         /// <summary>
-        /// Initiates a new round of Tarneeb, including shuffling deck, dealing cards, making teams, etc..
+        /// Initiates a new round of Tarneeb, including shuffling deck, dealing cards, resetting variables, etc..
         /// </summary>
         public void NewRound()
         {
@@ -140,15 +146,52 @@ namespace OOP4200_Tarneeb
             // Display the player's cards
             DisplayCards(playerHand);
 
-            // Set winner to 1
+            // Reset round progression variables
             winner = 1;
+            playerDone = false;
+            roundDone = false;
+            cardsDone = 0;
 
-            //Assign Players to Teams (defunct?)
-            Team team1 = new Team(player1, player2);
-            Team team2 = new Team(player3, player4);
+            // Hide the Next Round button
+            btnNextRound.Visibility = Visibility.Hidden;
+            btnNextRound.IsEnabled = false;
 
-            // Create a List of Players (defunct?)
-            List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
+            // Hide the played cards
+            playedCard1.Source = null;
+            playedCard2.Source = null;
+            playedCard3.Source = null;
+            playedCard4.Source = null;
+
+            // Reset the Tarneeb
+            tarneebPlayed = false;
+            tarneebImage.Source = null;
+
+            // Reset the bet label
+            lblBet1.Visibility = Visibility.Hidden;
+            lblBet2.Visibility = Visibility.Hidden;
+            lblBet3.Visibility = Visibility.Hidden;
+            lblBet4.Visibility = Visibility.Hidden;
+            lblBet5.Visibility = Visibility.Hidden;
+
+            // Reset the team single round scores
+            team1Score = 0;
+            team2Score = 0;
+            UpdateTeam1Score();
+            UpdateTeam2Score();
+
+            // Remove winner text
+            lblWinner.Content = "";
+
+            // Reset first card of round and the card to beat (AI logic)
+            firstCard = null;
+            cardToBeat = null;
+
+            ////Assign Players to Teams (defunct?)
+            //Team team1 = new Team(player1, player2);
+            //Team team2 = new Team(player3, player4);
+
+            //// Create a List of Players (defunct?)
+            //List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
 
             // Reset btnNextRound text
             btnNextRound.Content = "Next Round";
@@ -717,9 +760,12 @@ namespace OOP4200_Tarneeb
             // All 4 players are out of cards. Create new game
             else if (roundDone)
             {
-                // Create a new game from scratch
-                PageGame gamePage = new PageGame();
-                NavigationService.Navigate(gamePage);
+                // Call NewRound function and pray it works
+                NewRound();
+
+                //// Create a new game from scratch (defunct?)
+                //PageGame gamePage = new PageGame();
+                //NavigationService.Navigate(gamePage);
             }
 
 
@@ -730,6 +776,7 @@ namespace OOP4200_Tarneeb
                 startingPlayerBetting = 1;
             }
         }
+
 
         #endregion
 
