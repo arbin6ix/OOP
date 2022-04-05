@@ -1189,13 +1189,37 @@ namespace OOP4200_Tarneeb
         /// <param name="card4">Player 4's card played</param>
         public void DetermineWinner(Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
         {
-            Card winningCard = card1;
-            winner = 1;
 
             Enums.Suit suit;
+            Card winningCard = null;
+
+            // Set winningCard equal to the card that was played first in the round
+            switch (winner)
+            {
+                case 1:
+                    winningCard = card1;
+                    break;
+                case 2:
+                    winningCard = card2;
+                    break;
+                case 3:
+                    winningCard = card3;
+                    break;
+                case 4:
+                    winningCard = card4;
+                    break;
+                default:
+                    break;
+            }
 
 
-            if (card2.Suit == tarneeb)
+
+            // If any tarneebs were played, set the winning suit to the tarneeb suit
+            if (card1.Suit == tarneeb)
+            {
+                suit = tarneeb;
+            }
+            else if (card2.Suit == tarneeb)
             {
                 suit = tarneeb;
             }
@@ -1207,11 +1231,21 @@ namespace OOP4200_Tarneeb
             {
                 suit = tarneeb;
             }
+            // Otherwise, the suit is the round suit (suit played by first player of round)
             else
             {
-                suit = card1.Suit;
+                suit = winningCard.Suit;
             }
 
+            // Set winner to the player who played the highest card number of the winning suit
+            if (card1.Suit == suit)
+            {
+                if (card1.CardNumber > winningCard.CardNumber)
+                {
+                    winningCard = card1;
+                    winner = 1;
+                }
+            }
 
             if (card2.Suit == suit)
             {
