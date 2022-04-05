@@ -41,7 +41,7 @@ namespace OOP4200_Tarneeb
 
         #region Fields & Properties
 
-        public Cards.Enums.Suit tarneeb;    // Tarneeb (trump card)
+        public Enums.Suit tarneeb;          // Tarneeb (trump card)
         public bool tarneebPlayed = false;  // Tarneeb played bool
         public Card firstCard;              // The first card played in the round
         public Card cardToBeat;             // The best card played in the round
@@ -64,7 +64,7 @@ namespace OOP4200_Tarneeb
         public int team2Total = 0;
 
         // List of String that holds Tarneeb suit betting (1. Tarneeb Suit, 2. Bet number, 3. Player who betted the most) global variable
-        public static List<String> tarneebSuit = new List<String>() { };
+        public static List<string> tarneebSuit = new List<string>() { };
 
         // Team Colours + Misc Colours
         public SolidColorBrush team1Color = new SolidColorBrush(Color.FromRgb(51, 188, 255));
@@ -88,16 +88,20 @@ namespace OOP4200_Tarneeb
         public Card player3Card = new Card();
         public Card player4Card = new Card();
 
+        // AI Difficulty setting (1 = easy, 2 = hard)
+        // Not currently implemented
+        public int computerDifficulty = 2;
+
         // Betting
-        int bettingPlayer = 0;
-        int player1Betting = 1;
-        int player2Betting = 2;
-        int player3Betting = 3;
-        int player4Betting = 4;
-        int bet = 7;
-        int minimumBet = 7;
-        int maximumBet = 13;
-        int startingPlayerBetting = 1;
+        public int bettingPlayer = 0;
+        public int player1Betting = 1;
+        public int player2Betting = 2;
+        public int player3Betting = 3;
+        public int player4Betting = 4;
+        public int bet = 7;
+        public int minimumBet = 7;
+        public int maximumBet = 13;
+        public int startingPlayerBetting = 1;
 
         #endregion
 
@@ -456,19 +460,6 @@ namespace OOP4200_Tarneeb
             int playedSuit;
             int playedNumber;
 
-            // If the tarneeb has been selected...
-            if (tarneebPlayed)
-            {
-                // ... make a list of tarneebs in hand
-                for (int i = 0; i < hand.Count; i++)
-                {
-                    if (hand[i].Suit == tarneeb)
-                    {
-                        tarneebList.Add(hand[i]);
-                    }
-                }
-            }
-
             // If a card has already been played this round
             if (cardToBeat != null)
             {
@@ -499,7 +490,20 @@ namespace OOP4200_Tarneeb
                 playedNumber = (int)cardToBeat.CardNumber;
             }
 
-            // Add any matching cards to the new list
+            // If the tarneeb has been selected...
+            if (tarneebPlayed)
+            {
+                // ... make a list of tarneebs in the AI's hand
+                for (int i = 0; i < hand.Count; i++)
+                {
+                    if (hand[i].Suit == tarneeb)
+                    {
+                        tarneebList.Add(hand[i]);
+                    }
+                }
+            }
+
+            // Make a list of cards that match the played suit in the AI's hand
             for (int i = 0; i < hand.Count; i++)
             {
                 if ((int)hand[i].Suit == playedSuit)
@@ -521,8 +525,17 @@ namespace OOP4200_Tarneeb
                 // If the current card beats the card played AND the current card does NOT
                 // beat the card played (so as to not waste a better card)...
                 if (playedNumber < (int)matchingList[i].CardNumber
-                    || playedNumber < (int)matchingList[i].CardNumber
                     && (int)matchingList[i].CardNumber < (int)chosenCard.CardNumber)
+                {
+                    // ...choose the current card to play
+                    chosenCard = matchingList[i];
+
+                    // Since this card is better, set it to the new cardToBeat
+                    cardToBeat = chosenCard;
+                }
+                // If the lower card doesn't beat the cardToBeat but the higher one does,
+                // play the higher one
+                else if (playedNumber < (int)matchingList[i].CardNumber)
                 {
                     // ...choose the current card to play
                     chosenCard = matchingList[i];
@@ -546,8 +559,29 @@ namespace OOP4200_Tarneeb
                         chosenCard = hand[i];
                     }
                 }
+
+                // If the card to beat is a KING or ACE and AI has at least one tarneeb in hand,
+                // play the lowest value tarneeb
+                if ((int)cardToBeat.CardNumber > 11 && tarneebList.Count > 0)
+                {
+                    // ...loop through the remaining cards and pick out the lowest value tarneeb
+                    for (int i = 0; i < tarneebList.Count; i++)
+                    {
+                        // If a card hasn't been chosen OR the current card's number is lower than
+                        // the chosen card's number...
+                        if (i == 0 || (int)tarneebList[i].CardNumber < (int)chosenCard.CardNumber)
+                        {
+                            // ... choose the current card to play
+                            chosenCard = tarneebList[i];
+
+                            // The tarneeb played beats the non-tarneeb cardToBeat
+                            cardToBeat = chosenCard;
+                        }
+                    }
+                }
             }
 
+            // Return the AI's card choice
             return chosenCard;
         }
 
@@ -1241,84 +1275,6 @@ namespace OOP4200_Tarneeb
             lblTeam2Score4.Content = team2Score;
             lblTeam2Score5.Content = team2Score;
         }
-
-        #endregion
-
-        #region Alternate (Saved) Code
-
-        // Code for DoComputerTurns()
-
-        //// If the winner is 1 and the player has chosen their card
-        //if (winner == 1 && playerDone)
-        //{
-        //    // Set first card and card to beat to the player's card played
-        //    firstCard = player1Card;
-        //    cardToBeat = player1Card;
-
-        //    // Set the tarneeb
-        //    SetTarneeb(player1Card.Suit);
-
-        //    // Play the turns in order from player 2
-        //    Player2Turn();
-        //    Player3Turn();
-        //    Player4Turn();
-
-        //    roundDone = true;
-        //}
-        //// If the winner of the previous round was player 2:
-        //else if (winner == 2 && !playerDone)
-        //{
-        //    // Set the tarneeb
-        //    SetTarneeb(player2Card.Suit);
-
-        //    // Play the turns in order from player 2
-        //    firstCard = player2Card;
-        //    Player2Turn();
-        //    Player3Turn();
-        //    Player4Turn();
-        //}
-        //// If the winner is 3 and the player HAS NOT completed their turn
-        //else if (winner == 3 && !playerDone)
-        //{
-        //    // Set the tarneeb
-        //    SetTarneeb(player3Card.Suit);
-
-        //    // Play the AI turns up the player's turn
-        //    firstCard = player3Card;
-        //    Player3Turn();
-        //    Player4Turn();
-        //}
-        //// If the winner is 4 and the player HAS NOT completed their turn
-        //else if (winner == 4 && !playerDone)
-        //{
-        //    // Set the tarneeb
-        //    SetTarneeb(player4Card.Suit);
-
-        //    // Play the AI turns up the player's turn
-        //    firstCard = player4Card;
-        //    Player4Turn();
-        //}
-        //else if (winner == 2 && playerDone)
-        //{
-        //    roundDone = true;
-        //}
-        //// If the winner is 3 and the player HAS completed their turn
-        //else if (winner == 3 && playerDone)
-        //{
-        //    // Play the remaining AI turns
-        //    Player2Turn();
-
-        //    roundDone = true;
-        //}
-        //// If the winner is 4 and the player HAS completed their turn
-        //else if (winner == 4 && playerDone)
-        //{
-        //    // Play the remaining AI turns
-        //    Player2Turn();
-        //    Player3Turn();
-
-        //    roundDone = true;
-        //}
 
         #endregion
 
