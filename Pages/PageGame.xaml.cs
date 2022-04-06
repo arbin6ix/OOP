@@ -1341,7 +1341,7 @@ namespace OOP4200_Tarneeb
         }
 
         /// <summary>
-        /// Updates the score labels to current standing
+        /// Updates the Score labels to current standing (current round score)
         /// </summary>
         public void UpdateTeamScores()
         {
@@ -1358,6 +1358,26 @@ namespace OOP4200_Tarneeb
             lblTeam2Score3.Content = team2Score;
             lblTeam2Score4.Content = team2Score;
             lblTeam2Score5.Content = team2Score;
+        }
+
+        /// <summary>
+        /// Updates the Total labels to current standing (total summary score)
+        /// </summary>
+        public void UpdateTeamTotals()
+        {
+            // Update Team 1 Total
+            lblTeam1Total1.Content = team1Total;
+            lblTeam1Total2.Content = team1Total;
+            lblTeam1Total3.Content = team1Total;
+            lblTeam1Total4.Content = team1Total;
+            lblTeam1Total5.Content = team1Total;
+
+            // Update Team 2 Total
+            lblTeam2Total1.Content = team2Total;
+            lblTeam2Total2.Content = team2Total;
+            lblTeam2Total3.Content = team2Total;
+            lblTeam2Total4.Content = team2Total;
+            lblTeam2Total5.Content = team2Total;
         }
 
         #endregion
