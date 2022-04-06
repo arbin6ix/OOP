@@ -1206,8 +1206,6 @@ namespace OOP4200_Tarneeb
                     break;
             }
 
-
-
             // If any tarneebs were played, set the winning suit to the tarneeb suit
             if (card1.Suit == tarneeb)
             {
@@ -1234,7 +1232,7 @@ namespace OOP4200_Tarneeb
             // Set winner to the player who played the highest card number of the winning suit
             if (card1.Suit == suit)
             {
-                if (card1.CardNumber > winningCard.CardNumber)
+                if (card1.CardNumber > winningCard.CardNumber || winningCard.Suit != suit)
                 {
                     winningCard = card1;
                     winner = 1;
@@ -1243,7 +1241,7 @@ namespace OOP4200_Tarneeb
 
             if (card2.Suit == suit)
             {
-                if (card2.CardNumber > winningCard.CardNumber)
+                if (card2.CardNumber > winningCard.CardNumber || winningCard.Suit != suit)
                 {
                     winningCard = card2;
                     winner = 2;
@@ -1252,7 +1250,7 @@ namespace OOP4200_Tarneeb
 
             if (card3.Suit == suit)
             {
-                if (card3.CardNumber > winningCard.CardNumber)
+                if (card3.CardNumber > winningCard.CardNumber || winningCard.Suit != suit)
                 {
                     winningCard = card3;
                     winner = 3;
@@ -1261,7 +1259,7 @@ namespace OOP4200_Tarneeb
 
             if (card4.Suit == suit)
             {
-                if (card4.CardNumber > winningCard.CardNumber)
+                if (card4.CardNumber > winningCard.CardNumber || winningCard.Suit != suit)
                 {
                     winner = 4;
                 }
