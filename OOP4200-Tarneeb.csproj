@@ -20,7 +20,10 @@
     <None Remove="Images\Backgrounds\_BGBlue.png" />
     <None Remove="Images\Backgrounds\_BGGreen.png" />
     <None Remove="Images\Backgrounds\_BGGreen2.png" />
-    <None Remove="Images\Backgrounds\_BGOrange.png" />
+    <None Remove="Images\Backgrounds\_BGRed.png" />
+    <None Remove="Images\BGPreviews\PreviewBlue.png" />
+    <None Remove="Images\BGPreviews\PreviewGreen.png" />
+    <None Remove="Images\BGPreviews\PreviewRed.png" />
     <None Remove="Images\c01.bmp" />
     <None Remove="Images\c02.bmp" />
     <None Remove="Images\c03.bmp" />
@@ -148,8 +151,10 @@
     <Resource Include="Images\Backgrounds\BackgroundCropped.png" />
     <Resource Include="Images\Backgrounds\_BGBlue.png" />
     <Resource Include="Images\Backgrounds\_BGGreen.png" />
-    <Resource Include="Images\Backgrounds\_BGGreen2.png" />
-    <Resource Include="Images\Backgrounds\_BGOrange.png" />
+    <Resource Include="Images\Backgrounds\_BGRed.png" />
+    <Resource Include="Images\BGPreviews\PreviewBlue.png" />
+    <Resource Include="Images\BGPreviews\PreviewGreen.png" />
+    <Resource Include="Images\BGPreviews\PreviewRed.png" />
     <Resource Include="Images\Cards\c01.png" />
     <Resource Include="Images\Cards\c02.png" />
     <Resource Include="Images\Cards\c03.png" />

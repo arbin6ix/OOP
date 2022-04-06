@@ -20,6 +20,9 @@ namespace OOP4200_Tarneeb
     /// </summary>
     public partial class MainWindow : Window
     {
+        // The current background colour
+        public int currentBackground = 1;
+
         public MainWindow()
         {
             InitializeComponent();
