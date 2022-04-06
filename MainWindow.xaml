@@ -10,7 +10,7 @@
         Title="Tarneeb: An OOP-4200 Project" Height="800" Width="1000" >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/_BGGreen2.png"/>
+            <ImageBrush ImageSource="/Images/Backgrounds/_BGGreen2.png"/>
         </Grid.Background>
         
         <Frame x:Name="Main" NavigationUIVisibility="Hidden"></Frame>

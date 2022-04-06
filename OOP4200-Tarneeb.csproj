@@ -16,6 +16,11 @@
 
   <ItemGroup>
     <None Remove="Images\BackgroundCropped.png" />
+    <None Remove="Images\Backgrounds\BackgroundCropped.png" />
+    <None Remove="Images\Backgrounds\_BGBlue.png" />
+    <None Remove="Images\Backgrounds\_BGGreen.png" />
+    <None Remove="Images\Backgrounds\_BGGreen2.png" />
+    <None Remove="Images\Backgrounds\_BGOrange.png" />
     <None Remove="Images\c01.bmp" />
     <None Remove="Images\c02.bmp" />
     <None Remove="Images\c03.bmp" />
@@ -112,6 +117,10 @@
     <None Remove="Images\Player2.png" />
     <None Remove="Images\Player3.png" />
     <None Remove="Images\Player4.png" />
+    <None Remove="Images\Players\Player1.png" />
+    <None Remove="Images\Players\Player2.png" />
+    <None Remove="Images\Players\Player3.png" />
+    <None Remove="Images\Players\Player4.png" />
     <None Remove="Images\s01.bmp" />
     <None Remove="Images\s02.bmp" />
     <None Remove="Images\s03.bmp" />
@@ -136,7 +145,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\BackgroundCropped.png" />
+    <Resource Include="Images\Backgrounds\BackgroundCropped.png" />
+    <Resource Include="Images\Backgrounds\_BGBlue.png" />
+    <Resource Include="Images\Backgrounds\_BGGreen.png" />
+    <Resource Include="Images\Backgrounds\_BGGreen2.png" />
+    <Resource Include="Images\Backgrounds\_BGOrange.png" />
     <Resource Include="Images\Cards\c01.png" />
     <Resource Include="Images\Cards\c02.png" />
     <Resource Include="Images\Cards\c03.png" />
@@ -190,14 +203,10 @@
     <Resource Include="Images\Cards\s12.png" />
     <Resource Include="Images\Cards\s13.png" />
     <Resource Include="Images\MainMenuImage.png" />
-    <Resource Include="Images\Player1.png" />
-    <Resource Include="Images\Player4.png" />
-    <Resource Include="Images\Player2.png" />
-    <Resource Include="Images\Player3.png" />
-    <Resource Include="Images\_BGBlue.png" />
-    <Resource Include="Images\_BGGreen.png" />
-    <Resource Include="Images\_BGGreen2.png" />
-    <Resource Include="Images\_BGOrange.png" />
+    <Resource Include="Images\Players\Player1.png" />
+    <Resource Include="Images\Players\Player2.png" />
+    <Resource Include="Images\Players\Player3.png" />
+    <Resource Include="Images\Players\Player4.png" />
     <Resource Include="Images\_CLUB.png" />
     <Resource Include="Images\_DIAMOND.png" />
     <Resource Include="Images\_HEART.png" />
