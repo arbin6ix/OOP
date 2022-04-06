@@ -94,7 +94,7 @@ namespace OOP4200_Tarneeb.Cards
             }
 
             // Return the image source for the card
-            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + formattedSuit + formattedNumber + ".bmp");
+            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/Cards/" + formattedSuit + formattedNumber + ".png");
         }
 
         /// <summary>
