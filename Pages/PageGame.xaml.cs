@@ -170,8 +170,7 @@ namespace OOP4200_Tarneeb
             // Reset the team single round scores
             team1Score = 0;
             team2Score = 0;
-            UpdateTeam1Score();
-            UpdateTeam2Score();
+            UpdateTeamScores();
 
             // Remove winner text
             lblWinner.Content = "";
@@ -1337,28 +1336,23 @@ namespace OOP4200_Tarneeb
                     break;
             }
 
-            // Update both scores
-            UpdateTeam1Score();
-            UpdateTeam2Score();
+            // Update scores
+            UpdateTeamScores();
         }
 
         /// <summary>
-        /// Updates the score labels for Team 1's score
+        /// Updates the score labels to current standing
         /// </summary>
-        public void UpdateTeam1Score()
+        public void UpdateTeamScores()
         {
+            // Update Team 1 Score
             lblTeam1Score1.Content = team1Score;
             lblTeam1Score2.Content = team1Score;
             lblTeam1Score3.Content = team1Score;
             lblTeam1Score4.Content = team1Score;
             lblTeam1Score5.Content = team1Score;
-        }
 
-        /// <summary>
-        /// Updates the score labels for Team 2's score
-        /// </summary>
-        public void UpdateTeam2Score()
-        {
+            // Update Team 2 Score
             lblTeam2Score1.Content = team2Score;
             lblTeam2Score2.Content = team2Score;
             lblTeam2Score3.Content = team2Score;
