@@ -33,12 +33,6 @@ namespace OOP4200_Tarneeb
 
          - Multiple Round Tarneeb to 31 Points(tough): right now it's single round, also idk if this is needed
 
-         - Better AI (I [Kellen] plan on doing at least this)
-
-         - Win determination not working. Playing a card that is not the played suit results in win even if it's not tarneeb.
-            See: https://i.imgur.com/nDYQ7tu.png
-            Player 4 started the hand with 9 of Diamonds. Tarneeb was Hearts. I played 5 of Spades and won.
-            Another one (p4 started with 9 of Diamonds again): https://i.imgur.com/OInmmLN.png
 
         */
         
