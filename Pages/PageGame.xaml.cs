@@ -295,6 +295,10 @@ namespace OOP4200_Tarneeb
                 Player4Bet();
             }
 
+            Player2Bet();
+            Player3Bet();
+            Player4Bet();
+
             // if one player made a bet
             if (bettingPlayer != 0)
             {
@@ -330,6 +334,10 @@ namespace OOP4200_Tarneeb
             if (bettingPlayer == player1Betting)
             {
                 HideBettingButtons();
+                tc.Visibility = Visibility.Visible;
+                td.Visibility = Visibility.Visible;
+                th.Visibility = Visibility.Visible;
+                ts.Visibility = Visibility.Visible;
             }
             
         }
@@ -337,13 +345,13 @@ namespace OOP4200_Tarneeb
         // AI betting and tarneeb selection
         public void Player2Bet()
         {
+            // no one made a bet. AI selects tarneeb
             if (bettingPlayer == 2)
             {
-                tarneeb = AITarneebSelection(hand2);
+                SetTarneeb(AITarneebSelection(hand2));
             }
             else
             {
-
                 if (player2IsBetting == true)
                 {
                     int roundNum = 1;
@@ -409,7 +417,7 @@ namespace OOP4200_Tarneeb
         {
             if (bettingPlayer == 3)
             {
-                tarneeb = AITarneebSelection(hand4);
+                SetTarneeb(AITarneebSelection(hand4));
             }
             else
             {
@@ -476,7 +484,7 @@ namespace OOP4200_Tarneeb
         {
             if (bettingPlayer == 4)
             {
-                tarneeb = AITarneebSelection(hand4);
+                SetTarneeb(AITarneebSelection(hand4));
             }
             else
             {
@@ -630,7 +638,6 @@ namespace OOP4200_Tarneeb
 
             return bettingAmount;
         }
-
         public Enums.Suit AITarneebSelection(List<Card> cards)
         {
             int numOfClub = 0;
@@ -733,6 +740,39 @@ namespace OOP4200_Tarneeb
         #endregion
 
         #region Tarneeb Selection
+
+        private void TarneebClubMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SetTarneeb(Enums.Suit.CLUB);
+            tc.Visibility = Visibility.Hidden;
+            td.Visibility = Visibility.Hidden;
+            th.Visibility = Visibility.Hidden;
+            ts.Visibility = Visibility.Hidden;
+        }
+        private void TarneebDiamondMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SetTarneeb(Enums.Suit.DIAMOND);
+            tc.Visibility = Visibility.Hidden;
+            td.Visibility = Visibility.Hidden;
+            th.Visibility = Visibility.Hidden;
+            ts.Visibility = Visibility.Hidden;
+        }
+        private void TarneebHeartMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SetTarneeb(Enums.Suit.HEART);
+            tc.Visibility = Visibility.Hidden;
+            td.Visibility = Visibility.Hidden;
+            th.Visibility = Visibility.Hidden;
+            ts.Visibility = Visibility.Hidden;
+        }
+        private void TarneebSpadeMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SetTarneeb(Enums.Suit.SPADE);
+            tc.Visibility = Visibility.Hidden;
+            td.Visibility = Visibility.Hidden;
+            th.Visibility = Visibility.Hidden;
+            ts.Visibility = Visibility.Hidden;
+        }
 
         /// <summary>
         /// Sets the tarneeb suit
@@ -1201,7 +1241,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[0];
                 playerHand.RemoveAt(0);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1226,7 +1265,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[1];
                 playerHand.RemoveAt(1);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1251,7 +1289,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[2];
                 playerHand.RemoveAt(2);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1277,7 +1314,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[3];
                 playerHand.RemoveAt(3);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1302,7 +1338,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[4];
                 playerHand.RemoveAt(4);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1327,7 +1362,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[5];
                 playerHand.RemoveAt(5);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1352,7 +1386,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[6];
                 playerHand.RemoveAt(6);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1377,7 +1410,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[7];
                 playerHand.RemoveAt(7);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1402,7 +1434,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[8];
                 playerHand.RemoveAt(8);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1427,7 +1458,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[9];
                 playerHand.RemoveAt(9);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1452,7 +1482,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[10];
                 playerHand.RemoveAt(10);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1477,7 +1506,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[11];
                 playerHand.RemoveAt(11);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();
@@ -1502,7 +1530,6 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[12];
                 playerHand.RemoveAt(12);
                 playerDone = true;
-                SetTarneeb(player1Card.Suit);
 
                 // Complete computer turns (async)
                 ComputerTurnLogic();

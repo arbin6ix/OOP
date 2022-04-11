@@ -118,6 +118,12 @@
         <Image Name="p11" Source="/Images/EmptyCard.png" Canvas.Left="755" Canvas.Top="640" MouseDown="Card11MouseDown" />
         <Image Name="p12" Source="/Images/EmptyCard.png" Canvas.Left="830" Canvas.Top="640" MouseDown="Card12MouseDown" />
         <Image Name="p13" Source="/Images/EmptyCard.png" Canvas.Left="905" Canvas.Top="640" MouseDown="Card13MouseDown" />
+        
+        <!-- Tarneeb Selection -->
+        <Image Name="tc" Source="/Images/_CLUB.png" Canvas.Left="305" Canvas.Top="340" MouseDown="TarneebClubMouseDown" Height="60" Width="60" Visibility="Hidden"/>
+        <Image Name="td" Source="/Images/_DIAMOND.png" Canvas.Left="405" Canvas.Top="340" MouseDown="TarneebDiamondMouseDown" Height="60" Width="60" Visibility="Hidden"/>
+        <Image Name="th" Source="/Images/_HEART.png" Canvas.Left="505" Canvas.Top="340" MouseDown="TarneebHeartMouseDown" Height="60" Width="60" Visibility="Hidden"/>
+        <Image Name="ts" Source="/Images/_SPADE.png" Canvas.Left="605" Canvas.Top="340" MouseDown="TarneebSpadeMouseDown" Height="60" Width="60" Visibility="Hidden"/>
 
         <!-- Back to menu button -->
         <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
