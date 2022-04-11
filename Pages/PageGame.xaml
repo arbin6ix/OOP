@@ -51,6 +51,24 @@
         <Label Name="lblBetting2" Foreground="Black"   Canvas.Left="444" Canvas.Top="310" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
         <Label Name="lblBetting1" Foreground="#33BCFF" Canvas.Left="443" Canvas.Top="309" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
 
+        <Label Name="lblP2Betting5" Foreground="Black"   Canvas.Left="802" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP2Betting4" Foreground="Black"   Canvas.Left="802" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP2Betting3" Foreground="Black"   Canvas.Left="804" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP2Betting2" Foreground="Black"   Canvas.Left="804" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP2Betting1" Foreground="#FF5A5A" Canvas.Left="803" Canvas.Top="281" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+
+        <Label Name="lblP3Betting5" Foreground="Black"   Canvas.Left="482" Canvas.Top="140" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP3Betting4" Foreground="Black"   Canvas.Left="482" Canvas.Top="142" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP3Betting3" Foreground="Black"   Canvas.Left="484" Canvas.Top="140" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP3Betting2" Foreground="Black"   Canvas.Left="484" Canvas.Top="142" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP3Betting1" Foreground="#33BCFF" Canvas.Left="483" Canvas.Top="141" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+
+        <Label Name="lblP4Betting5" Foreground="Black"   Canvas.Left="202" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP4Betting4" Foreground="Black"   Canvas.Left="202" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP4Betting3" Foreground="Black"   Canvas.Left="204" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP4Betting2" Foreground="Black"   Canvas.Left="204" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        <Label Name="lblP4Betting1" Foreground="#FF5A5A" Canvas.Left="203" Canvas.Top="281" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
+        
         <Label Foreground="Black"   Canvas.Left="682" Canvas.Top="8"  FontFamily="Arial" FontWeight="Bold" FontSize="16" >BET</Label>
         <Label Foreground="Black"   Canvas.Left="682" Canvas.Top="10" FontFamily="Arial" FontWeight="Bold" FontSize="16" >BET</Label>
         <Label Foreground="Black"   Canvas.Left="684" Canvas.Top="8"  FontFamily="Arial" FontWeight="Bold" FontSize="16" >BET</Label>

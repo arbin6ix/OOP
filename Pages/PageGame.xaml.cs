@@ -99,9 +99,14 @@ namespace OOP4200_Tarneeb
         public int player3Betting = 3;
         public int player4Betting = 4;
         public int bet = 7;
+        public int topBet = 7;
         public int minimumBet = 7;
         public int maximumBet = 13;
         public int startingPlayerBetting = 1;
+        public bool player1IsBetting = true;
+        public bool player2IsBetting = true;
+        public bool player3IsBetting = true;
+        public bool player4IsBetting = true;
 
         #endregion
 
@@ -281,10 +286,14 @@ namespace OOP4200_Tarneeb
         }
         private void BtnPassClick(object sender, RoutedEventArgs e)
         {
+            player1IsBetting = false;
             // AI betting functionality
-            Player2Bet();
-            Player3Bet();
-            Player4Bet();
+            while ((player2IsBetting && player3IsBetting) || (player2IsBetting && player4IsBetting) || (player3IsBetting && player4IsBetting))
+            {
+                Player2Bet();
+                Player3Bet();
+                Player4Bet();
+            }
 
             // if one player made a bet
             if (bettingPlayer != 0)
@@ -300,36 +309,305 @@ namespace OOP4200_Tarneeb
         }
         private void BtnBetClick(object sender, RoutedEventArgs e)
         {
-            int originalBet = bet;
             bettingPlayer = player1Betting;
+
+            topBet = bet;
+
+            minimumBet = bet + 1;
 
             // AI betting functionality
             Player2Bet();
             Player3Bet();
             Player4Bet();
 
+            bet = minimumBet;
+            lblBetting1.Content = bet.ToString();
+            lblBetting2.Content = bet.ToString();
+            lblBetting3.Content = bet.ToString();
+            lblBetting4.Content = bet.ToString();
+            lblBetting5.Content = bet.ToString();
 
-            // Player1 won the bet. 
-            if (originalBet == bet)
+            if (bettingPlayer == player1Betting)
             {
                 HideBettingButtons();
             }
+            
         }
-        
-        // Betting AI functionality
+
+        // Player 2 betting
         public void Player2Bet()
         {
+            if (player2IsBetting == true)
+            {
+                int roundNum = 1;
+                int playerBetAmount;
+                if (roundNum == 1)
+                {
+                    playerBetAmount = AIBettingAmount(hand2);
+                }
+                else
+                {
+                    playerBetAmount = AIBettingAmount(hand2) + 1;
+                }
+                if (playerBetAmount < minimumBet)
+                {
+                    // pass
+                    player2IsBetting = false;
 
+                    lblP2Betting5.Content = "Pass";
+                    lblP2Betting4.Content = "Pass";
+                    lblP2Betting3.Content = "Pass";
+                    lblP2Betting2.Content = "Pass";
+                    lblP2Betting1.Content = "Pass";
+                    lblP2Betting5.Visibility = Visibility.Visible;
+                    lblP2Betting4.Visibility = Visibility.Visible;
+                    lblP2Betting3.Visibility = Visibility.Visible;
+                    lblP2Betting2.Visibility = Visibility.Visible;
+                    lblP2Betting1.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    // bet
+                    if (playerBetAmount >= maximumBet)
+                    {
+                        playerBetAmount = maximumBet;
+
+                        player1IsBetting = false;
+                        player3IsBetting = false;
+                        player4IsBetting = false;
+                    }
+
+                    minimumBet = playerBetAmount + 1;
+
+                    bettingPlayer = 2;
+
+                    topBet = playerBetAmount;
+
+                    lblP2Betting5.Content = playerBetAmount.ToString();
+                    lblP2Betting4.Content = playerBetAmount.ToString();
+                    lblP2Betting3.Content = playerBetAmount.ToString();
+                    lblP2Betting2.Content = playerBetAmount.ToString();
+                    lblP2Betting1.Content = playerBetAmount.ToString();
+                    lblP2Betting5.Visibility = Visibility.Visible;
+                    lblP2Betting4.Visibility = Visibility.Visible;
+                    lblP2Betting3.Visibility = Visibility.Visible;
+                    lblP2Betting2.Visibility = Visibility.Visible;
+                    lblP2Betting1.Visibility = Visibility.Visible;
+                }
+                roundNum = 2;
+            }
         }
         public void Player3Bet()
         {
+            if (player3IsBetting == true)
+            {
+                int roundNum = 1;
+                int playerBetAmount;
+                if (roundNum == 1)
+                {
+                    playerBetAmount = AIBettingAmount(hand3);
+                }
+                else
+                {
+                    playerBetAmount = AIBettingAmount(hand3) + 1;
+                }
+                if (playerBetAmount < minimumBet)
+                {
+                    player3IsBetting = false;
 
+                    lblP3Betting5.Content = "Pass";
+                    lblP3Betting4.Content = "Pass";
+                    lblP3Betting3.Content = "Pass";
+                    lblP3Betting2.Content = "Pass";
+                    lblP3Betting1.Content = "Pass";
+                    lblP3Betting5.Visibility = Visibility.Visible;
+                    lblP3Betting4.Visibility = Visibility.Visible;
+                    lblP3Betting3.Visibility = Visibility.Visible;
+                    lblP3Betting2.Visibility = Visibility.Visible;
+                    lblP3Betting1.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    if (playerBetAmount >= maximumBet)
+                    {
+                        playerBetAmount = maximumBet;
+
+                        player1IsBetting = false;
+                        player2IsBetting = false;
+                        player4IsBetting = false;
+                    }
+
+                    minimumBet = playerBetAmount + 1;
+
+                    bettingPlayer = 3;
+
+                    topBet = playerBetAmount;
+
+                    lblP3Betting5.Content = playerBetAmount.ToString();
+                    lblP3Betting4.Content = playerBetAmount.ToString();
+                    lblP3Betting3.Content = playerBetAmount.ToString();
+                    lblP3Betting2.Content = playerBetAmount.ToString();
+                    lblP3Betting1.Content = playerBetAmount.ToString();
+                    lblP3Betting5.Visibility = Visibility.Visible;
+                    lblP3Betting4.Visibility = Visibility.Visible;
+                    lblP3Betting3.Visibility = Visibility.Visible;
+                    lblP3Betting2.Visibility = Visibility.Visible;
+                    lblP3Betting1.Visibility = Visibility.Visible;
+                }
+                roundNum = 2;
+            }
         }
         public void Player4Bet()
         {
+            if (player4IsBetting == true)
+            {
+                int roundNum = 1;
+                int playerBetAmount;
+                if (roundNum == 1)
+                {
+                    playerBetAmount = AIBettingAmount(hand4);
+                }
+                else
+                {
+                    playerBetAmount = AIBettingAmount(hand4) + 1;
+                }
+                if (playerBetAmount < minimumBet)
+                {
+                    player4IsBetting = false;
 
+                    lblP4Betting5.Content = "Pass";
+                    lblP4Betting4.Content = "Pass";
+                    lblP4Betting3.Content = "Pass";
+                    lblP4Betting2.Content = "Pass";
+                    lblP4Betting1.Content = "Pass";
+                    lblP4Betting5.Visibility = Visibility.Visible;
+                    lblP4Betting4.Visibility = Visibility.Visible;
+                    lblP4Betting3.Visibility = Visibility.Visible;
+                    lblP4Betting2.Visibility = Visibility.Visible;
+                    lblP4Betting1.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    if (playerBetAmount >= maximumBet)
+                    {
+                        playerBetAmount = maximumBet;
+
+                        player1IsBetting = false;
+                        player2IsBetting = false;
+                        player3IsBetting = false;
+                    }
+
+                    minimumBet = playerBetAmount + 1;
+
+                    bettingPlayer = 4;
+
+                    topBet = playerBetAmount;
+
+                    lblP4Betting5.Content = playerBetAmount.ToString();
+                    lblP4Betting4.Content = playerBetAmount.ToString();
+                    lblP4Betting3.Content = playerBetAmount.ToString();
+                    lblP4Betting2.Content = playerBetAmount.ToString();
+                    lblP4Betting1.Content = playerBetAmount.ToString();
+                    lblP4Betting5.Visibility = Visibility.Visible;
+                    lblP4Betting4.Visibility = Visibility.Visible;
+                    lblP4Betting3.Visibility = Visibility.Visible;
+                    lblP4Betting2.Visibility = Visibility.Visible;
+                    lblP4Betting1.Visibility = Visibility.Visible;
+                }
+                roundNum = 2;
+            }
         }
 
+        // betting AI functionality
+        public int AIBettingAmount(List<Card> cards)
+        {
+            int numOfClub = 0;
+            int totalClubValue = 0;
+            int numOfDiamond = 0;
+            int totalDiamondValue = 0;
+            int numOfHeart = 0;
+            int totalHeartValue = 0;
+            int numOfSpade = 0;
+            int totalSpadeValue = 0;
+
+            int numOfAces = 0;
+            int bettingAmount = 0;
+            int bettingSuit = 1;
+
+            foreach (Card card in cards)
+            {
+                if ((int)card.Suit == 1)
+                {
+                    numOfClub += 1;
+                    totalClubValue += (int)card.CardNumber;
+                }
+                if ((int)card.Suit == 2)
+                {
+                    numOfDiamond += 1;
+                    totalDiamondValue += (int)card.CardNumber;
+                }
+                if ((int)card.Suit == 3)
+                {
+                    numOfHeart += 1;
+                    totalHeartValue += (int)card.CardNumber;
+                }
+                if ((int)card.Suit == 4)
+                {
+                    numOfSpade += 1;
+                    totalSpadeValue += (int)card.CardNumber;
+                }
+                if ((int)card.CardNumber == 13)
+                {
+                    numOfAces += 1;
+                }
+            }
+
+            bettingAmount += numOfAces;
+
+            // determine top suit for betting amount
+            int topNumOfSuit = numOfClub;
+            int topValue = totalClubValue;
+
+            if ((numOfDiamond > topNumOfSuit) || ((numOfDiamond == topNumOfSuit) && (totalDiamondValue > topValue)))
+            {
+                topNumOfSuit = numOfDiamond;
+                topValue = totalDiamondValue;
+                bettingSuit = 2;
+            }
+            if ((numOfHeart > topNumOfSuit) || ((numOfHeart == topNumOfSuit) && (totalHeartValue > topValue)))
+            {
+                topNumOfSuit = numOfHeart;
+                topValue = totalHeartValue;
+                bettingSuit = 3;
+            }
+            if ((numOfSpade > topNumOfSuit) || ((numOfSpade == topNumOfSuit) && (totalSpadeValue > topValue)))
+            {
+                topNumOfSuit = numOfSpade;
+                topValue = totalSpadeValue;
+                bettingSuit = 4;
+            }
+
+            if (bettingSuit == 1)
+            {
+                bettingAmount += numOfClub;
+            }
+            if (bettingSuit == 2)
+            {
+                bettingAmount += numOfDiamond;
+            }
+            if (bettingSuit == 3)
+            {
+                bettingAmount += numOfHeart;
+            }
+            if (bettingSuit == 4)
+            {
+                bettingAmount += numOfSpade;
+            }
+
+            bettingAmount += 2;
+
+            return bettingAmount;
+        }
 
         public void HideBettingButtons()
         {
@@ -348,11 +626,11 @@ namespace OOP4200_Tarneeb
             lblBetting4.Visibility = Visibility.Hidden;
             lblBetting5.Visibility = Visibility.Hidden;
 
-            lblBet1.Content = bet.ToString();
-            lblBet2.Content = bet.ToString();
-            lblBet3.Content = bet.ToString();
-            lblBet4.Content = bet.ToString();
-            lblBet5.Content = bet.ToString();
+            lblBet1.Content = topBet.ToString();
+            lblBet2.Content = topBet.ToString();
+            lblBet3.Content = topBet.ToString();
+            lblBet4.Content = topBet.ToString();
+            lblBet5.Content = topBet.ToString();
             lblBet2.Visibility = Visibility.Visible;
             lblBet3.Visibility = Visibility.Visible;
             lblBet4.Visibility = Visibility.Visible;
@@ -368,7 +646,6 @@ namespace OOP4200_Tarneeb
             }
             lblBet1.Visibility = Visibility.Visible;
         }
-
         #endregion
 
         #region Tarneeb Selection
