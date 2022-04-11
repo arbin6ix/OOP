@@ -338,6 +338,7 @@ namespace OOP4200_Tarneeb
                 td.Visibility = Visibility.Visible;
                 th.Visibility = Visibility.Visible;
                 ts.Visibility = Visibility.Visible;
+                winner = bettingPlayer;
             }
             
         }
@@ -349,6 +350,8 @@ namespace OOP4200_Tarneeb
             if (bettingPlayer == 2)
             {
                 SetTarneeb(AITarneebSelection(hand2));
+                winner = bettingPlayer;
+                DoComputerTurns();
             }
             else
             {
@@ -418,6 +421,8 @@ namespace OOP4200_Tarneeb
             if (bettingPlayer == 3)
             {
                 SetTarneeb(AITarneebSelection(hand4));
+                winner = bettingPlayer;
+                DoComputerTurns();
             }
             else
             {
@@ -485,6 +490,8 @@ namespace OOP4200_Tarneeb
             if (bettingPlayer == 4)
             {
                 SetTarneeb(AITarneebSelection(hand4));
+                winner = bettingPlayer;
+                DoComputerTurns();
             }
             else
             {
