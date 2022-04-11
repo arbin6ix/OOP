@@ -49,7 +49,13 @@
         <Label Name="lblBetting4" Foreground="Black"   Canvas.Left="442" Canvas.Top="310" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
         <Label Name="lblBetting3" Foreground="Black"   Canvas.Left="444" Canvas.Top="308" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
         <Label Name="lblBetting2" Foreground="Black"   Canvas.Left="444" Canvas.Top="310" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
-        <Label Name="lblBetting1" Foreground="#33BCFF" Canvas.Left="443" Canvas.Top="309" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
+        <Label Name="lblBetting1" Foreground="#e8c133" Canvas.Left="443" Canvas.Top="309" FontFamily="Arial" FontWeight="Bold" FontSize="80" >7</Label>
+
+        <Label Name="lblPrevBetting5" Foreground="Black"   Canvas.Left="462" Canvas.Top="420" FontFamily="Arial" FontWeight="Bold" FontSize="50" Visibility="Hidden">7</Label>
+        <Label Name="lblPrevBetting4" Foreground="Black"   Canvas.Left="462" Canvas.Top="422" FontFamily="Arial" FontWeight="Bold" FontSize="50" Visibility="Hidden">7</Label>
+        <Label Name="lblPrevBetting3" Foreground="Black"   Canvas.Left="464" Canvas.Top="420" FontFamily="Arial" FontWeight="Bold" FontSize="50" Visibility="Hidden">7</Label>
+        <Label Name="lblPrevBetting2" Foreground="Black"   Canvas.Left="464" Canvas.Top="422" FontFamily="Arial" FontWeight="Bold" FontSize="50" Visibility="Hidden">7</Label>
+        <Label Name="lblPrevBetting1" Foreground="#33BCFF" Canvas.Left="463" Canvas.Top="421" FontFamily="Arial" FontWeight="Bold" FontSize="50" Visibility="Hidden">7</Label>
 
         <Label Name="lblP2Betting5" Foreground="Black"   Canvas.Left="802" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>
         <Label Name="lblP2Betting4" Foreground="Black"   Canvas.Left="802" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="60" Visibility="Hidden">7</Label>

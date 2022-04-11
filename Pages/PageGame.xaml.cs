@@ -299,20 +299,19 @@ namespace OOP4200_Tarneeb
             Player3Bet();
             Player4Bet();
 
-            // if one player made a bet
-            if (bettingPlayer != 0)
-            {
-                HideBettingButtons();
-            }
             // No bets were made, re-shuffle
-            else
+            if (bettingPlayer == 0)
             {
-
-            }
-
+            }          
         }
         private void BtnBetClick(object sender, RoutedEventArgs e)
         {
+            lblPrevBetting5.Content = bet.ToString();
+            lblPrevBetting4.Content = bet.ToString();
+            lblPrevBetting3.Content = bet.ToString();
+            lblPrevBetting2.Content = bet.ToString();
+            lblPrevBetting1.Content = bet.ToString();
+
             bettingPlayer = player1Betting;
 
             topBet = bet;
@@ -333,12 +332,21 @@ namespace OOP4200_Tarneeb
 
             if (bettingPlayer == player1Betting)
             {
+                winner = bettingPlayer;
+
                 HideBettingButtons();
                 tc.Visibility = Visibility.Visible;
                 td.Visibility = Visibility.Visible;
                 th.Visibility = Visibility.Visible;
                 ts.Visibility = Visibility.Visible;
-                winner = bettingPlayer;
+            }
+            else
+            {
+                lblPrevBetting5.Visibility = Visibility.Visible;
+                lblPrevBetting4.Visibility = Visibility.Visible;
+                lblPrevBetting3.Visibility = Visibility.Visible;
+                lblPrevBetting2.Visibility = Visibility.Visible;
+                lblPrevBetting1.Visibility = Visibility.Visible;
             }
             
         }
@@ -349,6 +357,7 @@ namespace OOP4200_Tarneeb
             // no one made a bet. AI selects tarneeb
             if (bettingPlayer == 2)
             {
+                HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand2));
                 winner = bettingPlayer;
                 DoComputerTurns();
@@ -420,6 +429,7 @@ namespace OOP4200_Tarneeb
         {
             if (bettingPlayer == 3)
             {
+                HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand4));
                 winner = bettingPlayer;
                 DoComputerTurns();
@@ -489,6 +499,7 @@ namespace OOP4200_Tarneeb
         {
             if (bettingPlayer == 4)
             {
+                HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand4));
                 winner = bettingPlayer;
                 DoComputerTurns();
@@ -743,6 +754,30 @@ namespace OOP4200_Tarneeb
                 lblBet1.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5A5A"));
             }
             lblBet1.Visibility = Visibility.Visible;
+
+            lblPrevBetting5.Visibility = Visibility.Hidden;
+            lblPrevBetting4.Visibility = Visibility.Hidden;
+            lblPrevBetting3.Visibility = Visibility.Hidden;
+            lblPrevBetting2.Visibility = Visibility.Hidden;
+            lblPrevBetting1.Visibility = Visibility.Hidden;
+
+            lblP2Betting5.Visibility = Visibility.Hidden;
+            lblP2Betting4.Visibility = Visibility.Hidden;
+            lblP2Betting3.Visibility = Visibility.Hidden;
+            lblP2Betting2.Visibility = Visibility.Hidden;
+            lblP2Betting1.Visibility = Visibility.Hidden;
+
+            lblP3Betting5.Visibility = Visibility.Hidden;
+            lblP3Betting4.Visibility = Visibility.Hidden;
+            lblP3Betting3.Visibility = Visibility.Hidden;
+            lblP3Betting2.Visibility = Visibility.Hidden;
+            lblP3Betting1.Visibility = Visibility.Hidden;
+
+            lblP4Betting5.Visibility = Visibility.Hidden;
+            lblP4Betting4.Visibility = Visibility.Hidden;
+            lblP4Betting3.Visibility = Visibility.Hidden;
+            lblP4Betting2.Visibility = Visibility.Hidden;
+            lblP4Betting1.Visibility = Visibility.Hidden;
         }
         #endregion
 
