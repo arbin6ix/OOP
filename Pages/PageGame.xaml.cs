@@ -160,7 +160,11 @@ namespace OOP4200_Tarneeb
 
             // Reset the Tarneeb
             tarneebPlayed = false;
-            tarneebImage.Source = null;
+            tarneebImage1.Source = null;
+            tarneebImage2.Source = null;
+            tarneebImage3.Source = null;
+            tarneebImage4.Source = null;
+            tarneebImage5.Source = null;
 
             // Reset the bet label
             lblBet1.Visibility = Visibility.Hidden;
@@ -332,10 +336,7 @@ namespace OOP4200_Tarneeb
                 winner = bettingPlayer;
 
                 HideBettingButtons();
-                tc.Visibility = Visibility.Visible;
-                td.Visibility = Visibility.Visible;
-                th.Visibility = Visibility.Visible;
-                ts.Visibility = Visibility.Visible;
+                ShowTarneebSelection();
             }
             else
             {
@@ -780,37 +781,107 @@ namespace OOP4200_Tarneeb
 
         #region Tarneeb Selection
 
+        /// <summary>
+        /// Hides all of the Tarneeb selection images
+        /// </summary>
+        private void HideTarneebSelection()
+        {
+            // Hide Tarneeb Labels
+            lblSelectTarneeb1.Visibility = Visibility.Hidden;
+            lblSelectTarneeb2.Visibility = Visibility.Hidden;
+            lblSelectTarneeb3.Visibility = Visibility.Hidden;
+            lblSelectTarneeb4.Visibility = Visibility.Hidden;
+            lblSelectTarneeb5.Visibility = Visibility.Hidden;
+
+            // Hide Clubs
+            tc1.Visibility = Visibility.Hidden;
+            tc2.Visibility = Visibility.Hidden;
+            tc3.Visibility = Visibility.Hidden;
+            tc4.Visibility = Visibility.Hidden;
+            tc5.Visibility = Visibility.Hidden;
+
+            // Hide Diamonds
+            td1.Visibility = Visibility.Hidden;
+            td2.Visibility = Visibility.Hidden;
+            td3.Visibility = Visibility.Hidden;
+            td4.Visibility = Visibility.Hidden;
+            td5.Visibility = Visibility.Hidden;
+
+            // Hide Hearts
+            th1.Visibility = Visibility.Hidden;
+            th2.Visibility = Visibility.Hidden;
+            th3.Visibility = Visibility.Hidden;
+            th4.Visibility = Visibility.Hidden;
+            th5.Visibility = Visibility.Hidden;
+
+            // Hide Spades
+            ts1.Visibility = Visibility.Hidden;
+            ts2.Visibility = Visibility.Hidden;
+            ts3.Visibility = Visibility.Hidden;
+            ts4.Visibility = Visibility.Hidden;
+            ts5.Visibility = Visibility.Hidden;
+        }
+
+        /// <summary>
+        /// Shows all of the Tarneeb selection images
+        /// </summary>
+        private void ShowTarneebSelection()
+        {
+            // Show Tarneeb Labels
+            lblSelectTarneeb1.Visibility = Visibility.Visible;
+            lblSelectTarneeb2.Visibility = Visibility.Visible;
+            lblSelectTarneeb3.Visibility = Visibility.Visible;
+            lblSelectTarneeb4.Visibility = Visibility.Visible;
+            lblSelectTarneeb5.Visibility = Visibility.Visible;
+
+            // Show Clubs
+            tc1.Visibility = Visibility.Visible;
+            tc2.Visibility = Visibility.Visible;
+            tc3.Visibility = Visibility.Visible;
+            tc4.Visibility = Visibility.Visible;
+            tc5.Visibility = Visibility.Visible;
+
+            // Show Diamonds
+            td1.Visibility = Visibility.Visible;
+            td2.Visibility = Visibility.Visible;
+            td3.Visibility = Visibility.Visible;
+            td4.Visibility = Visibility.Visible;
+            td5.Visibility = Visibility.Visible;
+
+            // Show Hearts
+            th1.Visibility = Visibility.Visible;
+            th2.Visibility = Visibility.Visible;
+            th3.Visibility = Visibility.Visible;
+            th4.Visibility = Visibility.Visible;
+            th5.Visibility = Visibility.Visible;
+
+            // Show Spades
+            ts1.Visibility = Visibility.Visible;
+            ts2.Visibility = Visibility.Visible;
+            ts3.Visibility = Visibility.Visible;
+            ts4.Visibility = Visibility.Visible;
+            ts5.Visibility = Visibility.Visible;
+        }
+
         private void TarneebClubMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.CLUB);
-            tc.Visibility = Visibility.Hidden;
-            td.Visibility = Visibility.Hidden;
-            th.Visibility = Visibility.Hidden;
-            ts.Visibility = Visibility.Hidden;
+            HideTarneebSelection();
         }
         private void TarneebDiamondMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.DIAMOND);
-            tc.Visibility = Visibility.Hidden;
-            td.Visibility = Visibility.Hidden;
-            th.Visibility = Visibility.Hidden;
-            ts.Visibility = Visibility.Hidden;
+            HideTarneebSelection();
         }
         private void TarneebHeartMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.HEART);
-            tc.Visibility = Visibility.Hidden;
-            td.Visibility = Visibility.Hidden;
-            th.Visibility = Visibility.Hidden;
-            ts.Visibility = Visibility.Hidden;
+            HideTarneebSelection();
         }
         private void TarneebSpadeMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.SPADE);
-            tc.Visibility = Visibility.Hidden;
-            td.Visibility = Visibility.Hidden;
-            th.Visibility = Visibility.Hidden;
-            ts.Visibility = Visibility.Hidden;
+            HideTarneebSelection();
         }
 
         /// <summary>
@@ -823,7 +894,11 @@ namespace OOP4200_Tarneeb
             if (!tarneebPlayed)
             {
                 tarneeb = suit;
-                tarneebImage.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + ".png");
+                tarneebImage1.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + ".png");
+                tarneebImage2.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + "_B.png");
+                tarneebImage3.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + "_B.png");
+                tarneebImage4.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + "_B.png");
+                tarneebImage5.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + "_B.png");
                 tarneebPlayed = true;
             }
         }
