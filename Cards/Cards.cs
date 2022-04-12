@@ -70,6 +70,10 @@ namespace OOP4200_Tarneeb.Cards
             {
                 formattedSuit = "s";
             }
+            else
+            {
+                formattedSuit = "Card Returned: " + card.Suit;
+            }
 
             // If card is between 2 and 9, prepend a "0"
             if ((int)card.CardNumber <= 8)
@@ -170,13 +174,19 @@ namespace OOP4200_Tarneeb.Cards
                 { Enums.Suit.SPADE, 3 }
             };
 
-            // Sorts the list of cards
-            List<Card> sorted = listOfCards
+            // Instantiates sorted list of cards
+            List<Card> sorted = listOfCards;
+
+            // Sorts the list of cards if there's more than 1 card remaining
+            if (listOfCards.Count() > 1)
+            {
+                sorted = listOfCards
                 .GroupBy(s => s.Suit)
                 .OrderBy(c => suitOrder[c.Key])
                 .SelectMany(g => g
                 .OrderBy(c => c.CardNumber))
                 .ToList();
+            }
 
             // Return sorted list of cards
             return sorted;
