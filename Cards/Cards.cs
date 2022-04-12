@@ -140,15 +140,32 @@ namespace OOP4200_Tarneeb.Cards
             return takeCards;
         }
 
+        /// <summary>
+        /// Sorts the given list of cards by suit and by card number
+        /// </summary>
+        /// <param name="listOfCards">Sorted list of cards</param>
+        /// <returns></returns>
         public List<Card> Sort(List<Card> listOfCards)
         {
+            // Dictionary for the ordering of suits in the sort that separates suits by
+            // colours to make it easier to differentiate
+            Dictionary<Enums.Suit, int> suitOrder = new Dictionary<Enums.Suit, int>
+            {
+                { Enums.Suit.DIAMOND, 0 },
+                { Enums.Suit.CLUB, 1 },
+                { Enums.Suit.HEART, 2 },
+                { Enums.Suit.SPADE, 3 }
+            };
+
+            // Sorts the list of cards
             List<Card> sorted = listOfCards
                 .GroupBy(s => s.Suit)
-                .OrderByDescending(c => c.Count())
+                .OrderBy(c => suitOrder[c.Key])
                 .SelectMany(g => g
                 .OrderBy(c => c.CardNumber))
                 .ToList();
 
+            // Return sorted list of cards
             return sorted;
 
         }
