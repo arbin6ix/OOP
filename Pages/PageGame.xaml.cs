@@ -190,13 +190,6 @@ namespace OOP4200_Tarneeb
             firstCard = null;
             cardToBeat = null;
 
-            ////Assign Players to Teams (defunct?)
-            //Team team1 = new Team(player1, player2);
-            //Team team2 = new Team(player3, player4);
-
-            //// Create a List of Players (defunct?)
-            //List<Player> playerList = new List<Player> { player1, player2, player3, player4 };
-
             // Reset btnNextRound text
             btnNextRound.Content = "Next Round";
 
