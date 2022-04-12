@@ -105,7 +105,8 @@ namespace OOP4200_Tarneeb
         public bool player4IsBetting = true;
 
         // Speed of the game
-        public const int computerTurnRate = 700;
+        public const int computerTurnRate = 900;
+        public const int bettingTurnRate = 1400;
         public const int roundTurnRate = 2100;
 
         #endregion
@@ -289,33 +290,53 @@ namespace OOP4200_Tarneeb
                 lblBetting5.Content = bet.ToString();
             }
         }
-        private void BtnPassClick(object sender, RoutedEventArgs e)
+        private async void BtnPassClick(object sender, RoutedEventArgs e)
         {
             player1IsBetting = false;
+
+            lblPrevBetting5.Content = "Pass";
+            lblPrevBetting4.Content = "Pass";
+            lblPrevBetting3.Content = "Pass";
+            lblPrevBetting2.Content = "Pass";
+            lblPrevBetting1.Content = "Pass";
+
+            lblPrevBetting5.Visibility = Visibility.Visible;
+            lblPrevBetting4.Visibility = Visibility.Visible;
+            lblPrevBetting3.Visibility = Visibility.Visible;
+            lblPrevBetting2.Visibility = Visibility.Visible;
+            lblPrevBetting1.Visibility = Visibility.Visible;
+
+
             // AI betting functionality
             while ((player2IsBetting && player3IsBetting) || (player2IsBetting && player4IsBetting) || (player3IsBetting && player4IsBetting))
             {
-                Player2Bet();
-                Player3Bet();
-                Player4Bet();
+                await Player2Bet();
+                await Player3Bet();
+                await Player4Bet();
             }
 
-            Player2Bet();
-            Player3Bet();
-            Player4Bet();
+            await Player2Bet();
+            await Player3Bet();
+            await Player4Bet();
 
             // No bets were made, re-shuffle
             if (bettingPlayer == 0)
             {
             }          
         }
-        private void BtnBetClick(object sender, RoutedEventArgs e)
+        private async void BtnBetClick(object sender, RoutedEventArgs e)
         {
             lblPrevBetting5.Content = bet.ToString();
             lblPrevBetting4.Content = bet.ToString();
             lblPrevBetting3.Content = bet.ToString();
             lblPrevBetting2.Content = bet.ToString();
             lblPrevBetting1.Content = bet.ToString();
+
+            lblPrevBetting5.Visibility = Visibility.Visible;
+            lblPrevBetting4.Visibility = Visibility.Visible;
+            lblPrevBetting3.Visibility = Visibility.Visible;
+            lblPrevBetting2.Visibility = Visibility.Visible;
+            lblPrevBetting1.Visibility = Visibility.Visible;
 
             bettingPlayer = player1Betting;
 
@@ -324,9 +345,9 @@ namespace OOP4200_Tarneeb
             minimumBet = bet + 1;
 
             // AI betting functionality
-            Player2Bet();
-            Player3Bet();
-            Player4Bet();
+            await Player2Bet();
+            await Player3Bet();
+            await Player4Bet();
 
             bet = minimumBet;
             lblBetting1.Content = bet.ToString();
@@ -344,24 +365,27 @@ namespace OOP4200_Tarneeb
             }
             else
             {
-                lblPrevBetting5.Visibility = Visibility.Visible;
-                lblPrevBetting4.Visibility = Visibility.Visible;
-                lblPrevBetting3.Visibility = Visibility.Visible;
-                lblPrevBetting2.Visibility = Visibility.Visible;
-                lblPrevBetting1.Visibility = Visibility.Visible;
+                //lblPrevBetting5.Visibility = Visibility.Visible;
+                //lblPrevBetting4.Visibility = Visibility.Visible;
+                //lblPrevBetting3.Visibility = Visibility.Visible;
+                //lblPrevBetting2.Visibility = Visibility.Visible;
+                //lblPrevBetting1.Visibility = Visibility.Visible;
             }
             
         }
 
         // AI betting and tarneeb selection
-        public void Player2Bet()
+        public async Task Player2Bet()
         {
+            await Task.Delay(bettingTurnRate);
+
             // no one made a bet. AI selects tarneeb
             if (bettingPlayer == 2)
             {
                 HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand2));
                 winner = bettingPlayer;
+                await Task.Delay(bettingTurnRate);
                 DoComputerTurns();
             }
             else
@@ -427,13 +451,16 @@ namespace OOP4200_Tarneeb
                 }
             }
         }
-        public void Player3Bet()
+        public async Task Player3Bet()
         {
+            await Task.Delay(bettingTurnRate);
+
             if (bettingPlayer == 3)
             {
                 HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand4));
                 winner = bettingPlayer;
+                await Task.Delay(bettingTurnRate);
                 DoComputerTurns();
             }
             else
@@ -497,13 +524,16 @@ namespace OOP4200_Tarneeb
                 }
             }
         }
-        public void Player4Bet()
+        public async Task Player4Bet()
         {
+            await Task.Delay(bettingTurnRate);
+
             if (bettingPlayer == 4)
             {
                 HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand4));
                 winner = bettingPlayer;
+                await Task.Delay(bettingTurnRate);
                 DoComputerTurns();
             }
             else
