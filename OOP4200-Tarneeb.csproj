@@ -77,6 +77,7 @@
     <None Remove="Images\Cards\h11.png" />
     <None Remove="Images\Cards\h12.png" />
     <None Remove="Images\Cards\h13.png" />
+    <None Remove="Images\Cards\InvalidCard.png" />
     <None Remove="Images\Cards\s01.png" />
     <None Remove="Images\Cards\s02.png" />
     <None Remove="Images\Cards\s03.png" />
@@ -200,6 +201,7 @@
     <Resource Include="Images\Cards\h11.png" />
     <Resource Include="Images\Cards\h12.png" />
     <Resource Include="Images\Cards\h13.png" />
+    <Resource Include="Images\Cards\InvalidCard.png" />
     <Resource Include="Images\Cards\s01.png" />
     <Resource Include="Images\Cards\s02.png" />
     <Resource Include="Images\Cards\s03.png" />
