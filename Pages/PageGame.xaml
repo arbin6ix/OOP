@@ -129,49 +129,54 @@
         <Image Name="p12" Source="/Images/EmptyCard.png" Canvas.Left="830" Canvas.Top="640" MouseDown="Card12MouseDown" />
         <Image Name="p13" Source="/Images/EmptyCard.png" Canvas.Left="905" Canvas.Top="640" MouseDown="Card13MouseDown" />
 
-        <!-- Tarneeb Selection -->
-        <Label Name="lblSelectTarneeb5" Foreground="Black"   Canvas.Left="370" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
-        <Label Name="lblSelectTarneeb4" Foreground="Black"   Canvas.Left="370" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
-        <Label Name="lblSelectTarneeb3" Foreground="Black"   Canvas.Left="372" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
-        <Label Name="lblSelectTarneeb2" Foreground="Black"   Canvas.Left="372" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
-        <Label Name="lblSelectTarneeb1" Foreground="#e8c133" Canvas.Left="371" Canvas.Top="281" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
-
-        <Image Name="tc5" Source="/Images/_CLUB_B.png" Canvas.Left="304" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="tc4" Source="/Images/_CLUB_B.png" Canvas.Left="304" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="tc3" Source="/Images/_CLUB_B.png" Canvas.Left="306" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="tc2" Source="/Images/_CLUB_B.png" Canvas.Left="306" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="tc1" Source="/Images/_CLUB.png"   Canvas.Left="305" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebClubMouseDown" />
-
-        <Image Name="td5" Source="/Images/_DIAMOND_B.png" Canvas.Left="404" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="td4" Source="/Images/_DIAMOND_B.png" Canvas.Left="404" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="td3" Source="/Images/_DIAMOND_B.png" Canvas.Left="406" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="td2" Source="/Images/_DIAMOND_B.png" Canvas.Left="406" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="td1" Source="/Images/_DIAMOND.png"   Canvas.Left="405" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebDiamondMouseDown" />
-
-        <Image Name="th5" Source="/Images/_HEART_B.png" Canvas.Left="504" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="th4" Source="/Images/_HEART_B.png" Canvas.Left="504" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="th3" Source="/Images/_HEART_B.png" Canvas.Left="506" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="th2" Source="/Images/_HEART_B.png" Canvas.Left="506" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="th1" Source="/Images/_HEART.png"   Canvas.Left="505" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebHeartMouseDown" />
-
-        <Image Name="ts5" Source="/Images/_SPADE_B.png" Canvas.Left="604" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="ts4" Source="/Images/_SPADE_B.png" Canvas.Left="604" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="ts3" Source="/Images/_SPADE_B.png" Canvas.Left="606" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="ts2" Source="/Images/_SPADE_B.png" Canvas.Left="606" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="ts1" Source="/Images/_SPADE.png"   Canvas.Left="605" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebSpadeMouseDown" />
 
         <!-- Back to menu button -->
         <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
                 Canvas.Left="10" Canvas.Top="10" Click="BtnGameBackClick"></Button>
 
         <!-- Next Round button & Label-->
-        <Label Name="lblWinner" Foreground="#33BCFF" FontWeight="Bold" FontSize="16" Canvas.Left="440" Canvas.Top="298"></Label>
+        <Label Name="lblWinner" Foreground="#33BCFF" FontWeight="Bold" FontSize="16" Canvas.Left="444" Canvas.Top="276"></Label>
         <Button Name="btnNextRound" IsDefault="True" Content="Next Round" Height="35" Width="110" FontSize="16" Background="#3db85d"
                 Canvas.Left="447" Canvas.Top="310" Visibility="Hidden" IsEnabled="False" Click="BtnNextRoundClick"></Button>
+        
+        <!--======================================== 
+                         Tarneeb Selection           
+            ========================================-->
+        
+        <!-- Select Tarneeb label -->
+        <Label Name="lblSelectTarneeb5" Foreground="Black"   Canvas.Left="370" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
+        <Label Name="lblSelectTarneeb4" Foreground="Black"   Canvas.Left="370" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
+        <Label Name="lblSelectTarneeb3" Foreground="Black"   Canvas.Left="372" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
+        <Label Name="lblSelectTarneeb2" Foreground="Black"   Canvas.Left="372" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
+        <Label Name="lblSelectTarneeb1" Foreground="#e8c133" Canvas.Left="371" Canvas.Top="281" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
+        <!-- Select Club -->
+        <Image Name="tc5" Source="/Images/_CLUB_B.png" Canvas.Left="304" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="tc4" Source="/Images/_CLUB_B.png" Canvas.Left="304" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="tc3" Source="/Images/_CLUB_B.png" Canvas.Left="306" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="tc2" Source="/Images/_CLUB_B.png" Canvas.Left="306" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="tc1" Source="/Images/_CLUB.png"   Canvas.Left="305" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebClubMouseDown" />
+        <!-- Select Diamond -->
+        <Image Name="td5" Source="/Images/_DIAMOND_B.png" Canvas.Left="404" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="td4" Source="/Images/_DIAMOND_B.png" Canvas.Left="404" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="td3" Source="/Images/_DIAMOND_B.png" Canvas.Left="406" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="td2" Source="/Images/_DIAMOND_B.png" Canvas.Left="406" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="td1" Source="/Images/_DIAMOND.png"   Canvas.Left="405" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebDiamondMouseDown" />
+        <!-- Select Heart -->
+        <Image Name="th5" Source="/Images/_HEART_B.png" Canvas.Left="504" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="th4" Source="/Images/_HEART_B.png" Canvas.Left="504" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="th3" Source="/Images/_HEART_B.png" Canvas.Left="506" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="th2" Source="/Images/_HEART_B.png" Canvas.Left="506" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="th1" Source="/Images/_HEART.png"   Canvas.Left="505" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebHeartMouseDown" />
+        <!-- Select Spade -->
+        <Image Name="ts5" Source="/Images/_SPADE_B.png" Canvas.Left="604" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="ts4" Source="/Images/_SPADE_B.png" Canvas.Left="604" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="ts3" Source="/Images/_SPADE_B.png" Canvas.Left="606" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="ts2" Source="/Images/_SPADE_B.png" Canvas.Left="606" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="ts1" Source="/Images/_SPADE.png"   Canvas.Left="605" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebSpadeMouseDown" />
 
-        <!-- ======================================== -->
-        <!--         Current Round Score Labels       -->
-        <!-- ======================================== -->
+        <!--======================================== 
+                    Current Round Score Labels       
+            ========================================-->
 
         <!-- SCORE label -->
         <Label Foreground="Black"   Canvas.Left="774" Canvas.Top="08" FontFamily="Arial" FontWeight="Bold" FontSize="16" >SCORE</Label>
@@ -204,9 +209,9 @@
         <Label Foreground="Black"   Canvas.Left="767" Canvas.Top="76" FontFamily="Arial" FontWeight="Bold" FontSize="11" >Current Round</Label>
         <Label Foreground="#e8c133" Canvas.Left="766" Canvas.Top="75" FontFamily="Arial" FontWeight="Bold" FontSize="11" >Current Round</Label>
 
-        <!-- ======================================== -->
-        <!--             Total Score Labels           -->
-        <!-- ======================================== -->
+        <!--======================================== 
+                        Total Score Labels           
+            ========================================-->
 
         <!-- TOTAL label -->
         <Label Foreground="Black"   Canvas.Left="894" Canvas.Top="08" FontFamily="Arial" FontWeight="Bold" FontSize="16" >TOTAL</Label>

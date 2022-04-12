@@ -44,7 +44,7 @@ namespace OOP4200_Tarneeb
         public Random rand = new Random();  // Random class object instantiation
 
         public bool playerDone = false;
-        public bool playerTurn = false;
+        public bool playerTurn = false;     // Needed for async
         public bool roundDone = false;
 
         // The winner of the betting or the round. Winner places the first card of a new turn.
@@ -103,6 +103,10 @@ namespace OOP4200_Tarneeb
         public bool player2IsBetting = true;
         public bool player3IsBetting = true;
         public bool player4IsBetting = true;
+
+        // Speed of the game
+        public const int computerTurnRate = 700;
+        public const int roundTurnRate = 2100;
 
         #endregion
 
@@ -867,21 +871,25 @@ namespace OOP4200_Tarneeb
         {
             SetTarneeb(Enums.Suit.CLUB);
             HideTarneebSelection();
+            playerTurn = true;
         }
         private void TarneebDiamondMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.DIAMOND);
             HideTarneebSelection();
+            playerTurn = true;
         }
         private void TarneebHeartMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.HEART);
             HideTarneebSelection();
+            playerTurn = true;
         }
         private void TarneebSpadeMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.SPADE);
             HideTarneebSelection();
+            playerTurn = true;
         }
 
         /// <summary>
@@ -942,11 +950,11 @@ namespace OOP4200_Tarneeb
                         firstCard = player1Card;
                         cardToBeat = player1Card;
                         // Play the AI turns and set the tarneeb
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player2Turn();
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player3Turn();
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player4Turn();
                         roundDone = true;
                         break;
@@ -955,15 +963,15 @@ namespace OOP4200_Tarneeb
                         break;
                     case 3:
                         // Play the remaining AI turn
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player2Turn();
                         roundDone = true;
                         break;
                     case 4:
                         // Play the remaining AI turns
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player2Turn();
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player3Turn();
                         roundDone = true;
                         break;
@@ -979,27 +987,27 @@ namespace OOP4200_Tarneeb
                 {
                     case 2:
                         // Play the turns in order from player 2 and set Tarneeb / firstCard
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player2Turn();
                         firstCard = player2Card;
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player3Turn();
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player4Turn();
                         playerTurn = true;
                         break;
                     case 3:
                         // Play the turns in order from player 3 and set Tarneeb / firstCard
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player3Turn();
                         firstCard = player3Card;
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player4Turn();
                         playerTurn = true;
                         break;
                     case 4:
                         // Play the first turn and set Tarneeb / firstCard
-                        await Task.Delay(1000);
+                        await Task.Delay(computerTurnRate);
                         Player4Turn();
                         firstCard = player4Card;
                         playerTurn = true;
@@ -1208,13 +1216,13 @@ namespace OOP4200_Tarneeb
                 //btnNextRound.Foreground = blackColor;
                 //btnNextRound.Visibility = Visibility.Visible;
                 //btnNextRound.IsEnabled = true;
-                await Task.Delay(2000);
+                await Task.Delay(roundTurnRate);
                 InitiateNextRound();
             }
             // If the cards are finished, prompt for new game
             else
             {
-                await Task.Delay(2000);
+                await Task.Delay(roundTurnRate);
 
                 // Show the New Game button which creates a new fresh PageGame page
                 btnNextRound.Background = scoreColor;
