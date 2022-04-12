@@ -44,7 +44,7 @@ namespace OOP4200_Tarneeb.Cards
 
 
         /// <summary>
-        /// 
+        /// Converts a given card to an image source for the respective card image
         /// </summary>
         /// <param name="card">The card to convert to image</param>
         /// <returns>ImageSource of entered card</returns>
@@ -101,26 +101,34 @@ namespace OOP4200_Tarneeb.Cards
 
         public List<Card> Cards { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Reset()
         {
             Cards = Enumerable.Range(1, 4)
                 .SelectMany(s => Enumerable.Range(1, 13)
-                                    .Select(c => new Card()
-                                    {
-                                        Suit = (Enums.Suit)s,
-                                        CardNumber = (Enums.CardNumber)c
-                                    }
-                                            )
-                            )
-                   .ToList();
+                        .Select(c => new Card()
+                        {
+                            Suit = (Enums.Suit)s,
+                            CardNumber = (Enums.CardNumber)c
+                        }))
+                .ToList();
         }
 
+        /// <summary>
+        /// Shuffles a Deck
+        /// </summary>
         public void Shuffle()
         {
             Cards = Cards.OrderBy(c => Guid.NewGuid())
                          .ToList();
         }
 
+        /// <summary>
+        /// Takes the first card of a sequence
+        /// </summary>
+        /// <returns>Card taken</returns>
         public Card TakeCard()
         {
             var card = Cards.FirstOrDefault();
@@ -129,6 +137,11 @@ namespace OOP4200_Tarneeb.Cards
             return card;
         }
 
+        /// <summary>
+        /// Takes a number of cards from a sequence of cards
+        /// </summary>
+        /// <param name="numberOfCards">Number of cards to take</param>
+        /// <returns>Cards taken</returns>
         public List<Card> TakeCards(int numberOfCards)
         {
             var cards = Cards.Take(numberOfCards);
@@ -143,8 +156,8 @@ namespace OOP4200_Tarneeb.Cards
         /// <summary>
         /// Sorts the given list of cards by suit and by card number
         /// </summary>
-        /// <param name="listOfCards">Sorted list of cards</param>
-        /// <returns></returns>
+        /// <param name="listOfCards">Unsorted list of cards</param>
+        /// <returns>Sorted list of cards</returns>
         public List<Card> Sort(List<Card> listOfCards)
         {
             // Dictionary for the ordering of suits in the sort that separates suits by
