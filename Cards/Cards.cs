@@ -87,17 +87,6 @@ namespace OOP4200_Tarneeb.Cards
                 formattedNumber = "01";
             }
 
-            // If the card is invalid, return the InvalidCard.png
-            // Notes:  ToImage() broke looking for a card that didn't exist in ONE game out of hundreds.
-            //         Origin of bug unknown. Could not reproduce.
-            //         This if statement should prevent the program from crashing.
-            if (formattedSuit == null || formattedNumber == null ||
-                (int)card.Suit < 1 || (int)card.Suit > 4 ||
-                (int)card.CardNumber < 1 || (int)card.CardNumber > 12)
-            {
-                return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/Cards/InvalidCard.png");
-            }
-
             // Return the image source for the card
             return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/Cards/" + formattedSuit + formattedNumber + ".png");
         }
