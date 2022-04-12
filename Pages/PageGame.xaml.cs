@@ -27,12 +27,7 @@ namespace OOP4200_Tarneeb
 
          - How To Play (easy)
 
-         - Betting (tough)
-            - Disable Cards that are clickable
-            - Line 275, Add AI functionality (The three functions are made, but are empty)
-
          - Multiple Round Tarneeb to 31 Points(tough): right now it's single round, also idk if this is needed
-
 
         */
         
@@ -214,7 +209,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region Card Display
+        #region Card Display (Arbin)
 
         /// <summary>
         /// Create a list of the player's cards Image controls from the PageGame.xaml form
@@ -1181,7 +1176,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region Card Click Functionality
+        #region Card Click Functionality (Arbin)
 
         /// <summary>
         /// Determines if the card clicked is playable based on first card played on the current round
@@ -1249,7 +1244,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(0);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1273,7 +1268,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(1);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1297,7 +1292,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(2);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1322,7 +1317,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(3);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1346,7 +1341,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(4);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1370,7 +1365,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(5);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1394,7 +1389,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(6);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1418,7 +1413,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(7);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1442,7 +1437,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(8);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1466,7 +1461,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(9);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1490,7 +1485,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(10);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1514,7 +1509,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(11);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }
@@ -1538,7 +1533,7 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(12);
                 playerDone = true;
 
-                // Complete computer turns (async)
+                // Complete computer turns
                 ComputerTurnLogic();
             }
         }

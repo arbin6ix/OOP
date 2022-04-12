@@ -33,7 +33,6 @@ namespace OOP4200_Tarneeb.Cards
             QUEEN = 11,
             KING = 12,
             ACE = 13
-
         }
     }
 
@@ -43,11 +42,6 @@ namespace OOP4200_Tarneeb.Cards
         public Enums.Suit Suit { get; set; }
         public Enums.CardNumber CardNumber { get; set; }
 
-        public override string ToString()
-        {
-
-            return "The Suit is: " + this.Suit + " The card number is: " + this.CardNumber;
-        }
 
         /// <summary>
         /// 
@@ -95,15 +89,6 @@ namespace OOP4200_Tarneeb.Cards
 
             // Return the image source for the card
             return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/Cards/" + formattedSuit + formattedNumber + ".png");
-        }
-
-        /// <summary>
-        /// Empties card slot of any card image stored in it
-        /// </summary>
-        /// <returns>ImageSource of transparent (empty) card</returns>
-        public static ImageSource EmptyCard()
-        {
-            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/EmptyCard.png");
         }
     }
 

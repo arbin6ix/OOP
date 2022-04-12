@@ -137,7 +137,6 @@ namespace OOP4200_Tarneeb
                 default:
                     break;
             }
-
         }
 
         /// <summary>
