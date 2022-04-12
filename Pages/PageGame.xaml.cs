@@ -44,6 +44,7 @@ namespace OOP4200_Tarneeb
         public Random rand = new Random();  // Random class object instantiation
 
         public bool playerDone = false;
+        public bool playerTurn = false;
         public bool roundDone = false;
 
         // The winner of the betting or the round. Winner places the first card of a new turn.
@@ -143,6 +144,7 @@ namespace OOP4200_Tarneeb
             // Reset round progression variables
             winner = 1;
             playerDone = false;
+            playerTurn = false;
             roundDone = false;
             cardsDone = 0;
 
@@ -834,25 +836,25 @@ namespace OOP4200_Tarneeb
         /// Completes the turns of the computer players 2-4 and starts the next round
         /// </summary>
         /// <returns></returns>
-        public void ComputerTurnLogic()
+        public async void ComputerTurnLogic()
         {
             // If the round isn't over, execute the computer turns
             if (!roundDone)
             {
-                DoComputerTurns();
+                await DoComputerTurns();
             }
 
             // If the round is completed, start the next round
             if (roundDone)
             {
-                NextRound();
+                await PromptNextRound();
             }
         }
 
         /// <summary>
         /// Executes the computer player 2-4's turns
         /// </summary>
-        public void DoComputerTurns()
+        public async Task DoComputerTurns()
         {
             // If player has made their turn already...
             if (playerDone)
@@ -865,8 +867,11 @@ namespace OOP4200_Tarneeb
                         firstCard = player1Card;
                         cardToBeat = player1Card;
                         // Play the AI turns and set the tarneeb
+                        await Task.Delay(1000);
                         Player2Turn();
+                        await Task.Delay(1000);
                         Player3Turn();
+                        await Task.Delay(1000);
                         Player4Turn();
                         roundDone = true;
                         break;
@@ -875,12 +880,15 @@ namespace OOP4200_Tarneeb
                         break;
                     case 3:
                         // Play the remaining AI turn
+                        await Task.Delay(1000);
                         Player2Turn();
                         roundDone = true;
                         break;
                     case 4:
                         // Play the remaining AI turns
+                        await Task.Delay(1000);
                         Player2Turn();
+                        await Task.Delay(1000);
                         Player3Turn();
                         roundDone = true;
                         break;
@@ -896,21 +904,30 @@ namespace OOP4200_Tarneeb
                 {
                     case 2:
                         // Play the turns in order from player 2 and set Tarneeb / firstCard
+                        await Task.Delay(1000);
                         Player2Turn();
                         firstCard = player2Card;
+                        await Task.Delay(1000);
                         Player3Turn();
+                        await Task.Delay(1000);
                         Player4Turn();
+                        playerTurn = true;
                         break;
                     case 3:
                         // Play the turns in order from player 3 and set Tarneeb / firstCard
+                        await Task.Delay(1000);
                         Player3Turn();
                         firstCard = player3Card;
+                        await Task.Delay(1000);
                         Player4Turn();
+                        playerTurn = true;
                         break;
                     case 4:
                         // Play the first turn and set Tarneeb / firstCard
+                        await Task.Delay(1000);
                         Player4Turn();
                         firstCard = player4Card;
+                        playerTurn = true;
                         break;
                     default:
                         break;
@@ -1100,7 +1117,7 @@ namespace OOP4200_Tarneeb
         /// <summary>
         /// Starts the next round
         /// </summary>
-        public void NextRound()
+        public async Task PromptNextRound()
         {
             // Determine winner of round
             EndOfRoundCleanup(tarneeb, player1Card, player2Card, player3Card, player4Card);
@@ -1112,14 +1129,18 @@ namespace OOP4200_Tarneeb
             if (cardsDone < 13)
             {
                 // Show the Next Round button which starts the next round
-                btnNextRound.Background = greenColor;
-                btnNextRound.Foreground = blackColor;
-                btnNextRound.Visibility = Visibility.Visible;
-                btnNextRound.IsEnabled = true;
+                //btnNextRound.Background = greenColor;
+                //btnNextRound.Foreground = blackColor;
+                //btnNextRound.Visibility = Visibility.Visible;
+                //btnNextRound.IsEnabled = true;
+                await Task.Delay(2000);
+                InitiateNextRound();
             }
             // If the cards are finished, prompt for new game
             else
             {
+                await Task.Delay(2000);
+
                 // Show the New Game button which creates a new fresh PageGame page
                 btnNextRound.Background = scoreColor;
                 btnNextRound.Foreground = blackColor;
@@ -1135,22 +1156,9 @@ namespace OOP4200_Tarneeb
         #region Button Functionality
 
         /// <summary>
-        /// Sends user back to main menu (exits current game)
+        /// Starts the next round of tarneeb
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnGameBackClick(object sender, RoutedEventArgs e)
-        {
-            PageMenu menuPage = new PageMenu();
-            NavigationService.Navigate(menuPage);
-        }
-
-        /// <summary>
-        /// Starts the next round of Tarneeb
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnNextRoundClick(object sender, RoutedEventArgs e)
+        private void InitiateNextRound()
         {
             if (cardsDone < 13 && roundDone)
             {
@@ -1175,9 +1183,12 @@ namespace OOP4200_Tarneeb
                 playerDone = false;
                 roundDone = false;
 
+                playerTurn = true;
+
                 // If a computer won, loop this function to complete the computer turns again
                 if (winner > 1)
                 {
+                    playerTurn = false;
                     ComputerTurnLogic();
                 }
 
@@ -1191,21 +1202,37 @@ namespace OOP4200_Tarneeb
             // All 4 players are out of cards. Create new game
             else if (roundDone)
             {
+                // Next player starts betting
+                startingPlayerBetting += 1;
+                if (startingPlayerBetting > 4)
+                {
+                    startingPlayerBetting = 1;
+                }
+
                 // Call NewRound function and pray it works
                 NewRound();
-
-                //// Create a new game from scratch (defunct?)
-                //PageGame gamePage = new PageGame();
-                //NavigationService.Navigate(gamePage);
             }
+        }
 
+        /// <summary>
+        /// Sends user back to main menu (exits current game)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnGameBackClick(object sender, RoutedEventArgs e)
+        {
+            PageMenu menuPage = new PageMenu();
+            NavigationService.Navigate(menuPage);
+        }
 
-            // Next player starts betting
-            startingPlayerBetting += 1;
-            if (startingPlayerBetting > 4)
-            {
-                startingPlayerBetting = 1;
-            }
+        /// <summary>
+        /// Starts the next round of Tarneeb
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnNextRoundClick(object sender, RoutedEventArgs e)
+        {
+            InitiateNextRound();
         }
 
 
@@ -1224,6 +1251,12 @@ namespace OOP4200_Tarneeb
             // In the betting phase, setting winner to 0 will prevent the player from playing
             // Set winner equal to the player # of the winner of the betting
             if (winner == 0)
+            {
+                return false;
+            }
+
+            // If it's not the player's turn, return false
+            if (!playerTurn)
             {
                 return false;
             }
@@ -1278,6 +1311,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[0];
                 playerHand.RemoveAt(0);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1302,6 +1336,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[1];
                 playerHand.RemoveAt(1);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1326,6 +1361,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[2];
                 playerHand.RemoveAt(2);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1351,6 +1387,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[3];
                 playerHand.RemoveAt(3);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1375,6 +1412,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[4];
                 playerHand.RemoveAt(4);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1399,6 +1437,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[5];
                 playerHand.RemoveAt(5);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1423,6 +1462,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[6];
                 playerHand.RemoveAt(6);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1447,6 +1487,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[7];
                 playerHand.RemoveAt(7);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1471,6 +1512,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[8];
                 playerHand.RemoveAt(8);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1495,6 +1537,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[9];
                 playerHand.RemoveAt(9);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1519,6 +1562,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[10];
                 playerHand.RemoveAt(10);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1543,6 +1587,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[11];
                 playerHand.RemoveAt(11);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1567,6 +1612,7 @@ namespace OOP4200_Tarneeb
                 player1Card = playerHand[12];
                 playerHand.RemoveAt(12);
                 playerDone = true;
+                playerTurn = false;
 
                 // Complete computer turns
                 ComputerTurnLogic();
