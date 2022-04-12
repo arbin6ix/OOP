@@ -37,6 +37,7 @@
     <None Remove="Images\c11.bmp" />
     <None Remove="Images\c12.bmp" />
     <None Remove="Images\c13.bmp" />
+    <None Remove="Images\Cards\01.png" />
     <None Remove="Images\Cards\c01.png" />
     <None Remove="Images\Cards\c02.png" />
     <None Remove="Images\Cards\c03.png" />
@@ -159,6 +160,7 @@
     <Resource Include="Images\BGPreviews\PreviewBlue.png" />
     <Resource Include="Images\BGPreviews\PreviewGreen.png" />
     <Resource Include="Images\BGPreviews\PreviewRed.png" />
+    <Resource Include="Images\Cards\01.png" />
     <Resource Include="Images\Cards\c01.png" />
     <Resource Include="Images\Cards\c02.png" />
     <Resource Include="Images\Cards\c03.png" />

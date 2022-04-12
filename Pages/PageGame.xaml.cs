@@ -105,7 +105,7 @@ namespace OOP4200_Tarneeb
         public bool player4IsBetting = true;
 
         // Speed of the game
-        public const int computerTurnRate = 900;
+        public const int computerTurnRate = 800;
         public const int bettingTurnRate = 1400;
         public const int roundTurnRate = 2100;
 
