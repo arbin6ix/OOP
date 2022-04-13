@@ -874,29 +874,48 @@ namespace OOP4200_Tarneeb
             ts5.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Select Clubs as the tarneeb suit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TarneebClubMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.CLUB);
             HideTarneebSelection();
-            playerTurn = true;
         }
+
+        /// <summary>
+        /// Select Diamonds as the tarneeb suit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TarneebDiamondMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.DIAMOND);
             HideTarneebSelection();
-            playerTurn = true;
         }
+
+        /// <summary>
+        /// Select Hearts as the tarneeb suit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TarneebHeartMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.HEART);
             HideTarneebSelection();
-            playerTurn = true;
         }
+
+        /// <summary>
+        /// Select Spades as the tarneeb suit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TarneebSpadeMouseDown(object sender, MouseButtonEventArgs e)
         {
             SetTarneeb(Enums.Suit.SPADE);
             HideTarneebSelection();
-            playerTurn = true;
         }
 
         /// <summary>
