@@ -659,7 +659,7 @@ namespace OOP4200_Tarneeb
                 bettingAmount += numOfSpade;
             }
 
-            bettingAmount += 2;
+            bettingAmount += 1;
 
             return bettingAmount;
         }
