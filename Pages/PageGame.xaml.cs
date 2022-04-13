@@ -30,11 +30,15 @@ namespace OOP4200_Tarneeb
          - Multiple Round Tarneeb to 31 Points(tough): right now it's single round, also idk if this is needed
 
         */
-        
+
 
         #endregion
 
         #region Fields & Properties
+
+        // Speed of the game in milliseconds
+        public const int computerTurnRate = 700;
+        public const int roundTurnRate = 2100;
 
         public Enums.Suit tarneeb;          // Tarneeb (trump card)
         public bool tarneebPlayed = false;  // Tarneeb played bool
@@ -43,8 +47,8 @@ namespace OOP4200_Tarneeb
         public int cardsDone = 0;           // # of remaining cards in the hand
         public Random rand = new Random();  // Random class object instantiation
 
+        public bool playerTurn = false;     // Needed for async, indicates the player's turn to click a card
         public bool playerDone = false;
-        public bool playerTurn = false;     // Needed for async
         public bool roundDone = false;
 
         // The winner of the betting or the round. Winner places the first card of a new turn.
@@ -103,10 +107,6 @@ namespace OOP4200_Tarneeb
         public bool player2IsBetting = true;
         public bool player3IsBetting = true;
         public bool player4IsBetting = true;
-
-        // Speed of the game
-        public const int computerTurnRate = 800;
-        public const int roundTurnRate = 2100;
 
         #endregion
 
@@ -1878,22 +1878,28 @@ namespace OOP4200_Tarneeb
             // If the game is over...
             else
             {
-                // Set initial winning team to team 1
-                WinningTeam(1);
-
                 // Switch the winning team to team 2 based on betting player and team scores
                 if (bettingPlayer == 1 || bettingPlayer == 3)
                 {
-                    if (team1Score < topBet)
+                    if (team1Score >= topBet)
+                    {
+                        WinningTeam(1);
+                    }
+                    else
                     {
                         WinningTeam(2);
                     }
                 }
-                else
+                
+                if (bettingPlayer == 2 || bettingPlayer == 4)
                 {
                     if (team2Score >= topBet)
                     {
                         WinningTeam(2);
+                    }
+                    else
+                    {
+                        WinningTeam(1);
                     }
                 }
             }
