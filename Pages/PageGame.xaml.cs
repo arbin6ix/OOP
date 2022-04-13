@@ -352,8 +352,6 @@ namespace OOP4200_Tarneeb
 
             if (bettingPlayer == player1Betting)
             {
-                winner = bettingPlayer;
-
                 HideBettingButtons();
                 ShowTarneebSelection();
             }
@@ -883,6 +881,7 @@ namespace OOP4200_Tarneeb
         {
             SetTarneeb(Enums.Suit.CLUB);
             HideTarneebSelection();
+            winner = bettingPlayer;
         }
 
         /// <summary>
@@ -894,6 +893,7 @@ namespace OOP4200_Tarneeb
         {
             SetTarneeb(Enums.Suit.DIAMOND);
             HideTarneebSelection();
+            winner = bettingPlayer;
         }
 
         /// <summary>
@@ -905,6 +905,7 @@ namespace OOP4200_Tarneeb
         {
             SetTarneeb(Enums.Suit.HEART);
             HideTarneebSelection();
+            winner = bettingPlayer;
         }
 
         /// <summary>
@@ -916,6 +917,7 @@ namespace OOP4200_Tarneeb
         {
             SetTarneeb(Enums.Suit.SPADE);
             HideTarneebSelection();
+            winner = bettingPlayer;
         }
 
         /// <summary>
