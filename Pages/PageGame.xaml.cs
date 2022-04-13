@@ -38,7 +38,7 @@ namespace OOP4200_Tarneeb
 
         // Speed of the game in milliseconds
         public const int computerTurnRate = 700;
-        public const int roundTurnRate = 2100;
+        public const int roundTurnRate = 1800;
 
         public Enums.Suit tarneeb;          // Tarneeb (trump card)
         public bool tarneebPlayed = false;  // Tarneeb played bool
@@ -976,12 +976,9 @@ namespace OOP4200_Tarneeb
                         firstCard = player1Card;
                         cardToBeat = player1Card;
                         // Play the AI turns and set the tarneeb
-                        await Task.Delay(computerTurnRate);
-                        Player2Turn();
-                        await Task.Delay(computerTurnRate);
-                        Player3Turn();
-                        await Task.Delay(computerTurnRate);
-                        Player4Turn();
+                        await Player2Turn();
+                        await Player3Turn();
+                        await Player4Turn();
                         roundDone = true;
                         break;
                     case 2:
@@ -989,16 +986,13 @@ namespace OOP4200_Tarneeb
                         break;
                     case 3:
                         // Play the remaining AI turn
-                        await Task.Delay(computerTurnRate);
-                        Player2Turn();
+                        await Player2Turn();
                         roundDone = true;
                         break;
                     case 4:
                         // Play the remaining AI turns
-                        await Task.Delay(computerTurnRate);
-                        Player2Turn();
-                        await Task.Delay(computerTurnRate);
-                        Player3Turn();
+                        await Player2Turn();
+                        await Player3Turn();
                         roundDone = true;
                         break;
                     default:
@@ -1013,28 +1007,22 @@ namespace OOP4200_Tarneeb
                 {
                     case 2:
                         // Play the turns in order from player 2 and set Tarneeb / firstCard
-                        await Task.Delay(computerTurnRate);
-                        Player2Turn();
+                        await Player2Turn();
                         firstCard = player2Card;
-                        await Task.Delay(computerTurnRate);
-                        Player3Turn();
-                        await Task.Delay(computerTurnRate);
-                        Player4Turn();
+                        await Player3Turn();
+                        await Player4Turn();
                         playerTurn = true;
                         break;
                     case 3:
                         // Play the turns in order from player 3 and set Tarneeb / firstCard
-                        await Task.Delay(computerTurnRate);
-                        Player3Turn();
+                        await Player3Turn();
                         firstCard = player3Card;
-                        await Task.Delay(computerTurnRate);
-                        Player4Turn();
+                        await Player4Turn();
                         playerTurn = true;
                         break;
                     case 4:
                         // Play the first turn and set Tarneeb / firstCard
-                        await Task.Delay(computerTurnRate);
-                        Player4Turn();
+                        await Player4Turn();
                         firstCard = player4Card;
                         playerTurn = true;
                         break;
@@ -1190,8 +1178,9 @@ namespace OOP4200_Tarneeb
         /// <summary>
         /// Turn logic for Player 2 AI
         /// </summary>
-        public void Player2Turn()
+        public async Task Player2Turn()
         {
+            await Task.Delay(computerTurnRate);
             Card chosenCard;
             chosenCard = AIChooseCard(hand2);
             player2Card = chosenCard;
@@ -1202,8 +1191,9 @@ namespace OOP4200_Tarneeb
         /// <summary>
         /// Turn logic for Player 3 AI
         /// </summary>
-        public void Player3Turn()
+        public async Task Player3Turn()
         {
+            await Task.Delay(computerTurnRate);
             Card chosenCard;
             chosenCard = AIChooseCard(hand3);
             player3Card = chosenCard;
@@ -1214,8 +1204,9 @@ namespace OOP4200_Tarneeb
         /// <summary>
         /// Turn logic for Player 4 AI
         /// </summary>
-        public void Player4Turn()
+        public async Task Player4Turn()
         {
+            await Task.Delay(computerTurnRate);
             Card chosenCard;
             chosenCard = AIChooseCard(hand4);
             player4Card = chosenCard;
