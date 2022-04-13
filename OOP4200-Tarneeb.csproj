@@ -139,6 +139,14 @@
     <None Remove="Images\s11.bmp" />
     <None Remove="Images\s12.bmp" />
     <None Remove="Images\s13.bmp" />
+    <None Remove="Images\SuitLogos\_CLUB.png" />
+    <None Remove="Images\SuitLogos\_CLUB_B.png" />
+    <None Remove="Images\SuitLogos\_DIAMOND.png" />
+    <None Remove="Images\SuitLogos\_DIAMOND_B.png" />
+    <None Remove="Images\SuitLogos\_HEART.png" />
+    <None Remove="Images\SuitLogos\_HEART_B.png" />
+    <None Remove="Images\SuitLogos\_SPADE.png" />
+    <None Remove="Images\SuitLogos\_SPADE_B.png" />
     <None Remove="Images\_BGBlue.png" />
     <None Remove="Images\_BGGreen.png" />
     <None Remove="Images\_BGGreen2.png" />
@@ -218,14 +226,14 @@
     <Resource Include="Images\Players\Player2.png" />
     <Resource Include="Images\Players\Player3.png" />
     <Resource Include="Images\Players\Player4.png" />
-    <Resource Include="Images\_CLUB.png" />
-    <Resource Include="Images\_CLUB_B.png" />
-    <Resource Include="Images\_DIAMOND.png" />
-    <Resource Include="Images\_DIAMOND_B.png" />
-    <Resource Include="Images\_HEART.png" />
-    <Resource Include="Images\_HEART_B.png" />
-    <Resource Include="Images\_SPADE.png" />
-    <Resource Include="Images\_SPADE_B.png" />
+    <Resource Include="Images\SuitLogos\_CLUB.png" />
+    <Resource Include="Images\SuitLogos\_CLUB_B.png" />
+    <Resource Include="Images\SuitLogos\_DIAMOND.png" />
+    <Resource Include="Images\SuitLogos\_DIAMOND_B.png" />
+    <Resource Include="Images\SuitLogos\_HEART.png" />
+    <Resource Include="Images\SuitLogos\_HEART_B.png" />
+    <Resource Include="Images\SuitLogos\_SPADE.png" />
+    <Resource Include="Images\SuitLogos\_SPADE_B.png" />
   </ItemGroup>
 
 </Project>

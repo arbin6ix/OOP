@@ -909,11 +909,11 @@ namespace OOP4200_Tarneeb
             if (!tarneebPlayed)
             {
                 tarneeb = suit;
-                tarneebImage1.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + ".png");
-                tarneebImage2.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + "_B.png");
-                tarneebImage3.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + "_B.png");
-                tarneebImage4.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + "_B.png");
-                tarneebImage5.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/_" + suit + "_B.png");
+                tarneebImage1.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/SuitLogos/_" + suit + ".png");
+                tarneebImage2.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/SuitLogos/_" + suit + "_B.png");
+                tarneebImage3.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/SuitLogos/_" + suit + "_B.png");
+                tarneebImage4.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/SuitLogos/_" + suit + "_B.png");
+                tarneebImage5.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/SuitLogos/_" + suit + "_B.png");
                 tarneebPlayed = true;
             }
         }

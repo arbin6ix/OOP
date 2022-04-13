@@ -81,11 +81,11 @@
         <Label Foreground="Black"   Canvas.Left="684" Canvas.Top="10" FontFamily="Arial" FontWeight="Bold" FontSize="16" >BET</Label>
         <Label Foreground="#e8c133" Canvas.Left="683" Canvas.Top="9"  FontFamily="Arial" FontWeight="Bold" FontSize="16" >BET</Label>
 
-        <Label Name="lblBet5" Foreground="Black"   Width="55" HorizontalContentAlignment="Center" Canvas.Left="675" Canvas.Top="27" FontFamily="Arial" FontWeight="Bold" FontSize="40" >1</Label>
-        <Label Name="lblBet4" Foreground="Black"   Width="55" HorizontalContentAlignment="Center" Canvas.Left="675" Canvas.Top="29" FontFamily="Arial" FontWeight="Bold" FontSize="40" >1</Label>
-        <Label Name="lblBet3" Foreground="Black"   Width="55" HorizontalContentAlignment="Center" Canvas.Left="679" Canvas.Top="27" FontFamily="Arial" FontWeight="Bold" FontSize="40" >1</Label>
-        <Label Name="lblBet2" Foreground="Black"   Width="55" HorizontalContentAlignment="Center" Canvas.Left="679" Canvas.Top="29" FontFamily="Arial" FontWeight="Bold" FontSize="40" >1</Label>
-        <Label Name="lblBet1" Foreground="#33BCFF" Width="55" HorizontalContentAlignment="Center" Canvas.Left="677" Canvas.Top="28" FontFamily="Arial" FontWeight="Bold" FontSize="40" >1</Label>
+        <Label Name="lblBet5" Foreground="Black"   Width="55" HorizontalContentAlignment="Center" Canvas.Left="676" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblBet4" Foreground="Black"   Width="55" HorizontalContentAlignment="Center" Canvas.Left="676" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblBet3" Foreground="Black"   Width="55" HorizontalContentAlignment="Center" Canvas.Left="678" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblBet2" Foreground="Black"   Width="55" HorizontalContentAlignment="Center" Canvas.Left="678" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblBet1" Foreground="#33BCFF" Width="55" HorizontalContentAlignment="Center" Canvas.Left="677" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
 
         <Button Name="btnBetAdd" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="204" Width="75"  Height="70" Click="BtnBetAddClick">+</Button>
         <Button Name="btnBetSub" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="650" Canvas.Top="204" Width="75"  Height="70" Click="BtnBetSubClick">-</Button>
@@ -150,29 +150,29 @@
         <Label Name="lblSelectTarneeb2" Foreground="Black"   Canvas.Left="372" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
         <Label Name="lblSelectTarneeb1" Foreground="#e8c133" Canvas.Left="371" Canvas.Top="281" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
         <!-- Select Club -->
-        <Image Name="tc5" Source="/Images/_CLUB_B.png" Canvas.Left="304" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="tc4" Source="/Images/_CLUB_B.png" Canvas.Left="304" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="tc3" Source="/Images/_CLUB_B.png" Canvas.Left="306" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="tc2" Source="/Images/_CLUB_B.png" Canvas.Left="306" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="tc1" Source="/Images/_CLUB.png"   Canvas.Left="305" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebClubMouseDown" />
+        <Image Name="tc5" Source="/Images/SuitLogos/_CLUB_B.png" Canvas.Left="304" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="tc4" Source="/Images/SuitLogos/_CLUB_B.png" Canvas.Left="304" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="tc3" Source="/Images/SuitLogos/_CLUB_B.png" Canvas.Left="306" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="tc2" Source="/Images/SuitLogos/_CLUB_B.png" Canvas.Left="306" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="tc1" Source="/Images/SuitLogos/_CLUB.png"   Canvas.Left="305" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebClubMouseDown" />
         <!-- Select Diamond -->
-        <Image Name="td5" Source="/Images/_DIAMOND_B.png" Canvas.Left="404" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="td4" Source="/Images/_DIAMOND_B.png" Canvas.Left="404" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="td3" Source="/Images/_DIAMOND_B.png" Canvas.Left="406" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="td2" Source="/Images/_DIAMOND_B.png" Canvas.Left="406" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="td1" Source="/Images/_DIAMOND.png"   Canvas.Left="405" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebDiamondMouseDown" />
+        <Image Name="td5" Source="/Images/SuitLogos/_DIAMOND_B.png" Canvas.Left="404" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="td4" Source="/Images/SuitLogos/_DIAMOND_B.png" Canvas.Left="404" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="td3" Source="/Images/SuitLogos/_DIAMOND_B.png" Canvas.Left="406" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="td2" Source="/Images/SuitLogos/_DIAMOND_B.png" Canvas.Left="406" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="td1" Source="/Images/SuitLogos/_DIAMOND.png"   Canvas.Left="405" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebDiamondMouseDown" />
         <!-- Select Heart -->
-        <Image Name="th5" Source="/Images/_HEART_B.png" Canvas.Left="504" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="th4" Source="/Images/_HEART_B.png" Canvas.Left="504" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="th3" Source="/Images/_HEART_B.png" Canvas.Left="506" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="th2" Source="/Images/_HEART_B.png" Canvas.Left="506" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="th1" Source="/Images/_HEART.png"   Canvas.Left="505" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebHeartMouseDown" />
+        <Image Name="th5" Source="/Images/SuitLogos/_HEART_B.png" Canvas.Left="504" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="th4" Source="/Images/SuitLogos/_HEART_B.png" Canvas.Left="504" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="th3" Source="/Images/SuitLogos/_HEART_B.png" Canvas.Left="506" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="th2" Source="/Images/SuitLogos/_HEART_B.png" Canvas.Left="506" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="th1" Source="/Images/SuitLogos/_HEART.png"   Canvas.Left="505" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebHeartMouseDown" />
         <!-- Select Spade -->
-        <Image Name="ts5" Source="/Images/_SPADE_B.png" Canvas.Left="604" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="ts4" Source="/Images/_SPADE_B.png" Canvas.Left="604" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="ts3" Source="/Images/_SPADE_B.png" Canvas.Left="606" Canvas.Top="339" Height="70" Visibility="Hidden"/>
-        <Image Name="ts2" Source="/Images/_SPADE_B.png" Canvas.Left="606" Canvas.Top="341" Height="70" Visibility="Hidden"/>
-        <Image Name="ts1" Source="/Images/_SPADE.png"   Canvas.Left="605" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebSpadeMouseDown" />
+        <Image Name="ts5" Source="/Images/SuitLogos/_SPADE_B.png" Canvas.Left="604" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="ts4" Source="/Images/SuitLogos/_SPADE_B.png" Canvas.Left="604" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="ts3" Source="/Images/SuitLogos/_SPADE_B.png" Canvas.Left="606" Canvas.Top="339" Height="70" Visibility="Hidden"/>
+        <Image Name="ts2" Source="/Images/SuitLogos/_SPADE_B.png" Canvas.Left="606" Canvas.Top="341" Height="70" Visibility="Hidden"/>
+        <Image Name="ts1" Source="/Images/SuitLogos/_SPADE.png"   Canvas.Left="605" Canvas.Top="340" Height="70" Visibility="Hidden" MouseDown="TarneebSpadeMouseDown" />
 
         <!--======================================== 
                     Current Round Score Labels       
