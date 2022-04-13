@@ -999,7 +999,7 @@ namespace OOP4200_Tarneeb
                         break;
                 }
             }
-            // If player has NOT made their turn already...
+            // If player has NOT made their turn already..
             else if (!playerDone)
             {
                 // ...switch depending on winner (player who places first)
