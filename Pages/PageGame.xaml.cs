@@ -1740,7 +1740,7 @@ namespace OOP4200_Tarneeb
         /// <param name="card2">Player 2's card played</param>
         /// <param name="card3">Player 3's card played</param>
         /// <param name="card4">Player 4's card played</param>
-        private void EndOfRoundCleanup(Cards.Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
+        private void EndOfRoundCleanup(Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
         {
             // Determines the winner of the round when passed parent function's parameters
             DetermineWinner(tarneeb, card1, card2, card3, card4);
@@ -1878,17 +1878,42 @@ namespace OOP4200_Tarneeb
             // If the game is over...
             else
             {
-                // ...determine the winning team
-                if (team1Score >= topBet && (bettingPlayer == 1 || bettingPlayer == 3))
+                // Set initial winning team to team 1
+                WinningTeam(1);
+
+                // Switch the winning team to team 2 based on betting player and team scores
+                if (bettingPlayer == 1 || bettingPlayer == 3)
                 {
-                    lblWinner.Content = "Team 1 Wins!";
-                    lblWinner.Foreground = team1Color;
+                    if (team1Score < topBet)
+                    {
+                        WinningTeam(2);
+                    }
                 }
                 else
                 {
-                    lblWinner.Content = "Team 2 Wins!";
-                    lblWinner.Foreground = team2Color;
+                    if (team2Score >= topBet)
+                    {
+                        WinningTeam(2);
+                    }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Outputs the winning team (1 or 2)
+        /// </summary>
+        /// <param name="winningTeam">The winning team as int, accepts 1 or 2</param>
+        public void WinningTeam(int winningTeam)
+        {
+            if (winningTeam == 1)
+            {
+                lblWinner.Content = "Team 1 Wins!";
+                lblWinner.Foreground = team1Color;
+            }
+            else
+            {
+                lblWinner.Content = "Team 2 Wins!";
+                lblWinner.Foreground = team2Color;
             }
         }
 
