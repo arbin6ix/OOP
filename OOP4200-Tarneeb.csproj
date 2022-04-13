@@ -161,7 +161,6 @@
     <Resource Include="Images\BGPreviews\PreviewBlue.png" />
     <Resource Include="Images\BGPreviews\PreviewGreen.png" />
     <Resource Include="Images\BGPreviews\PreviewRed.png" />
-    <Resource Include="Images\Cards\01.png" />
     <Resource Include="Images\Cards\c01.png" />
     <Resource Include="Images\Cards\c02.png" />
     <Resource Include="Images\Cards\c03.png" />
@@ -201,7 +200,6 @@
     <Resource Include="Images\Cards\h11.png" />
     <Resource Include="Images\Cards\h12.png" />
     <Resource Include="Images\Cards\h13.png" />
-    <Resource Include="Images\Cards\InvalidCard.png" />
     <Resource Include="Images\Cards\s01.png" />
     <Resource Include="Images\Cards\s02.png" />
     <Resource Include="Images\Cards\s03.png" />
