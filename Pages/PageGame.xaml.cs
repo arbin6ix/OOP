@@ -1315,7 +1315,7 @@ namespace OOP4200_Tarneeb
                     startingPlayerBetting = 1;
                 }
 
-                // Call NewRound function and pray it works
+                // Call NewRound function
                 NewRound();
             }
         }
