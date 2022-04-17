@@ -213,7 +213,6 @@ namespace OOP4200_Tarneeb
             {
                 DoComputerTurns();
             }
-
             // If the round is completed, start the next round
             if (roundDone)
             {
@@ -347,7 +346,7 @@ namespace OOP4200_Tarneeb
 
                         // Set this card to the card to beat and the first card
                         cardToBeat = hand[i];
-                        firstCard = hand[i];
+                        //firstCard = hand[i];
                     }
                 }
 
@@ -957,7 +956,6 @@ namespace OOP4200_Tarneeb
             else
             {
                 suit = firstCard.Suit;
-
             }
 
 
