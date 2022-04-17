@@ -1,4 +1,5 @@
 ﻿using OOP4200_Tarneeb.Cards;
+using OOP4200_Tarneeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -116,14 +117,28 @@ namespace OOP4200_Tarneeb
         {
             InitializeComponent();
             CreateImageList();
+            LoadPlayer1Name();
             NewRound();
+        }
+
+        /// <summary>
+        /// Display Player1 name dynamically. 
+        /// </summary>
+        private void LoadPlayer1Name() 
+        {
+            lblPlayer1_1.Content = Globals.gameStats.PlayerName;
+            lblPlayer1_2.Content = Globals.gameStats.PlayerName;
+            lblPlayer1_3.Content = Globals.gameStats.PlayerName;
+            lblPlayer1_4.Content = Globals.gameStats.PlayerName;
+            lblPlayer1_5.Content = Globals.gameStats.PlayerName;
         }
 
         /// <summary>
         /// Initiates a new round of Tarneeb, including shuffling deck, dealing cards, resetting variables, etc..
         /// </summary>
-        public void NewRound()
+        public async void NewRound()
         {
+            await DBUtility.SaveLog(new Log("New Round", "", ""));
             // Create a deck
             Deck deck = new Deck();
 
@@ -1742,11 +1757,11 @@ namespace OOP4200_Tarneeb
             // Determines the winner of the round when passed parent function's parameters
             DetermineWinner(tarneeb, card1, card2, card3, card4);
 
-            // Displays the winner of the round
-            DisplayWinner();
-
             // Adds points to the winning team and updates scores accordingly
             HandleScores();
+
+            // Displays the winner of the round
+            DisplayWinner();
         }
 
         /// <summary>
@@ -1880,10 +1895,17 @@ namespace OOP4200_Tarneeb
                 {
                     if (team1Score >= topBet)
                     {
+                        // Update team1Total score
+                        team1Total += team1Score;
+
                         WinningTeam(1);
                     }
                     else
                     {
+                        // Update both team1Total & team2Total scores
+                        team1Total -= topBet;
+                        team2Total += team2Score;
+
                         WinningTeam(2);
                     }
                 }
@@ -1892,13 +1914,23 @@ namespace OOP4200_Tarneeb
                 {
                     if (team2Score >= topBet)
                     {
+                        // Update team2Total score
+                        team2Total += team2Score;
+
                         WinningTeam(2);
                     }
                     else
                     {
+                        // Update both team1Total & team2Total scores
+                        team1Total += team1Score;
+                        team2Total -= topBet;
+
                         WinningTeam(1);
                     }
                 }
+                
+                // Update team total scores
+                UpdateTeamTotals();
             }
         }
 
@@ -1906,18 +1938,29 @@ namespace OOP4200_Tarneeb
         /// Outputs the winning team (1 or 2)
         /// </summary>
         /// <param name="winningTeam">The winning team as int, accepts 1 or 2</param>
-        public void WinningTeam(int winningTeam)
+        public async void WinningTeam(int winningTeam)
         {
             if (winningTeam == 1)
             {
                 lblWinner.Content = "Team 1 Wins!";
                 lblWinner.Foreground = team1Color;
+
+                //Increment numOfWins by 1
+                Globals.gameStats.NumWins++;
+                await DBUtility.SaveStats(Globals.gameStats);
             }
             else
             {
                 lblWinner.Content = "Team 2 Wins!";
                 lblWinner.Foreground = team2Color;
+
+                //Increment numOfLosses by 1
+                Globals.gameStats.NumLosses++;
+                await DBUtility.SaveStats(Globals.gameStats);
             }
+            //Increment numOfGames by 1
+            Globals.gameStats.NumGames++;
+            await DBUtility.SaveStats(Globals.gameStats);
         }
 
         /// <summary>

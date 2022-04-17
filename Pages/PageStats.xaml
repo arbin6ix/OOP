@@ -69,7 +69,7 @@
                     <!-- Number of losses -->
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Name="txtNumberOfLosses" Text="31" FontSize="18" />
-                        <TextBlock FontSize="18" Text=" Wins" />
+                        <TextBlock FontSize="18" Text=" Losses" />
                     </StackPanel>
 
                     <!-- Lose rate % -->
@@ -77,6 +77,19 @@
                         <TextBlock Name="txtLoseRate" Text="42" FontSize="18" />
                         <TextBlock FontSize="18" Text="% Lose Rate" />
                     </StackPanel>
+
+                    <!-- Line spacing between wins and totals -->
+                    <TextBlock FontSize="20"><LineBreak /></TextBlock>
+
+                    <!-- Update PlayerName  -->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="txtPlayerName" Text="" 
+                                 Height="35" Width="130" FontSize="18"/>
+                        <Button Name="btnUpdateName" Content="Update" 
+                                Height="35" Width="130" FontSize="16" 
+                                Background="PowderBlue" Click="btnUpdateNameClick"/>
+                    </StackPanel>
+
                 </StackPanel>
             </Grid>
             <Grid>
@@ -89,7 +102,7 @@
                 <Button Grid.Column="0" Name="btnStatsBack" Content="&lt; Main Menu" Margin="0,50,0,0" VerticalAlignment="Bottom" 
                     HorizontalAlignment="Left" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnStatsBackClick"></Button>
                 <Button Grid.Column="1" Name="btnStatsReset" Content="RESET" Margin="0,50,0,0" VerticalAlignment="Bottom" 
-                    HorizontalAlignment="Right" Height="35" Width="130" FontSize="16" Background="PowderBlue"></Button>
+                    HorizontalAlignment="Right" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnResetClick"></Button>
             </Grid>
         </StackPanel>
         

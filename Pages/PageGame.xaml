@@ -17,11 +17,11 @@
         <Image Source="/Images/Players/Player4.png" Height="100" Width="100" Canvas.Left="54"  Canvas.Top="278" RenderOptions.BitmapScalingMode="HighQuality"/>
 
         <!-- Player 1 Labels (with outline) -->
-        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="485" FontFamily="Arial">Player 1</Label>
-        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="487" FontFamily="Arial">Player 1</Label>
-        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="485" FontFamily="Arial">Player 1</Label>
-        <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="487" FontFamily="Arial">Player 1</Label>
-        <Label Foreground="#33BCFF" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="486" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_1" Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="485" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_2" Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="487" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_3" Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="485" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_4" Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="487" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_5" Foreground="#33BCFF" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="486" FontFamily="Arial">Player 1</Label>
 
         <!-- Player 2 Labels (with outline) -->
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="888" Canvas.Top="245" FontFamily="Arial">Player 2</Label>
