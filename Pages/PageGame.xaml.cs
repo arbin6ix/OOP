@@ -37,8 +37,8 @@ namespace OOP4200_Tarneeb
         #region Fields & Properties
 
         // Speed of the game in milliseconds
-        public const int computerTurnRate = 700;
-        public const int roundTurnRate = 2100;
+        public const int computerTurnRate = 7;
+        public const int roundTurnRate = 21;
 
         public Enums.Suit tarneeb;          // Tarneeb (trump card)
         public bool tarneebPlayed = false;  // Tarneeb played bool
@@ -193,21 +193,22 @@ namespace OOP4200_Tarneeb
             btnNextRound.Content = "Next Round";
 
             // Starting Player bet
-            if(startingPlayerBetting == player2Betting)
+            if (startingPlayerBetting == 2)
             {
                 Player2Bet();
                 Player3Bet();
                 Player4Bet();
             }
-            else if (startingPlayerBetting == player3Betting)
+            else if (startingPlayerBetting == 3)
             {
                 Player3Bet();
                 Player4Bet();
             }
-            else if (startingPlayerBetting == player4Betting)
+            else if (startingPlayerBetting == 4)
             {
                 Player4Bet();
             }
+            ChangeBettingButtons();
         }
 
         #endregion
@@ -786,6 +787,52 @@ namespace OOP4200_Tarneeb
             lblP4Betting2.Visibility = Visibility.Hidden;
             lblP4Betting1.Visibility = Visibility.Hidden;
         }
+
+        public void ResetBettingButtons()
+        {
+            bettingPlayer = 0;
+            bet = 7;
+            topBet = 7;
+            minimumBet = 7;
+            player1IsBetting = true;
+            player2IsBetting = true;
+            player3IsBetting = true;
+            player4IsBetting = true;
+
+            // Show the buttons
+            btnBetAdd.Visibility = Visibility.Visible;
+            btnBetAdd.IsEnabled = true;
+            btnBetSub.Visibility = Visibility.Visible;
+            btnBetSub.IsEnabled = true;
+            btnBet.Visibility = Visibility.Visible;
+            btnBet.IsEnabled = true;
+            btnPass.Visibility = Visibility.Visible;
+            btnPass.IsEnabled = true;
+
+            lblBet1.Visibility = Visibility.Hidden;
+            lblBet2.Visibility = Visibility.Hidden;
+            lblBet3.Visibility = Visibility.Hidden;
+            lblBet4.Visibility = Visibility.Hidden;
+            lblBet5.Visibility = Visibility.Hidden;
+
+            winner = 0;
+        }
+
+        public void ChangeBettingButtons()
+        {
+            lblBetting1.Content = minimumBet.ToString();
+            lblBetting2.Content = minimumBet.ToString();
+            lblBetting3.Content = minimumBet.ToString();
+            lblBetting4.Content = minimumBet.ToString();
+            lblBetting5.Content = minimumBet.ToString();
+            lblBetting1.Visibility = Visibility.Visible;
+            lblBetting2.Visibility = Visibility.Visible;
+            lblBetting3.Visibility = Visibility.Visible;
+            lblBetting4.Visibility = Visibility.Visible;
+            lblBetting5.Visibility = Visibility.Visible;
+
+            bet = minimumBet;
+        }
         #endregion
 
         #region Tarneeb Selection
@@ -1314,9 +1361,12 @@ namespace OOP4200_Tarneeb
                 {
                     startingPlayerBetting = 1;
                 }
+                // reset betting
+                ResetBettingButtons();
 
                 // Call NewRound function and pray it works
                 NewRound();
+
             }
         }
 
@@ -1366,7 +1416,7 @@ namespace OOP4200_Tarneeb
             {
                 return false;
             }
-            
+
             // If the first card has already been placed...
             if (firstCard != null)
             {
@@ -1887,7 +1937,7 @@ namespace OOP4200_Tarneeb
                         WinningTeam(2);
                     }
                 }
-                
+
                 if (bettingPlayer == 2 || bettingPlayer == 4)
                 {
                     if (team2Score >= topBet)
