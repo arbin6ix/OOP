@@ -37,8 +37,8 @@ namespace OOP4200_Tarneeb
         #region Fields & Properties
 
         // Speed of the game in milliseconds
-        public const int computerTurnRate = 7;
-        public const int roundTurnRate = 21;
+        public const int computerTurnRate = 100;
+        public const int roundTurnRate = 100;
 
         public Enums.Suit tarneeb;          // Tarneeb (trump card)
         public bool tarneebPlayed = false;  // Tarneeb played bool
@@ -1233,12 +1233,13 @@ namespace OOP4200_Tarneeb
         /// </summary>
         public async Task Player2Turn()
         {
-            await Task.Delay(computerTurnRate);
+            await Task.Delay(computerTurnRate / 2);
             Card chosenCard;
             chosenCard = AIChooseCard(hand2);
             player2Card = chosenCard;
             playedCard2.Source = Card.ToImage(chosenCard);
             hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+            await Task.Delay(computerTurnRate / 2);
         }
 
         /// <summary>
@@ -1246,12 +1247,13 @@ namespace OOP4200_Tarneeb
         /// </summary>
         public async Task Player3Turn()
         {
-            await Task.Delay(computerTurnRate);
+            await Task.Delay(computerTurnRate / 2);
             Card chosenCard;
             chosenCard = AIChooseCard(hand3);
             player3Card = chosenCard;
             playedCard3.Source = Card.ToImage(chosenCard);
             hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+            await Task.Delay(computerTurnRate / 2);
         }
 
         /// <summary>
@@ -1259,12 +1261,13 @@ namespace OOP4200_Tarneeb
         /// </summary>
         public async Task Player4Turn()
         {
-            await Task.Delay(computerTurnRate);
+            await Task.Delay(computerTurnRate / 2);
             Card chosenCard;
             chosenCard = AIChooseCard(hand4);
             player4Card = chosenCard;
             playedCard4.Source = Card.ToImage(chosenCard);
             hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+            await Task.Delay(computerTurnRate / 2);
         }
 
         /// <summary>
