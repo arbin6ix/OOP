@@ -48,7 +48,7 @@ namespace OOP4200_Tarneeb
         public int cardsDone = 0;           // # of remaining cards in the hand
         public Random rand = new Random();  // Random class object instantiation
 
-        public bool playerTurn = false;     // Needed for async, indicates the player's turn to click a card
+        public bool playerTurn = false;     // Needed for async, prevents player from clicking card when not player's turn
         public bool playerDone = false;
         public bool roundDone = false;
 
@@ -1100,6 +1100,7 @@ namespace OOP4200_Tarneeb
             }
         }
 
+
         /// <summary>
         /// Returns the AI's choice of card to play with given hand
         /// </summary>
@@ -1248,13 +1249,15 @@ namespace OOP4200_Tarneeb
         /// </summary>
         public async Task Player2Turn()
         {
-            await Task.Delay(computerTurnRate / 2);
-            Card chosenCard;
-            chosenCard = AIChooseCard(hand2);
-            player2Card = chosenCard;
-            playedCard2.Source = Card.ToImage(chosenCard);
-            hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-            await Task.Delay(computerTurnRate / 2);
+            if(playedCard2.Source == null)
+            {
+                Card chosenCard;
+                chosenCard = AIChooseCard(hand2);
+                player2Card = chosenCard;
+                playedCard2.Source = Card.ToImage(chosenCard);
+                hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+                await Task.Delay(computerTurnRate);
+            }
         }
 
         /// <summary>
@@ -1262,13 +1265,15 @@ namespace OOP4200_Tarneeb
         /// </summary>
         public async Task Player3Turn()
         {
-            await Task.Delay(computerTurnRate / 2);
-            Card chosenCard;
-            chosenCard = AIChooseCard(hand3);
-            player3Card = chosenCard;
-            playedCard3.Source = Card.ToImage(chosenCard);
-            hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-            await Task.Delay(computerTurnRate / 2);
+            if (playedCard3.Source == null)
+            {
+                Card chosenCard;
+                chosenCard = AIChooseCard(hand3);
+                player3Card = chosenCard;
+                playedCard3.Source = Card.ToImage(chosenCard);
+                hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+                await Task.Delay(computerTurnRate);
+            }
         }
 
         /// <summary>
@@ -1276,13 +1281,15 @@ namespace OOP4200_Tarneeb
         /// </summary>
         public async Task Player4Turn()
         {
-            await Task.Delay(computerTurnRate / 2);
-            Card chosenCard;
-            chosenCard = AIChooseCard(hand4);
-            player4Card = chosenCard;
-            playedCard4.Source = Card.ToImage(chosenCard);
-            hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-            await Task.Delay(computerTurnRate / 2);
+            if (playedCard4.Source == null)
+            {
+                Card chosenCard;
+                chosenCard = AIChooseCard(hand4);
+                player4Card = chosenCard;
+                playedCard4.Source = Card.ToImage(chosenCard);
+                hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+                await Task.Delay(computerTurnRate);
+            }
         }
 
         /// <summary>
