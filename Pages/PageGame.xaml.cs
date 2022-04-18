@@ -1136,9 +1136,10 @@ namespace OOP4200_Tarneeb
             // The card chosen by the AI to play
             Card chosenCard = new Card();
 
-            // Create new list of cards that match the suit played, and a list of tarneebs
+            // Create new list of cards matching suit, list of tarneebs, and list of non-tarneebs
             List<Card> matchingList = new List<Card>();
             List<Card> tarneebList = new List<Card>();
+            List<Card> otherList = new List<Card>();
 
             // Properties of card to beat
             int playedSuit;
@@ -1174,25 +1175,28 @@ namespace OOP4200_Tarneeb
                 playedNumber = (int)cardToBeat.CardNumber;
             }
 
-            // If the tarneeb has been selected...
-            if (tarneebPlayed)
+
+            // Sort the cards in the AI's hand into up to three lists:
+            for (int i = 0; i < hand.Count; i++)
             {
-                // ... make a list of tarneebs in the AI's hand
-                for (int i = 0; i < hand.Count; i++)
+                // 1. List of cards matching suit played
+                if ((int)hand[i].Suit == playedSuit)
                 {
+                    matchingList.Add(hand[i]);
+                }
+
+                if (tarneebPlayed)
+                {
+                    // 2. List of cards matching tarneeb suit
                     if (hand[i].Suit == tarneeb)
                     {
                         tarneebList.Add(hand[i]);
                     }
-                }
-            }
-
-            // Make a list of cards that match the played suit in the AI's hand
-            for (int i = 0; i < hand.Count; i++)
-            {
-                if ((int)hand[i].Suit == playedSuit)
-                {
-                    matchingList.Add(hand[i]);
+                    // 3. List of cards not matching tarneeb suit
+                    else
+                    {
+                        otherList.Add(hand[i]);
+                    }
                 }
             }
 
@@ -1232,21 +1236,21 @@ namespace OOP4200_Tarneeb
             // If there are no cards with a matching suit...
             if (matchingList.Count == 0)
             {
-                // ...loop through the remaining cards and pick out the lowest value card
-                for (int i = 0; i < hand.Count; i++)
+                // ...loop through the remaining cards and pick out the lowest value non-tarneeb
+                for (int i = 0; i < otherList.Count; i++)
                 {
                     // If a card hasn't been chosen OR the current card's number is lower than
                     // the chosen card's number...
-                    if (i == 0 || (int)hand[i].CardNumber < (int)chosenCard.CardNumber)
+                    if (i == 0 || (int)otherList[i].CardNumber < (int)chosenCard.CardNumber)
                     {
                         // ... choose the current card to play
-                        chosenCard = hand[i];
+                        chosenCard = otherList[i];
                     }
                 }
 
-                // If the card to beat is a KING or ACE and AI has at least one tarneeb in hand,
+                // If the card to beat is a non-tarneeb KING or ACE and AI has at least one tarneeb in hand,
                 // play the lowest value tarneeb
-                if ((int)cardToBeat.CardNumber > 11 && tarneebList.Count > 0)
+                if ((int)cardToBeat.CardNumber > 11 && cardToBeat.Suit != tarneeb && tarneebList.Count > 0)
                 {
                     // ...loop through the remaining cards and pick out the lowest value tarneeb
                     for (int i = 0; i < tarneebList.Count; i++)
@@ -1264,6 +1268,9 @@ namespace OOP4200_Tarneeb
                     }
                 }
             }
+
+
+
 
             // Return the AI's card choice
             return chosenCard;
