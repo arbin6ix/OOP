@@ -78,6 +78,9 @@ namespace OOP4200_Tarneeb
         // Create a list of the player's cards Image controls from the PageGame.xaml form
         public List<Image> playerCardImages = new List<Image>();
 
+        // Image of empty card (used for AI turn check)
+        ImageSource cardPlaceholder = (ImageSource) new ImageSourceConverter().ConvertFrom(@"../../../Images/EmptyCard.png");
+
         // List of all player's cards
         public List<Card> playerHand = new List<Card>();
         public List<Card> hand2 = new List<Card>();
@@ -347,9 +350,10 @@ namespace OOP4200_Tarneeb
             Player3Bet();
             Player4Bet();
 
-            // No bets were made, re-shuffle
+            // No bets were made, reshuffle
             if (bettingPlayer == 0)
             {
+                NewRound();
             }
         }
         private void BtnBetClick(object sender, RoutedEventArgs e)
@@ -1272,12 +1276,13 @@ namespace OOP4200_Tarneeb
         {
             if(playedCard2.Source == null)
             {
+                playedCard2.Source = cardPlaceholder;
+                await Task.Delay(computerTurnRate);
                 Card chosenCard;
                 chosenCard = AIChooseCard(hand2);
                 player2Card = chosenCard;
                 playedCard2.Source = Card.ToImage(chosenCard);
                 hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-                await Task.Delay(computerTurnRate);
             }
         }
 
@@ -1288,12 +1293,13 @@ namespace OOP4200_Tarneeb
         {
             if (playedCard3.Source == null)
             {
+                playedCard3.Source = cardPlaceholder;
+                await Task.Delay(computerTurnRate);
                 Card chosenCard;
                 chosenCard = AIChooseCard(hand3);
                 player3Card = chosenCard;
                 playedCard3.Source = Card.ToImage(chosenCard);
                 hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-                await Task.Delay(computerTurnRate);
             }
         }
 
@@ -1304,12 +1310,13 @@ namespace OOP4200_Tarneeb
         {
             if (playedCard4.Source == null)
             {
+                playedCard4.Source = cardPlaceholder;
+                await Task.Delay(computerTurnRate);
                 Card chosenCard;
                 chosenCard = AIChooseCard(hand4);
                 player4Card = chosenCard;
                 playedCard4.Source = Card.ToImage(chosenCard);
                 hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
-                await Task.Delay(computerTurnRate);
             }
         }
 
