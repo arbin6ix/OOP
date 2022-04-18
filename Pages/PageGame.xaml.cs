@@ -38,8 +38,8 @@ namespace OOP4200_Tarneeb
         #region Fields & Properties
 
         // Speed of the game in milliseconds
-        public const int computerTurnRate = 100;
-        public const int roundTurnRate = 100;
+        public const int computerTurnRate = 700;
+        public const int roundTurnRate = 1800;
 
         public Enums.Suit tarneeb;          // Tarneeb (trump card)
         public bool tarneebPlayed = false;  // Tarneeb played bool
@@ -51,6 +51,7 @@ namespace OOP4200_Tarneeb
         public bool playerTurn = false;     // Needed for async, prevents player from clicking card when not player's turn
         public bool playerDone = false;
         public bool roundDone = false;
+        public bool gameDone = false;
 
         // The winner of the betting or the round. Winner places the first card of a new turn.
         // winner = 0 means new round (betting)
@@ -119,6 +120,7 @@ namespace OOP4200_Tarneeb
             CreateImageList();
             LoadPlayer1Name();
             NewRound();
+            LogNewGame();
         }
 
         /// <summary>
@@ -134,11 +136,28 @@ namespace OOP4200_Tarneeb
         }
 
         /// <summary>
+        /// Saves the new game in the log
+        /// </summary>
+        public async void LogNewGame()
+        {
+            await DBUtility.SaveLog(new Log("New Game", "", ""));
+        }
+
+        /// <summary>
+        /// Saves the new round in the log
+        /// </summary>
+        public async Task LogNewRound()
+        {
+            await DBUtility.SaveLog(new Log("New Round", "", ""));
+        }
+
+        /// <summary>
         /// Initiates a new round of Tarneeb, including shuffling deck, dealing cards, resetting variables, etc..
         /// </summary>
         public async void NewRound()
         {
-            await DBUtility.SaveLog(new Log("New Round", "", ""));
+            await LogNewRound();
+            
             // Create a deck
             Deck deck = new Deck();
 
@@ -752,6 +771,7 @@ namespace OOP4200_Tarneeb
             btnBet.IsEnabled = false;
             btnPass.Visibility = Visibility.Hidden;
             btnPass.IsEnabled = false;
+            btnPass.IsDefault = false;
             lblBetting1.Visibility = Visibility.Hidden;
             lblBetting2.Visibility = Visibility.Hidden;
             lblBetting3.Visibility = Visibility.Hidden;
@@ -823,6 +843,7 @@ namespace OOP4200_Tarneeb
             btnBet.IsEnabled = true;
             btnPass.Visibility = Visibility.Visible;
             btnPass.IsEnabled = true;
+            btnPass.IsDefault = true;
 
             lblBet1.Visibility = Visibility.Hidden;
             lblBet2.Visibility = Visibility.Hidden;
@@ -1304,27 +1325,32 @@ namespace OOP4200_Tarneeb
             cardsDone += 1;
 
             // If there are more cards to play, continue the game
-            if (cardsDone < 13)
+            if (cardsDone < 13 && !GameOver())
             {
-                // Show the Next Round button which starts the next round
-                //btnNextRound.Background = greenColor;
-                //btnNextRound.Foreground = blackColor;
-                //btnNextRound.Visibility = Visibility.Visible;
-                //btnNextRound.IsEnabled = true;
+                
                 await Task.Delay(roundTurnRate);
                 InitiateNextRound();
             }
-            // If the cards are finished, prompt for new game
-            else
+            // If the cards are finished and the game isn't, prompt for next round
+            else if (!GameOver())
             {
                 await Task.Delay(roundTurnRate);
-
-                // Show the New Game button which creates a new fresh PageGame page
+                btnNextRound.Background = greenColor;
+                btnNextRound.Foreground = blackColor;
+                btnNextRound.Content = "Next Round?";
+                btnNextRound.Visibility = Visibility.Visible;
+                btnNextRound.IsEnabled = true;
+                btnNextRound.IsDefault = true;
+            }
+            // If the game is over, prompt for new game
+            else
+            {
                 btnNextRound.Background = scoreColor;
                 btnNextRound.Foreground = blackColor;
                 btnNextRound.Content = "New Game?";
                 btnNextRound.Visibility = Visibility.Visible;
                 btnNextRound.IsEnabled = true;
+                btnNextRound.IsDefault = true;
             }
         }
 
@@ -1338,7 +1364,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         private void InitiateNextRound()
         {
-            if (cardsDone < 13 && roundDone)
+            if (cardsDone < 13 && roundDone && !GameOver())
             {
                 // Clear cards played
                 player1Card = null;
@@ -1377,8 +1403,8 @@ namespace OOP4200_Tarneeb
                 btnNextRound.Visibility = Visibility.Hidden;
                 btnNextRound.IsEnabled = false;
             }
-            // All 4 players are out of cards. Create new game
-            else if (roundDone)
+            // All 4 players are out of cards. Start new round
+            else if (roundDone && !GameOver())
             {
                 // Next player starts betting
                 startingPlayerBetting += 1;
@@ -1391,7 +1417,12 @@ namespace OOP4200_Tarneeb
 
                 // Call NewRound function
                 NewRound();
-
+            }
+            // If a team has won and "New Game" button is clicked, create a new fresh game
+            else
+            {
+                PageGame gamePage = new PageGame();
+                NavigationService.Navigate(gamePage);
             }
         }
 
@@ -1414,6 +1445,7 @@ namespace OOP4200_Tarneeb
         private void BtnNextRoundClick(object sender, RoutedEventArgs e)
         {
             InitiateNextRound();
+            btnNextRound.IsDefault = false;
         }
 
 
@@ -1825,7 +1857,7 @@ namespace OOP4200_Tarneeb
         }
 
         /// <summary>
-        /// Determines the winner of the round
+        /// Determines the card that wins the round
         /// </summary>
         /// <param name="tarneeb">The current Tarneeb</param>
         /// <param name="card1">Player 1's card played</param>
@@ -1918,12 +1950,21 @@ namespace OOP4200_Tarneeb
         }
 
         /// <summary>
+        /// Determine if either team has more than 30 total points
+        /// </summary>
+        /// <returns>True or False</returns>
+        public bool GameOver()
+        {
+            return team1Total > 30 || team2Total > 30;
+        }
+
+        /// <summary>
         /// Updates and displays winner labels based on the winner of the round
         /// </summary>
         public void DisplayWinner()
         {
             // Show the round winner label if the game isn't over
-            if (cardsDone < 12)
+            if (cardsDone < 12 && !GameOver())
             {
                 switch (winner)
                 {
@@ -1947,8 +1988,8 @@ namespace OOP4200_Tarneeb
                         break;
                 }
             }
-            // If the game is over...
-            else
+            // If the round is over, but the game isn't...
+            else if (!GameOver())
             {
                 // Switch the winning team to team 2 based on betting player and team scores
                 if (bettingPlayer == 1 || bettingPlayer == 3)
@@ -1958,7 +1999,7 @@ namespace OOP4200_Tarneeb
                         // Update team1Total score
                         team1Total += team1Score;
 
-                        WinningTeam(1);
+                        RoundWinner(1);
                     }
                     else
                     {
@@ -1966,7 +2007,7 @@ namespace OOP4200_Tarneeb
                         team1Total -= topBet;
                         team2Total += team2Score;
 
-                        WinningTeam(2);
+                        RoundWinner(2);
                     }
                 }
 
@@ -1977,7 +2018,7 @@ namespace OOP4200_Tarneeb
                         // Update team2Total score
                         team2Total += team2Score;
 
-                        WinningTeam(2);
+                        RoundWinner(2);
                     }
                     else
                     {
@@ -1985,20 +2026,52 @@ namespace OOP4200_Tarneeb
                         team1Total += team1Score;
                         team2Total -= topBet;
 
-                        WinningTeam(1);
+                        RoundWinner(1);
                     }
                 }
                 
                 // Update team total scores
                 UpdateTeamTotals();
             }
+
+            // If a team has reached at least 31 total points, end the game.
+            if (GameOver())
+            {
+                // Display the winner and update the Log & Stats
+                if (team1Total > 30)
+                {
+                    GameWinner(1);
+                }
+                else
+                {
+                    GameWinner(2);
+                }
+            }
         }
 
         /// <summary>
-        /// Outputs the winning team (1 or 2)
+        /// Outputs the winning team of the round (1 or 2)
         /// </summary>
-        /// <param name="winningTeam">The winning team as int, accepts 1 or 2</param>
-        public async void WinningTeam(int winningTeam)
+        /// <param name="winningTeam">The winning team of the round as int, accepts 1 or 2</param>
+        public void RoundWinner(int winningTeam)
+        {
+            if (winningTeam == 1)
+            {
+                lblWinner.Content = "Team 1 Wins!";
+                lblWinner.Foreground = team1Color;
+            }
+            else
+            {
+                lblWinner.Content = "Team 2 Wins!";
+                lblWinner.Foreground = team2Color;
+            }
+        }
+
+        /// <summary>
+        /// Outputs the winning team of the game (1 or 2)
+        /// </summary>
+        /// <param name="winningTeam">The winning team of the game as int, accepts 1 or 2</param>
+        public async void GameWinner(int winningTeam)
         {
             if (winningTeam == 1)
             {
@@ -2021,7 +2094,11 @@ namespace OOP4200_Tarneeb
             //Increment numOfGames by 1
             Globals.gameStats.NumGames++;
             await DBUtility.SaveStats(Globals.gameStats);
+
+            // Set gameDone bool to true
+            gameDone = true;
         }
+
 
         /// <summary>
         /// Adds and updates scores based on the winner of the round

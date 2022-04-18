@@ -17,11 +17,11 @@
         <Image Source="/Images/Players/Player4.png" Height="100" Width="100" Canvas.Left="54"  Canvas.Top="278" RenderOptions.BitmapScalingMode="HighQuality"/>
 
         <!-- Player 1 Labels (with outline) -->
-        <Label Name="lblPlayer1_1" Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="485" FontFamily="Arial">Player 1</Label>
-        <Label Name="lblPlayer1_2" Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="462" Canvas.Top="487" FontFamily="Arial">Player 1</Label>
-        <Label Name="lblPlayer1_3" Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="485" FontFamily="Arial">Player 1</Label>
-        <Label Name="lblPlayer1_4" Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="464" Canvas.Top="487" FontFamily="Arial">Player 1</Label>
-        <Label Name="lblPlayer1_5" Foreground="#33BCFF" FontWeight="Bold" FontSize="18" Canvas.Left="463" Canvas.Top="486" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_1" Foreground="Black"   Width="200" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="18" Canvas.Left="399" Canvas.Top="485" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_2" Foreground="Black"   Width="200" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="18" Canvas.Left="399" Canvas.Top="487" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_3" Foreground="Black"   Width="200" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="18" Canvas.Left="401" Canvas.Top="485" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_4" Foreground="Black"   Width="200" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="18" Canvas.Left="401" Canvas.Top="487" FontFamily="Arial">Player 1</Label>
+        <Label Name="lblPlayer1_5" Foreground="#33BCFF" Width="200" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="18" Canvas.Left="400" Canvas.Top="486" FontFamily="Arial">Player 1</Label>
 
         <!-- Player 2 Labels (with outline) -->
         <Label Foreground="Black"   FontWeight="Bold" FontSize="18" Canvas.Left="888" Canvas.Top="245" FontFamily="Arial">Player 2</Label>
@@ -90,7 +90,7 @@
         <Button Name="btnBetAdd" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="204" Width="75"  Height="70" Click="BtnBetAddClick">+</Button>
         <Button Name="btnBetSub" FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="650" Canvas.Top="204" Width="75"  Height="70" Click="BtnBetSubClick">-</Button>
         <Button Name="btnBet"    FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="284" Width="165" Height="70" Click="BtnBetClick">Bet</Button>
-        <Button Name="btnPass"   FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="364" Width="165" Height="70" Click="BtnPassClick">Pass</Button>
+        <Button Name="btnPass"   FontFamily="Arial" FontWeight="Bold" FontSize="50" Canvas.Left="560" Canvas.Top="364" Width="165" Height="70" Click="BtnPassClick" IsDefault="True">Pass</Button>
 
         <!-- Tarneeb Suit Label -->
         <Label Foreground="Black"   Canvas.Left="170" Canvas.Top="7" FontFamily="Arial" FontWeight="Bold" FontSize="16" >TARNEEB</Label>
@@ -136,13 +136,13 @@
 
         <!-- Next Round button & Label-->
         <Label Name="lblWinner" Foreground="#33BCFF" FontWeight="Bold" FontSize="16" Canvas.Left="444" Canvas.Top="276"></Label>
-        <Button Name="btnNextRound" IsDefault="True" Content="Next Round" Height="35" Width="110" FontSize="16" Background="#3db85d"
+        <Button Name="btnNextRound" Content="Next Round" Height="35" Width="110" FontSize="16" Background="#3db85d"
                 Canvas.Left="447" Canvas.Top="310" Visibility="Hidden" IsEnabled="False" Click="BtnNextRoundClick"></Button>
-        
+
         <!--======================================== 
                          Tarneeb Selection           
             ========================================-->
-        
+
         <!-- Select Tarneeb label -->
         <Label Name="lblSelectTarneeb5" Foreground="Black"   Canvas.Left="370" Canvas.Top="280" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
         <Label Name="lblSelectTarneeb4" Foreground="Black"   Canvas.Left="370" Canvas.Top="282" FontFamily="Arial" FontWeight="Bold" FontSize="20" Visibility="Hidden" >SELECT YOUR TARNEEB</Label>
@@ -226,17 +226,17 @@
         <Label Foreground="Black"   Canvas.Left="919" Canvas.Top="31" FontFamily="Arial" FontSize="32" >|</Label>
         <Label Foreground="#e8c133" Canvas.Left="918" Canvas.Top="30" FontFamily="Arial" FontSize="32" >|</Label>
         <!-- Team 1 TOTAL label -->
-        <Label Name="lblTeam1Total5" Foreground="Black"   Width="45" HorizontalContentAlignment="Center" Canvas.Left="878" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
-        <Label Name="lblTeam1Total4" Foreground="Black"   Width="45" HorizontalContentAlignment="Center" Canvas.Left="878" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
-        <Label Name="lblTeam1Total3" Foreground="Black"   Width="45" HorizontalContentAlignment="Center" Canvas.Left="880" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
-        <Label Name="lblTeam1Total2" Foreground="Black"   Width="45" HorizontalContentAlignment="Center" Canvas.Left="880" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
-        <Label Name="lblTeam1Total1" Foreground="#33BCFF" Width="45" HorizontalContentAlignment="Center" Canvas.Left="879" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Total5" Foreground="Black"   Width="58" HorizontalContentAlignment="Center" Canvas.Left="870" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Total4" Foreground="Black"   Width="58" HorizontalContentAlignment="Center" Canvas.Left="870" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Total3" Foreground="Black"   Width="58" HorizontalContentAlignment="Center" Canvas.Left="872" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Total2" Foreground="Black"   Width="58" HorizontalContentAlignment="Center" Canvas.Left="872" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam1Total1" Foreground="#33BCFF" Width="58" HorizontalContentAlignment="Center" Canvas.Left="871" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
         <!-- Team 2 TOTAL label -->
-        <Label Name="lblTeam2Total5" Foreground="Black"   Width="45" HorizontalContentAlignment="Center" Canvas.Left="929" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
-        <Label Name="lblTeam2Total4" Foreground="Black"   Width="45" HorizontalContentAlignment="Center" Canvas.Left="929" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
-        <Label Name="lblTeam2Total3" Foreground="Black"   Width="45" HorizontalContentAlignment="Center" Canvas.Left="931" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
-        <Label Name="lblTeam2Total2" Foreground="Black"   Width="45" HorizontalContentAlignment="Center" Canvas.Left="931" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
-        <Label Name="lblTeam2Total1" Foreground="#FF5A5A" Width="45" HorizontalContentAlignment="Center" Canvas.Left="930" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Total5" Foreground="Black"   Width="58" HorizontalContentAlignment="Center" Canvas.Left="925" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Total4" Foreground="Black"   Width="58" HorizontalContentAlignment="Center" Canvas.Left="925" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Total3" Foreground="Black"   Width="58" HorizontalContentAlignment="Center" Canvas.Left="927" Canvas.Top="31" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Total2" Foreground="Black"   Width="58" HorizontalContentAlignment="Center" Canvas.Left="927" Canvas.Top="33" FontFamily="Arial" FontSize="32" >0</Label>
+        <Label Name="lblTeam2Total1" Foreground="#FF5A5A" Width="58" HorizontalContentAlignment="Center" Canvas.Left="926" Canvas.Top="32" FontFamily="Arial" FontSize="32" >0</Label>
         <!-- TOTAL "To 31" text -->
         <Label Foreground="Black"   Canvas.Left="907" Canvas.Top="74" FontFamily="Arial" FontWeight="Bold" FontSize="11" >To 31</Label>
         <Label Foreground="Black"   Canvas.Left="907" Canvas.Top="76" FontFamily="Arial" FontWeight="Bold" FontSize="11" >To 31</Label>
