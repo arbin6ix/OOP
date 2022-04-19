@@ -38,13 +38,14 @@ namespace OOP4200_Tarneeb
         #region Fields & Properties
 
         // Speed of the game in milliseconds
-        public const int computerTurnRate = 700;
-        public const int roundTurnRate = 1800;
+        public const int computerTurnRate = 100;
+        public const int roundTurnRate = 2500;
 
         public Enums.Suit tarneeb;          // Tarneeb (trump card)
         public bool tarneebPlayed = false;  // Tarneeb played bool
         public Card firstCard;              // The first card played in the round
         public Card cardToBeat;             // The best card played in the round
+        public int playerToBeat = 0;        // The player who played the best card, 0 = no player set
         public int cardsDone = 0;           // # of remaining cards in the hand
         public Random rand = new Random();  // Random class object instantiation
 
@@ -225,6 +226,7 @@ namespace OOP4200_Tarneeb
             // Reset first card of round and the card to beat (AI logic)
             firstCard = null;
             cardToBeat = null;
+            playerToBeat = 0;
 
             // Reset btnNextRound text
             btnNextRound.Content = "Next Round";
@@ -1129,9 +1131,10 @@ namespace OOP4200_Tarneeb
         /// <summary>
         /// Returns the AI's choice of card to play with given hand
         /// </summary>
-        /// <param name="hand">The computer's current hand</param>
+        /// <param name="hand">The AI's hand</param>
+        /// <param name="playerNumber">The AI's player number (2, 3, or 4)</param>
         /// <returns></returns>
-        public Card AIChooseCard(List<Card> hand)
+        public Card AIChooseCard(List<Card> hand, int playerNumber)
         {
             // The card chosen by the AI to play
             Card chosenCard = new Card();
@@ -1200,6 +1203,64 @@ namespace OOP4200_Tarneeb
                 }
             }
 
+            //// If teammate is either winning the hand, or likely to win with Queen or above,
+            //// immediately return the worst card in hand
+            if ((playerNumber == 2 && playerToBeat == 4 && (playedCard3.Source != null || (int)cardToBeat.CardNumber > 11)) ||
+                (playerNumber == 3 && playerToBeat == 1 && (playedCard4.Source != null || (int)cardToBeat.CardNumber > 11)) ||
+                (playerNumber == 4 && playerToBeat == 2 && (playedCard1.Source != null || (int)cardToBeat.CardNumber > 11)))
+            {
+                // If there are no cards with a matching suit...
+                if (matchingList.Count == 0)
+                {
+                    // If there's a non-tarneeb card left to play
+                    if (otherList.Count > 0)
+                    {
+                        // ...loop through the remaining cards and pick out the lowest value non-tarneeb
+                        for (int i = 0; i < otherList.Count; i++)
+                        {
+                            // If a card hasn't been chosen OR the current card's number is lower than
+                            // the chosen card's number...
+                            if (i == 0 || (int)otherList[i].CardNumber < (int)chosenCard.CardNumber)
+                            {
+                                // ... choose the current card to play
+                                chosenCard = otherList[i];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // ...loop through the remaining cards and pick out the lowest value tarneeb
+                        for (int i = 0; i < tarneebList.Count; i++)
+                        {
+                            // If a card hasn't been chosen OR the current card's number is lower than
+                            // the chosen card's number...
+                            if (i == 0 || (int)tarneebList[i].CardNumber < (int)chosenCard.CardNumber)
+                            {
+                                // ... choose the current card to play
+                                chosenCard = tarneebList[i];
+                            }
+                        }
+                    }
+                }
+                // If there is a matching card, play the lowest value matching card
+                else
+                {
+                    // Loop through the remaining cards and pick out the lowest value card
+                    for (int i = 0; i < matchingList.Count; i++)
+                    {
+                        // If a card hasn't been chosen OR the current card's number is lower than
+                        // the chosen card's number...
+                        if (i == 0 || (int)matchingList[i].CardNumber < (int)chosenCard.CardNumber)
+                        {
+                            // ... choose the current card to play
+                            chosenCard = matchingList[i];
+                        }
+                    }
+                }
+
+                return chosenCard;
+            }
+
             // Loop through the new list of matching cards...
             for (int i = 0; i < matchingList.Count; i++)
             {
@@ -1220,6 +1281,7 @@ namespace OOP4200_Tarneeb
 
                     // Since this card is better, set it to the new cardToBeat
                     cardToBeat = chosenCard;
+                    playerToBeat = playerNumber;
                 }
                 // If the lower card doesn't beat the cardToBeat but the higher one does,
                 // play the higher one
@@ -1230,23 +1292,46 @@ namespace OOP4200_Tarneeb
 
                     // Since this card is better, set it to the new cardToBeat
                     cardToBeat = chosenCard;
+                    playerToBeat = playerNumber;
                 }
             }
 
             // If there are no cards with a matching suit...
             if (matchingList.Count == 0)
             {
-                // ...loop through the remaining cards and pick out the lowest value non-tarneeb
-                for (int i = 0; i < otherList.Count; i++)
+
+
+                // If there's a non-tarneeb card left to play
+                if (otherList.Count > 0)
                 {
-                    // If a card hasn't been chosen OR the current card's number is lower than
-                    // the chosen card's number...
-                    if (i == 0 || (int)otherList[i].CardNumber < (int)chosenCard.CardNumber)
+                    // ...loop through the remaining cards and pick out the lowest value non-tarneeb
+                    for (int i = 0; i < otherList.Count; i++)
                     {
-                        // ... choose the current card to play
-                        chosenCard = otherList[i];
+                        // If a card hasn't been chosen OR the current card's number is lower than
+                        // the chosen card's number...
+                        if (i == 0 || (int)otherList[i].CardNumber < (int)chosenCard.CardNumber)
+                        {
+                            // ... choose the current card to play
+                            chosenCard = otherList[i];
+                        }
                     }
                 }
+                else
+                {
+                    // ...loop through the remaining cards and pick out the lowest value card
+                    for (int i = 0; i < tarneebList.Count; i++)
+                    {
+                        // If a card hasn't been chosen OR the current card's number is lower than
+                        // the chosen card's number...
+                        if (i == 0 || (int)tarneebList[i].CardNumber < (int)chosenCard.CardNumber)
+                        {
+                            // ... choose the current card to play
+                            chosenCard = tarneebList[i];
+                        }
+                    }
+                }
+
+
 
                 // If the card to beat is a non-tarneeb KING or ACE and AI has at least one tarneeb in hand,
                 // play the lowest value tarneeb
@@ -1264,17 +1349,18 @@ namespace OOP4200_Tarneeb
 
                             // The tarneeb played beats the non-tarneeb cardToBeat
                             cardToBeat = chosenCard;
+                            playerToBeat = playerNumber;
                         }
                     }
                 }
             }
 
 
-
-
             // Return the AI's card choice
             return chosenCard;
         }
+
+
 
         /// <summary>
         /// Turn logic for Player 2 AI
@@ -1286,7 +1372,7 @@ namespace OOP4200_Tarneeb
                 playedCard2.Source = cardPlaceholder;
                 await Task.Delay(computerTurnRate);
                 Card chosenCard;
-                chosenCard = AIChooseCard(hand2);
+                chosenCard = AIChooseCard(hand2, 2);
                 player2Card = chosenCard;
                 playedCard2.Source = Card.ToImage(chosenCard);
                 hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
@@ -1303,7 +1389,7 @@ namespace OOP4200_Tarneeb
                 playedCard3.Source = cardPlaceholder;
                 await Task.Delay(computerTurnRate);
                 Card chosenCard;
-                chosenCard = AIChooseCard(hand3);
+                chosenCard = AIChooseCard(hand3, 3);
                 player3Card = chosenCard;
                 playedCard3.Source = Card.ToImage(chosenCard);
                 hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
@@ -1320,7 +1406,7 @@ namespace OOP4200_Tarneeb
                 playedCard4.Source = cardPlaceholder;
                 await Task.Delay(computerTurnRate);
                 Card chosenCard;
-                chosenCard = AIChooseCard(hand4);
+                chosenCard = AIChooseCard(hand4, 4);
                 player4Card = chosenCard;
                 playedCard4.Source = Card.ToImage(chosenCard);
                 hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
@@ -1387,6 +1473,7 @@ namespace OOP4200_Tarneeb
                 player4Card = null;
                 firstCard = null;
                 cardToBeat = null;
+                playerToBeat = 0;
 
                 // Clear respective card's images
                 playedCard1.Source = null;
