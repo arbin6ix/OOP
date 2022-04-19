@@ -8,7 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Images\SVGCards\**" />
+    <EmbeddedResource Remove="Images\SVGCards\**" />
+    <None Remove="Images\SVGCards\**" />
+    <Page Remove="Images\SVGCards\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\BackgroundCropped.png" />
+    <None Remove="Images\Backgrounds\BackgroundCropped.png" />
+    <None Remove="Images\Backgrounds\_BGBlue.png" />
+    <None Remove="Images\Backgrounds\_BGGreen.png" />
+    <None Remove="Images\Backgrounds\_BGGreen2.png" />
+    <None Remove="Images\Backgrounds\_BGRed.png" />
+    <None Remove="Images\BGPreviews\PreviewBlue.png" />
+    <None Remove="Images\BGPreviews\PreviewGreen.png" />
+    <None Remove="Images\BGPreviews\PreviewRed.png" />
     <None Remove="Images\c01.bmp" />
     <None Remove="Images\c02.bmp" />
     <None Remove="Images\c03.bmp" />
@@ -22,6 +37,60 @@
     <None Remove="Images\c11.bmp" />
     <None Remove="Images\c12.bmp" />
     <None Remove="Images\c13.bmp" />
+    <None Remove="Images\Cards\01.png" />
+    <None Remove="Images\Cards\c01.png" />
+    <None Remove="Images\Cards\c02.png" />
+    <None Remove="Images\Cards\c03.png" />
+    <None Remove="Images\Cards\c04.png" />
+    <None Remove="Images\Cards\c05.png" />
+    <None Remove="Images\Cards\c06.png" />
+    <None Remove="Images\Cards\c07.png" />
+    <None Remove="Images\Cards\c08.png" />
+    <None Remove="Images\Cards\c09.png" />
+    <None Remove="Images\Cards\c10.png" />
+    <None Remove="Images\Cards\c11.png" />
+    <None Remove="Images\Cards\c12.png" />
+    <None Remove="Images\Cards\c13.png" />
+    <None Remove="Images\Cards\d01.png" />
+    <None Remove="Images\Cards\d02.png" />
+    <None Remove="Images\Cards\d03.png" />
+    <None Remove="Images\Cards\d04.png" />
+    <None Remove="Images\Cards\d05.png" />
+    <None Remove="Images\Cards\d06.png" />
+    <None Remove="Images\Cards\d07.png" />
+    <None Remove="Images\Cards\d08.png" />
+    <None Remove="Images\Cards\d09.png" />
+    <None Remove="Images\Cards\d10.png" />
+    <None Remove="Images\Cards\d11.png" />
+    <None Remove="Images\Cards\d12.png" />
+    <None Remove="Images\Cards\d13.png" />
+    <None Remove="Images\Cards\h01.png" />
+    <None Remove="Images\Cards\h02.png" />
+    <None Remove="Images\Cards\h03.png" />
+    <None Remove="Images\Cards\h04.png" />
+    <None Remove="Images\Cards\h05.png" />
+    <None Remove="Images\Cards\h06.png" />
+    <None Remove="Images\Cards\h07.png" />
+    <None Remove="Images\Cards\h08.png" />
+    <None Remove="Images\Cards\h09.png" />
+    <None Remove="Images\Cards\h10.png" />
+    <None Remove="Images\Cards\h11.png" />
+    <None Remove="Images\Cards\h12.png" />
+    <None Remove="Images\Cards\h13.png" />
+    <None Remove="Images\Cards\InvalidCard.png" />
+    <None Remove="Images\Cards\s01.png" />
+    <None Remove="Images\Cards\s02.png" />
+    <None Remove="Images\Cards\s03.png" />
+    <None Remove="Images\Cards\s04.png" />
+    <None Remove="Images\Cards\s05.png" />
+    <None Remove="Images\Cards\s06.png" />
+    <None Remove="Images\Cards\s07.png" />
+    <None Remove="Images\Cards\s08.png" />
+    <None Remove="Images\Cards\s09.png" />
+    <None Remove="Images\Cards\s10.png" />
+    <None Remove="Images\Cards\s11.png" />
+    <None Remove="Images\Cards\s12.png" />
+    <None Remove="Images\Cards\s13.png" />
     <None Remove="Images\d01.bmp" />
     <None Remove="Images\d02.bmp" />
     <None Remove="Images\d03.bmp" />
@@ -53,6 +122,10 @@
     <None Remove="Images\Player2.png" />
     <None Remove="Images\Player3.png" />
     <None Remove="Images\Player4.png" />
+    <None Remove="Images\Players\Player1.png" />
+    <None Remove="Images\Players\Player2.png" />
+    <None Remove="Images\Players\Player3.png" />
+    <None Remove="Images\Players\Player4.png" />
     <None Remove="Images\s01.bmp" />
     <None Remove="Images\s02.bmp" />
     <None Remove="Images\s03.bmp" />
@@ -66,67 +139,116 @@
     <None Remove="Images\s11.bmp" />
     <None Remove="Images\s12.bmp" />
     <None Remove="Images\s13.bmp" />
+    <None Remove="Images\SuitLogos\_CLUB.png" />
+    <None Remove="Images\SuitLogos\_CLUB_B.png" />
+    <None Remove="Images\SuitLogos\_DIAMOND.png" />
+    <None Remove="Images\SuitLogos\_DIAMOND_B.png" />
+    <None Remove="Images\SuitLogos\_HEART.png" />
+    <None Remove="Images\SuitLogos\_HEART_B.png" />
+    <None Remove="Images\SuitLogos\_SPADE.png" />
+    <None Remove="Images\SuitLogos\_SPADE_B.png" />
+    <None Remove="Images\_BGBlue.png" />
+    <None Remove="Images\_BGGreen.png" />
+    <None Remove="Images\_BGGreen2.png" />
+    <None Remove="Images\_BGOrange.png" />
+    <None Remove="Images\_CLUB.png" />
+    <None Remove="Images\_CLUB_B.png" />
+    <None Remove="Images\_DIAMOND.png" />
+    <None Remove="Images\_DIAMOND_B.png" />
+    <None Remove="Images\_HEART.png" />
+    <None Remove="Images\_HEART_B.png" />
+    <None Remove="Images\_SPADE.png" />
+    <None Remove="Images\_SPADE_B.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\BackgroundCropped.png" />
-    <Resource Include="Images\c01.bmp" />
-    <Resource Include="Images\c02.bmp" />
-    <Resource Include="Images\c03.bmp" />
-    <Resource Include="Images\c04.bmp" />
-    <Resource Include="Images\c05.bmp" />
-    <Resource Include="Images\c06.bmp" />
-    <Resource Include="Images\c07.bmp" />
-    <Resource Include="Images\c08.bmp" />
-    <Resource Include="Images\c09.bmp" />
-    <Resource Include="Images\c10.bmp" />
-    <Resource Include="Images\c11.bmp" />
-    <Resource Include="Images\c12.bmp" />
-    <Resource Include="Images\c13.bmp" />
-    <Resource Include="Images\d01.bmp" />
-    <Resource Include="Images\d02.bmp" />
-    <Resource Include="Images\d03.bmp" />
-    <Resource Include="Images\d04.bmp" />
-    <Resource Include="Images\d05.bmp" />
-    <Resource Include="Images\d06.bmp" />
-    <Resource Include="Images\d07.bmp" />
-    <Resource Include="Images\d08.bmp" />
-    <Resource Include="Images\d09.bmp" />
-    <Resource Include="Images\d10.bmp" />
-    <Resource Include="Images\d11.bmp" />
-    <Resource Include="Images\d12.bmp" />
-    <Resource Include="Images\d13.bmp" />
-    <Resource Include="Images\h01.bmp" />
-    <Resource Include="Images\h02.bmp" />
-    <Resource Include="Images\h03.bmp" />
-    <Resource Include="Images\h04.bmp" />
-    <Resource Include="Images\h05.bmp" />
-    <Resource Include="Images\h06.bmp" />
-    <Resource Include="Images\h07.bmp" />
-    <Resource Include="Images\h08.bmp" />
-    <Resource Include="Images\h09.bmp" />
-    <Resource Include="Images\h10.bmp" />
-    <Resource Include="Images\h11.bmp" />
-    <Resource Include="Images\h12.bmp" />
-    <Resource Include="Images\h13.bmp" />
+    <Resource Include="Images\Backgrounds\BackgroundCropped.png" />
+    <Resource Include="Images\Backgrounds\_BGBlue.png" />
+    <Resource Include="Images\Backgrounds\_BGGreen.png" />
+    <Resource Include="Images\Backgrounds\_BGRed.png" />
+    <Resource Include="Images\BGPreviews\PreviewBlue.png" />
+    <Resource Include="Images\BGPreviews\PreviewGreen.png" />
+    <Resource Include="Images\BGPreviews\PreviewRed.png" />
+    <Resource Include="Images\Cards\c01.png" />
+    <Resource Include="Images\Cards\c02.png" />
+    <Resource Include="Images\Cards\c03.png" />
+    <Resource Include="Images\Cards\c04.png" />
+    <Resource Include="Images\Cards\c05.png" />
+    <Resource Include="Images\Cards\c06.png" />
+    <Resource Include="Images\Cards\c07.png" />
+    <Resource Include="Images\Cards\c08.png" />
+    <Resource Include="Images\Cards\c09.png" />
+    <Resource Include="Images\Cards\c10.png" />
+    <Resource Include="Images\Cards\c11.png" />
+    <Resource Include="Images\Cards\c12.png" />
+    <Resource Include="Images\Cards\c13.png" />
+    <Resource Include="Images\Cards\d01.png" />
+    <Resource Include="Images\Cards\d02.png" />
+    <Resource Include="Images\Cards\d03.png" />
+    <Resource Include="Images\Cards\d04.png" />
+    <Resource Include="Images\Cards\d05.png" />
+    <Resource Include="Images\Cards\d06.png" />
+    <Resource Include="Images\Cards\d07.png" />
+    <Resource Include="Images\Cards\d08.png" />
+    <Resource Include="Images\Cards\d09.png" />
+    <Resource Include="Images\Cards\d10.png" />
+    <Resource Include="Images\Cards\d11.png" />
+    <Resource Include="Images\Cards\d12.png" />
+    <Resource Include="Images\Cards\d13.png" />
+    <Resource Include="Images\Cards\h01.png" />
+    <Resource Include="Images\Cards\h02.png" />
+    <Resource Include="Images\Cards\h03.png" />
+    <Resource Include="Images\Cards\h04.png" />
+    <Resource Include="Images\Cards\h05.png" />
+    <Resource Include="Images\Cards\h06.png" />
+    <Resource Include="Images\Cards\h07.png" />
+    <Resource Include="Images\Cards\h08.png" />
+    <Resource Include="Images\Cards\h09.png" />
+    <Resource Include="Images\Cards\h10.png" />
+    <Resource Include="Images\Cards\h11.png" />
+    <Resource Include="Images\Cards\h12.png" />
+    <Resource Include="Images\Cards\h13.png" />
+    <Resource Include="Images\Cards\s01.png" />
+    <Resource Include="Images\Cards\s02.png" />
+    <Resource Include="Images\Cards\s03.png" />
+    <Resource Include="Images\Cards\s04.png" />
+    <Resource Include="Images\Cards\s05.png" />
+    <Resource Include="Images\Cards\s06.png" />
+    <Resource Include="Images\Cards\s07.png" />
+    <Resource Include="Images\Cards\s08.png" />
+    <Resource Include="Images\Cards\s09.png" />
+    <Resource Include="Images\Cards\s10.png" />
+    <Resource Include="Images\Cards\s11.png" />
+    <Resource Include="Images\Cards\s12.png" />
+    <Resource Include="Images\Cards\s13.png" />
     <Resource Include="Images\MainMenuImage.png" />
-    <Resource Include="Images\Player1.png" />
-    <Resource Include="Images\Player4.png" />
-    <Resource Include="Images\Player2.png" />
-    <Resource Include="Images\Player3.png" />
-    <Resource Include="Images\s01.bmp" />
-    <Resource Include="Images\s02.bmp" />
-    <Resource Include="Images\s03.bmp" />
-    <Resource Include="Images\s04.bmp" />
-    <Resource Include="Images\s05.bmp" />
-    <Resource Include="Images\s06.bmp" />
-    <Resource Include="Images\s07.bmp" />
-    <Resource Include="Images\s08.bmp" />
-    <Resource Include="Images\s09.bmp" />
-    <Resource Include="Images\s10.bmp" />
-    <Resource Include="Images\s11.bmp" />
-    <Resource Include="Images\s12.bmp" />
-    <Resource Include="Images\s13.bmp" />
+    <Resource Include="Images\Players\Player1.png" />
+    <Resource Include="Images\Players\Player2.png" />
+    <Resource Include="Images\Players\Player3.png" />
+    <Resource Include="Images\Players\Player4.png" />
+    <Resource Include="Images\SuitLogos\_CLUB.png" />
+    <Resource Include="Images\SuitLogos\_CLUB_B.png" />
+    <Resource Include="Images\SuitLogos\_DIAMOND.png" />
+    <Resource Include="Images\SuitLogos\_DIAMOND_B.png" />
+    <Resource Include="Images\SuitLogos\_HEART.png" />
+    <Resource Include="Images\SuitLogos\_HEART_B.png" />
+    <Resource Include="Images\SuitLogos\_SPADE.png" />
+    <Resource Include="Images\SuitLogos\_SPADE_B.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LoadingSpinner.WPF" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

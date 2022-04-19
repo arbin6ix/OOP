@@ -33,7 +33,6 @@ namespace OOP4200_Tarneeb.Cards
             QUEEN = 11,
             KING = 12,
             ACE = 13
-
         }
     }
 
@@ -43,14 +42,9 @@ namespace OOP4200_Tarneeb.Cards
         public Enums.Suit Suit { get; set; }
         public Enums.CardNumber CardNumber { get; set; }
 
-        public override string ToString()
-        {
-
-            return "The Suit is: " + this.Suit + " The card number is: " + this.CardNumber;
-        }
 
         /// <summary>
-        /// 
+        /// Converts a given card to an image source for the respective card image
         /// </summary>
         /// <param name="card">The card to convert to image</param>
         /// <returns>ImageSource of entered card</returns>
@@ -76,6 +70,10 @@ namespace OOP4200_Tarneeb.Cards
             {
                 formattedSuit = "s";
             }
+            else
+            {
+                formattedSuit = "Card Returned: " + card.Suit;
+            }
 
             // If card is between 2 and 9, prepend a "0"
             if ((int)card.CardNumber <= 8)
@@ -94,16 +92,7 @@ namespace OOP4200_Tarneeb.Cards
             }
 
             // Return the image source for the card
-            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/" + formattedSuit + formattedNumber + ".bmp");
-        }
-
-        /// <summary>
-        /// Empties card slot of any card image stored in it
-        /// </summary>
-        /// <returns>ImageSource of transparent (empty) card</returns>
-        public static ImageSource EmptyCard()
-        {
-            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/EmptyCard.png");
+            return (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/Cards/" + formattedSuit + formattedNumber + ".png");
         }
     }
 
@@ -116,26 +105,34 @@ namespace OOP4200_Tarneeb.Cards
 
         public List<Card> Cards { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Reset()
         {
             Cards = Enumerable.Range(1, 4)
                 .SelectMany(s => Enumerable.Range(1, 13)
-                                    .Select(c => new Card()
-                                    {
-                                        Suit = (Enums.Suit)s,
-                                        CardNumber = (Enums.CardNumber)c
-                                    }
-                                            )
-                            )
-                   .ToList();
+                        .Select(c => new Card()
+                        {
+                            Suit = (Enums.Suit)s,
+                            CardNumber = (Enums.CardNumber)c
+                        }))
+                .ToList();
         }
 
+        /// <summary>
+        /// Shuffles a Deck
+        /// </summary>
         public void Shuffle()
         {
             Cards = Cards.OrderBy(c => Guid.NewGuid())
                          .ToList();
         }
 
+        /// <summary>
+        /// Takes the first card of a sequence
+        /// </summary>
+        /// <returns>Card taken</returns>
         public Card TakeCard()
         {
             var card = Cards.FirstOrDefault();
@@ -144,6 +141,11 @@ namespace OOP4200_Tarneeb.Cards
             return card;
         }
 
+        /// <summary>
+        /// Takes a number of cards from a sequence of cards
+        /// </summary>
+        /// <param name="numberOfCards">Number of cards to take</param>
+        /// <returns>Cards taken</returns>
         public List<Card> TakeCards(int numberOfCards)
         {
             var cards = Cards.Take(numberOfCards);
@@ -155,15 +157,38 @@ namespace OOP4200_Tarneeb.Cards
             return takeCards;
         }
 
+        /// <summary>
+        /// Sorts the given list of cards by suit and by card number
+        /// </summary>
+        /// <param name="listOfCards">Unsorted list of cards</param>
+        /// <returns>Sorted list of cards</returns>
         public List<Card> Sort(List<Card> listOfCards)
         {
-            List<Card> sorted = listOfCards
+            // Dictionary for the ordering of suits in the sort that separates suits by
+            // colours to make it easier to differentiate
+            Dictionary<Enums.Suit, int> suitOrder = new Dictionary<Enums.Suit, int>
+            {
+                { Enums.Suit.DIAMOND, 0 },
+                { Enums.Suit.CLUB, 1 },
+                { Enums.Suit.HEART, 2 },
+                { Enums.Suit.SPADE, 3 }
+            };
+
+            // Instantiates sorted list of cards
+            List<Card> sorted = listOfCards;
+
+            // Sorts the list of cards if there's more than 1 card remaining
+            if (listOfCards.Count() > 1)
+            {
+                sorted = listOfCards
                 .GroupBy(s => s.Suit)
-                .OrderByDescending(c => c.Count())
+                .OrderBy(c => suitOrder[c.Key])
                 .SelectMany(g => g
                 .OrderBy(c => c.CardNumber))
                 .ToList();
+            }
 
+            // Return sorted list of cards
             return sorted;
 
         }

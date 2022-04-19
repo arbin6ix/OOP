@@ -9,40 +9,46 @@
       Title="PageMenu">
 
     <Grid>
-        <!-- StackPanel that contains Tarneeb title at top and Main Menu contents on bottom -->
-        <StackPanel>
+        <Canvas>
+            <TextBlock Text="Tarneeb" Canvas.Left="360" Canvas.Top="20" FontSize="80" Foreground="Black"/>
+            <TextBlock Text="Tarneeb" Canvas.Left="360" Canvas.Top="24" FontSize="80" Foreground="Black"/>
+            <TextBlock Text="Tarneeb" Canvas.Left="364" Canvas.Top="20" FontSize="80" Foreground="Black"/>
+            <TextBlock Text="Tarneeb" Canvas.Left="364" Canvas.Top="24" FontSize="80" Foreground="Black"/>
+            <TextBlock Text="Tarneeb" Canvas.Left="362" Canvas.Top="22" FontSize="80" Foreground="#e8c133"/>
 
-            <Canvas Height="150">
-                <TextBlock Text="Tarneeb" Canvas.Left="360" Canvas.Top="20" FontSize="80" Foreground="Black"/>
-                <TextBlock Text="Tarneeb" Canvas.Left="360" Canvas.Top="24" FontSize="80" Foreground="Black"/>
-                <TextBlock Text="Tarneeb" Canvas.Left="364" Canvas.Top="20" FontSize="80" Foreground="Black"/>
-                <TextBlock Text="Tarneeb" Canvas.Left="364" Canvas.Top="24" FontSize="80" Foreground="Black"/>
-                <TextBlock Text="Tarneeb" Canvas.Left="362" Canvas.Top="22" FontSize="80" Foreground="#e8c133"/>
-            </Canvas>
+            <!-- Vertical StackPanel containing menu buttons -->
+            <StackPanel Margin="40,200" Canvas.Left="40" Canvas.Top="80">
+                <Button Name="btnMainPlay" Content="Play" Margin="0,4"  
+                            Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnPlayClick"></Button>
+                <Button Name="btnMainHowTo" Content="How To Play" Margin="0,4" 
+                            Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnHowToClick"></Button>
+                <Button Name="btnMainStats" Content="Statistics" Margin="0,4"  
+                            Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnStatsClick"></Button>
+                <Button Name="btnMainExit" Content="Exit" Margin="0,4" 
+                            Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnExitClick"></Button>
+            </StackPanel>
 
-            <!-- Grid to have buttons on left and image on right -->
-            <Grid>
-                <!-- Definition of grid columns  -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+            <!-- Image of cards -->
+            <Image Source="/Images/MainMenuImage.png" Height="250" Canvas.Left="620" Canvas.Top="210" />
 
-                <!-- Vertical StackPanel containing menu buttons -->
-                <StackPanel Grid.Column="0" Margin="40,200" HorizontalAlignment="Left">
-                    <Button Name="btnMainPlay" Content="Play" Margin="0,4"  
-                                Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnPlayClick"></Button>
-                    <Button Name="btnMainHowTo" Content="How To Play" Margin="0,4" 
-                                Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnHowToClick"></Button>
-                    <Button Name="btnMainStats" Content="Statistics" Margin="0,4"  
-                                Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnStatsClick"></Button>
-                    <Button Name="btnMainExit" Content="Exit" Margin="0,4" 
-                                Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnExitClick"></Button>
-                </StackPanel>
+            <!-- Background Selectors -->
+            <Border Name="BorderGreen" BorderThickness="2" BorderBrush="#e8c133" Canvas.Left="40" Canvas.Top="650">
+                <Image Source="/Images/BGPreviews/PreviewGreen.png" Width="60" RenderOptions.BitmapScalingMode="HighQuality" MouseDown="BGGreenMouseDown" />
+            </Border>
+            <Border Name="BorderRed" BorderThickness="2" BorderBrush="Black" Canvas.Left="120" Canvas.Top="650">
+                <Image Source="/Images/BGPreviews/PreviewRed.png" Width="60" RenderOptions.BitmapScalingMode="HighQuality" MouseDown="BGRedMouseDown" />
+            </Border>
+            <Border Name="BorderBlue" BorderThickness="2" BorderBrush="Black" Canvas.Left="200" Canvas.Top="650">
+                <Image Source="/Images/BGPreviews/PreviewBlue.png" Width="60" RenderOptions.BitmapScalingMode="HighQuality" MouseDown="BGBlueMouseDown" />
+            </Border>
 
-                <!-- Image of cards -->
-                <Image Grid.Column="1" Source="/Images/MainMenuImage.png" Height="250" Margin="40" HorizontalAlignment="Right"/>
-            </Grid>
-        </StackPanel>
+            <!-- Background Selector Label -->
+            <TextBlock Text="Background:" Canvas.Left="91" Canvas.Top="605" FontSize="20" Foreground="Black"/>
+            <TextBlock Text="Background:" Canvas.Left="91" Canvas.Top="607" FontSize="20" Foreground="Black"/>
+            <TextBlock Text="Background:" Canvas.Left="93" Canvas.Top="605" FontSize="20" Foreground="Black"/>
+            <TextBlock Text="Background:" Canvas.Left="93" Canvas.Top="607" FontSize="20" Foreground="Black"/>
+            <TextBlock Text="Background:" Canvas.Left="92" Canvas.Top="606" FontSize="20" Foreground="#e8c133"/>
+
+        </Canvas>
     </Grid>
 </Page>

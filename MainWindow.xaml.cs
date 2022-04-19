@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using OOP4200_Tarneeb.DbContexts;
+using OOP4200_Tarneeb.DTOs;
+using OOP4200_Tarneeb.Models;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +25,9 @@ namespace OOP4200_Tarneeb
     /// </summary>
     public partial class MainWindow : Window
     {
+        // The current background colour
+        public int currentBackground = 1;
+
         public MainWindow()
         {
             InitializeComponent();

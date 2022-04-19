@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP4200_Tarneeb"
         mc:Ignorable="d"
-        Title="Tarneeb" Height="800" Width="1000" WindowStartupLocation="CenterScreen">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="Tarneeb: An OOP-4200 Project" Height="800" Width="1000" >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/BackgroundCropped.png"/>
+            <ImageBrush x:Name="BackgroundImage" ImageSource="/Images/Backgrounds/_BGGreen.png"/>
         </Grid.Background>
         
         <Frame x:Name="Main" NavigationUIVisibility="Hidden"></Frame>
