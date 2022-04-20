@@ -617,6 +617,142 @@ namespace OOP4200_Tarneeb
         // betting AI functionality
         public int AIBettingAmount(List<Card> cards)
         {
+            Deck deck = new Deck();
+            List<Card> diamonds = new List<Card>();
+            List<Card> clubs = new List<Card>();
+            List<Card> hearts = new List<Card>();
+            List<Card> spades = new List<Card>();
+            List<Card> sortedCards = new List<Card>();
+
+            int diamondRunAmount = 0;
+            int clubRunAmount = 0;
+            int heartRunAmount = 0;
+            int spadeRunAmount = 0;
+
+            int diamondTotalPoints = 0;
+            int clubTotalPoints = 0;
+            int heartTotalPoints = 0;
+            int spadeTotalPoints = 0;
+
+            Enums.Suit topSuit = Enums.Suit.DIAMOND;
+
+            int bettingAmount = 0;
+            
+
+            sortedCards = deck.Sort(cards);
+
+            foreach (Card card in sortedCards)
+            {
+                if (card.Suit == Enums.Suit.DIAMOND)
+                {
+                    diamonds.Add(card);
+                }
+                if (card.Suit == Enums.Suit.CLUB)
+                {
+                    clubs.Add(card);
+                }
+                if (card.Suit == Enums.Suit.HEART)
+                {
+                    hearts.Add(card);
+                }
+                if (card.Suit == Enums.Suit.SPADE)
+                {
+                    spades.Add(card);
+                }
+            }
+
+            diamonds.Reverse();
+            clubs.Reverse();
+            hearts.Reverse();
+            spades.Reverse();
+
+            try
+            {
+                for (int i = 0; diamonds[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < diamonds.Count; i++)
+                {
+                    diamondRunAmount += 1;
+                }
+            }
+            catch
+            { }
+            try
+            {
+                for (int i = 0; clubs[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < clubs.Count; i++)
+                {
+                    clubRunAmount += 1;
+                }
+            }
+            catch
+            { }
+            try
+            {
+                for (int i = 0; hearts[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < hearts.Count; i++)
+                {
+                    heartRunAmount += 1;
+                }
+            }
+            catch
+            { }
+            try
+            {
+                for (int i = 0; spades[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < spades.Count; i++)
+                {
+                    spadeRunAmount += 1;
+                }
+            }
+            catch
+            { }
+
+            foreach (Card card in diamonds)
+            {
+                diamondTotalPoints += (int)card.CardNumber + 15;
+            }
+            foreach (Card card in clubs)
+            {
+                clubTotalPoints += (int)card.CardNumber + 15;
+            }
+            foreach (Card card in hearts)
+            {
+                heartTotalPoints += (int)card.CardNumber + 15;
+            }
+            foreach (Card card in spades)
+            {
+                spadeTotalPoints += (int)card.CardNumber + 15;
+            }
+
+            int topTotalPoints = diamondTotalPoints;
+
+            if (clubTotalPoints > topTotalPoints)
+            {
+                topTotalPoints = clubTotalPoints;
+                topSuit = Enums.Suit.CLUB;
+            }
+            if (heartTotalPoints > topTotalPoints)
+            {
+                topTotalPoints = heartTotalPoints;
+                topSuit = Enums.Suit.HEART;
+            }
+            if (spadeTotalPoints > topTotalPoints)
+            {
+                topTotalPoints = spadeTotalPoints;
+                topSuit = Enums.Suit.SPADE;
+            }
+
+            int subAmount = 3;
+
+            for (int point = 100; topTotalPoints > point; point += 50)
+            {
+                bettingAmount = (point / 10) - subAmount;
+                subAmount += 4;
+            }
+
+            bettingAmount += diamondRunAmount + clubRunAmount + heartRunAmount + spadeRunAmount;
+
+            return bettingAmount;
+        }
+
+        public int AIBettingAmount2(List<Card> cards)
+        {
             int numOfClub = 0;
             int totalClubValue = 0;
             int numOfDiamond = 0;
@@ -664,7 +800,7 @@ namespace OOP4200_Tarneeb
             int topNumOfSuit = numOfClub;
             int topValue = totalClubValue;
 
-            if ((numOfDiamond > topNumOfSuit) || ((numOfDiamond == topNumOfSuit) && (totalDiamondValue > topValue)))
+            if ((totalDiamondValue > topValue) || ((numOfDiamond == topNumOfSuit) && (totalDiamondValue > topValue)))
             {
                 topNumOfSuit = numOfDiamond;
                 topValue = totalDiamondValue;
@@ -704,67 +840,139 @@ namespace OOP4200_Tarneeb
 
             return bettingAmount;
         }
+
         public Enums.Suit AITarneebSelection(List<Card> cards)
         {
-            int numOfClub = 0;
-            int totalClubValue = 0;
-            int numOfDiamond = 0;
-            int totalDiamondValue = 0;
-            int numOfHeart = 0;
-            int totalHeartValue = 0;
-            int numOfSpade = 0;
-            int totalSpadeValue = 0;
+            Deck deck = new Deck();
+            List<Card> diamonds = new List<Card>();
+            List<Card> clubs = new List<Card>();
+            List<Card> hearts = new List<Card>();
+            List<Card> spades = new List<Card>();
+            List<Card> sortedCards = new List<Card>();
 
-            Enums.Suit selectedTarneeb = Enums.Suit.CLUB;
+            int diamondRunAmount = 0;
+            int clubRunAmount = 0;
+            int heartRunAmount = 0;
+            int spadeRunAmount = 0;
 
-            foreach (Card card in cards)
+            int diamondTotalPoints = 0;
+            int clubTotalPoints = 0;
+            int heartTotalPoints = 0;
+            int spadeTotalPoints = 0;
+
+            Enums.Suit topSuit = Enums.Suit.DIAMOND;
+
+            int bettingAmount = 0;
+
+
+            sortedCards = deck.Sort(cards);
+
+            foreach (Card card in sortedCards)
             {
-                if ((int)card.Suit == 1)
+                if (card.Suit == Enums.Suit.DIAMOND)
                 {
-                    numOfClub += 1;
-                    totalClubValue += (int)card.CardNumber;
+                    diamonds.Add(card);
                 }
-                if ((int)card.Suit == 2)
+                if (card.Suit == Enums.Suit.CLUB)
                 {
-                    numOfDiamond += 1;
-                    totalDiamondValue += (int)card.CardNumber;
+                    clubs.Add(card);
                 }
-                if ((int)card.Suit == 3)
+                if (card.Suit == Enums.Suit.HEART)
                 {
-                    numOfHeart += 1;
-                    totalHeartValue += (int)card.CardNumber;
+                    hearts.Add(card);
                 }
-                if ((int)card.Suit == 4)
+                if (card.Suit == Enums.Suit.SPADE)
                 {
-                    numOfSpade += 1;
-                    totalSpadeValue += (int)card.CardNumber;
+                    spades.Add(card);
                 }
             }
 
-            // determine top suit for Tarneeb
-            int topNumOfSuit = numOfClub;
-            int topValue = totalClubValue;
+            diamonds.Reverse();
+            clubs.Reverse();
+            hearts.Reverse();
+            spades.Reverse();
 
-            if ((numOfDiamond > topNumOfSuit) || ((numOfDiamond == topNumOfSuit) && (totalDiamondValue > topValue)))
+            try
             {
-                topNumOfSuit = numOfDiamond;
-                topValue = totalDiamondValue;
-                selectedTarneeb = Enums.Suit.DIAMOND;
+                for (int i = 0; diamonds[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < diamonds.Count; i++)
+                {
+                    diamondRunAmount += 1;
+                }
             }
-            if ((numOfHeart > topNumOfSuit) || ((numOfHeart == topNumOfSuit) && (totalHeartValue > topValue)))
+            catch
+            { }
+            try
             {
-                topNumOfSuit = numOfHeart;
-                topValue = totalHeartValue;
-                selectedTarneeb = Enums.Suit.HEART;
+                for (int i = 0; clubs[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < clubs.Count; i++)
+                {
+                    clubRunAmount += 1;
+                }
             }
-            if ((numOfSpade > topNumOfSuit) || ((numOfSpade == topNumOfSuit) && (totalSpadeValue > topValue)))
+            catch
+            { }
+            try
             {
-                topNumOfSuit = numOfSpade;
-                topValue = totalSpadeValue;
-                selectedTarneeb = Enums.Suit.SPADE;
+                for (int i = 0; hearts[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < hearts.Count; i++)
+                {
+                    heartRunAmount += 1;
+                }
+            }
+            catch
+            { }
+            try
+            {
+                for (int i = 0; spades[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < spades.Count; i++)
+                {
+                    spadeRunAmount += 1;
+                }
+            }
+            catch
+            { }
+
+            foreach (Card card in diamonds)
+            {
+                diamondTotalPoints = (int)card.CardNumber + 10;
+            }
+            foreach (Card card in clubs)
+            {
+                clubTotalPoints = (int)card.CardNumber + 10;
+            }
+            foreach (Card card in hearts)
+            {
+                heartTotalPoints = (int)card.CardNumber + 10;
+            }
+            foreach (Card card in spades)
+            {
+                spadeTotalPoints = (int)card.CardNumber + 10;
             }
 
-            return selectedTarneeb;
+            int topTotalPoints = diamondTotalPoints;
+
+            if (clubTotalPoints > topTotalPoints)
+            {
+                topTotalPoints = clubTotalPoints;
+                topSuit = Enums.Suit.CLUB;
+            }
+            if (heartTotalPoints > topTotalPoints)
+            {
+                topTotalPoints = heartTotalPoints;
+                topSuit = Enums.Suit.HEART;
+            }
+            if (spadeTotalPoints > topTotalPoints)
+            {
+                topTotalPoints = spadeTotalPoints;
+                topSuit = Enums.Suit.SPADE;
+            }
+
+            for (int point = 70; topTotalPoints > point; point += 10)
+            {
+                bettingAmount = point / 10;
+            }
+
+            bettingAmount += diamondRunAmount + clubRunAmount + heartRunAmount + spadeRunAmount;
+
+
+            return topSuit;
         }
         public void HideBettingButtons()
         {
