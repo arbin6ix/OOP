@@ -38,8 +38,8 @@ namespace OOP4200_Tarneeb
         #region Fields & Properties
 
         // Speed of the game in milliseconds
-        public const int computerTurnRate = 100;
-        public const int roundTurnRate = 2500;
+        public const int computerTurnRate = 400;
+        public const int roundTurnRate = 4000;
 
         public Enums.Suit tarneeb;          // Tarneeb (trump card)
         public bool tarneebPlayed = false;  // Tarneeb played bool
