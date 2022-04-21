@@ -2,6 +2,7 @@
 using OOP4200_Tarneeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -176,9 +177,13 @@ namespace OOP4200_Tarneeb
 
             // Create 4 Players each with their hand of 13 shuffled cards
             Player player1 = new Player(playerHand);
+            await DBUtility.SaveLog(new Log("Player1-hand", "", String.Concat(playerHand.Select(o => o.Suit + "-" + o.CardNumber + ","))));
             Player player2 = new Player(hand2);
+            await DBUtility.SaveLog(new Log("Player2-hand", "", String.Concat(hand2.Select(o => o.Suit + "-" + o.CardNumber + ","))));
             Player player3 = new Player(hand3);
+            await DBUtility.SaveLog(new Log("Player3-hand", "", String.Concat(hand3.Select(o => o.Suit + "-" + o.CardNumber + ","))));
             Player player4 = new Player(hand4);
+            await DBUtility.SaveLog(new Log("Player4-hand", "", String.Concat(hand4.Select(o => o.Suit + "-" + o.CardNumber + ","))));
 
             // Display the player's cards
             DisplayCards(playerHand);
@@ -248,6 +253,7 @@ namespace OOP4200_Tarneeb
                 Player4Bet();
             }
             ChangeBettingButtons();
+            await DBUtility.SaveLog(new Log("Betting Done", "", ""));
         }
 
         #endregion
@@ -971,6 +977,7 @@ namespace OOP4200_Tarneeb
 
             bettingAmount += diamondRunAmount + clubRunAmount + heartRunAmount + spadeRunAmount;
 
+            DBUtility.SaveLog(new Log("AITarneeb-selected", "Computer", topSuit.ToString()));
 
             return topSuit;
         }
@@ -1225,7 +1232,7 @@ namespace OOP4200_Tarneeb
         /// Sets the tarneeb suit
         /// </summary>
         /// <param name="suit">The tarneeb suit</param>
-        public void SetTarneeb(Enums.Suit suit)
+        public async void SetTarneeb(Enums.Suit suit)
         {
             // Set tarneeb if it hasn't already been set
             if (!tarneebPlayed)
@@ -1238,6 +1245,7 @@ namespace OOP4200_Tarneeb
                 tarneebImage5.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(@"../../../Images/SuitLogos/_" + suit + "_B.png");
                 tarneebPlayed = true;
             }
+            await DBUtility.SaveLog(new Log("Player1 tarneeb selected", "Player1", suit.ToString()));
         }
 
         #endregion
@@ -1584,6 +1592,7 @@ namespace OOP4200_Tarneeb
                 player2Card = chosenCard;
                 playedCard2.Source = Card.ToImage(chosenCard);
                 hand2.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+                await DBUtility.SaveLog(new Log("Player2 turn", "Player2", chosenCard.ToString()));
             }
         }
 
@@ -1601,6 +1610,7 @@ namespace OOP4200_Tarneeb
                 player3Card = chosenCard;
                 playedCard3.Source = Card.ToImage(chosenCard);
                 hand3.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+                await DBUtility.SaveLog(new Log("Player3 turn", "Player3", chosenCard.ToString()));
             }
         }
 
@@ -1618,6 +1628,7 @@ namespace OOP4200_Tarneeb
                 player4Card = chosenCard;
                 playedCard4.Source = Card.ToImage(chosenCard);
                 hand4.RemoveAll(card => card.CardNumber == chosenCard.CardNumber && card.Suit == chosenCard.Suit);
+                await DBUtility.SaveLog(new Log("Player4 turn", "Player4", chosenCard.ToString()));
             }
         }
 
@@ -1820,7 +1831,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card01MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card01MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p01.Source != null && playedCard1.Source == null && IsPlayable(playerHand[0]))
@@ -1835,6 +1846,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -1845,7 +1857,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card02MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card02MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p02.Source != null && playedCard1.Source == null && IsPlayable(playerHand[1]))
@@ -1860,6 +1872,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -1870,7 +1883,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card03MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card03MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p03.Source != null && playedCard1.Source == null && IsPlayable(playerHand[2]))
@@ -1885,6 +1898,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -1895,7 +1909,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card04MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card04MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p04.Source != null && playedCard1.Source == null && IsPlayable(playerHand[3]))
@@ -1911,6 +1925,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -1921,7 +1936,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card05MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card05MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p05.Source != null && playedCard1.Source == null && IsPlayable(playerHand[4]))
@@ -1936,6 +1951,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -1946,7 +1962,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card06MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card06MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p06.Source != null && playedCard1.Source == null && IsPlayable(playerHand[5]))
@@ -1961,6 +1977,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -1971,7 +1988,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card07MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card07MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p07.Source != null && playedCard1.Source == null && IsPlayable(playerHand[6]))
@@ -1986,6 +2003,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -1996,7 +2014,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card08MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card08MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p08.Source != null && playedCard1.Source == null && IsPlayable(playerHand[7]))
@@ -2011,6 +2029,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -2021,7 +2040,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card09MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card09MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p09.Source != null && playedCard1.Source == null && IsPlayable(playerHand[8]))
@@ -2036,6 +2055,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -2046,7 +2066,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card10MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card10MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p10.Source != null && playedCard1.Source == null && IsPlayable(playerHand[9]))
@@ -2061,6 +2081,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -2071,7 +2092,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card11MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card11MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p11.Source != null && playedCard1.Source == null && IsPlayable(playerHand[10]))
@@ -2086,6 +2107,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -2096,7 +2118,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card12MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card12MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p12.Source != null && playedCard1.Source == null && IsPlayable(playerHand[11]))
@@ -2111,6 +2133,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -2121,7 +2144,7 @@ namespace OOP4200_Tarneeb
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Card13MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Card13MouseDown(object sender, MouseButtonEventArgs e)
         {
             // If this slot has a card in it and there's no currently played card...
             if (p13.Source != null && playedCard1.Source == null && IsPlayable(playerHand[12]))
@@ -2136,6 +2159,7 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
             }
@@ -2173,7 +2197,7 @@ namespace OOP4200_Tarneeb
         /// <param name="card2">Player 2's card played</param>
         /// <param name="card3">Player 3's card played</param>
         /// <param name="card4">Player 4's card played</param>
-        public void DetermineWinner(Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
+        public async void DetermineWinner(Enums.Suit tarneeb, Card card1, Card card2, Card card3, Card card4)
         {
 
             Enums.Suit suit;
@@ -2256,6 +2280,7 @@ namespace OOP4200_Tarneeb
                     winner = 4;
                 }
             }
+            await DBUtility.SaveLog(new Log("Winner of this round", "", "Player" + winner));
         }
 
         /// <summary>
@@ -2264,6 +2289,14 @@ namespace OOP4200_Tarneeb
         /// <returns>True or False</returns>
         public bool GameOver()
         {
+            if (team1Total > 30)
+            {
+                DBUtility.SaveLog(new Log("Game Over", "", "team 1 won!"));
+            }
+            if (team2Total > 30)
+            {
+                DBUtility.SaveLog(new Log("Game Over", "", "team 2 won!"));
+            }
             return team1Total > 30 || team2Total > 30;
         }
 

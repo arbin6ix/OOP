@@ -42,6 +42,11 @@ namespace OOP4200_Tarneeb.Cards
         public Enums.Suit Suit { get; set; }
         public Enums.CardNumber CardNumber { get; set; }
 
+        override
+        public string ToString() 
+        {
+            return Suit + "-" + CardNumber;
+        }
 
         /// <summary>
         /// Converts a given card to an image source for the respective card image

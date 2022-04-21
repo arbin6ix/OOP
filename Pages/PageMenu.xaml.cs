@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -51,6 +52,8 @@ namespace OOP4200_Tarneeb
 
         private void btnExitClick(object sender, RoutedEventArgs e)
         {
+            DBUtility.FetchAndPrintLogs();
+
             Application.Current.Shutdown();
         }
 
