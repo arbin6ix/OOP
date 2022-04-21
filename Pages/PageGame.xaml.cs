@@ -637,7 +637,7 @@ namespace OOP4200_Tarneeb
             Enums.Suit topSuit = Enums.Suit.DIAMOND;
 
             int bettingAmount = 0;
-            
+
 
             sortedCards = deck.Sort(cards);
 
@@ -668,7 +668,7 @@ namespace OOP4200_Tarneeb
 
             try
             {
-                for (int i = 0; diamonds[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < diamonds.Count; i++)
+                for (int i = 0; (int)diamonds[i].CardNumber + i == (int)Enums.CardNumber.ACE && i + 1 < diamonds.Count; i++)
                 {
                     diamondRunAmount += 1;
                 }
@@ -677,7 +677,7 @@ namespace OOP4200_Tarneeb
             { }
             try
             {
-                for (int i = 0; clubs[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < clubs.Count; i++)
+                for (int i = 0; (int)clubs[i].CardNumber + i == (int)Enums.CardNumber.ACE && i + 1 < clubs.Count; i++)
                 {
                     clubRunAmount += 1;
                 }
@@ -686,7 +686,7 @@ namespace OOP4200_Tarneeb
             { }
             try
             {
-                for (int i = 0; hearts[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < hearts.Count; i++)
+                for (int i = 0; (int)hearts[i].CardNumber + i == (int)Enums.CardNumber.ACE && i + 1 < hearts.Count; i++)
                 {
                     heartRunAmount += 1;
                 }
@@ -695,7 +695,7 @@ namespace OOP4200_Tarneeb
             { }
             try
             {
-                for (int i = 0; spades[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < spades.Count; i++)
+                for (int i = 0; (int)spades[i].CardNumber + i == (int)Enums.CardNumber.ACE && i + 1 < spades.Count; i++)
                 {
                     spadeRunAmount += 1;
                 }
@@ -705,19 +705,19 @@ namespace OOP4200_Tarneeb
 
             foreach (Card card in diamonds)
             {
-                diamondTotalPoints += (int)card.CardNumber + 15;
+                diamondTotalPoints += (int)card.CardNumber + 10;
             }
             foreach (Card card in clubs)
             {
-                clubTotalPoints += (int)card.CardNumber + 15;
+                clubTotalPoints += (int)card.CardNumber + 10;
             }
             foreach (Card card in hearts)
             {
-                heartTotalPoints += (int)card.CardNumber + 15;
+                heartTotalPoints += (int)card.CardNumber + 10;
             }
             foreach (Card card in spades)
             {
-                spadeTotalPoints += (int)card.CardNumber + 15;
+                spadeTotalPoints += (int)card.CardNumber + 10;
             }
 
             int topTotalPoints = diamondTotalPoints;
@@ -738,12 +738,12 @@ namespace OOP4200_Tarneeb
                 topSuit = Enums.Suit.SPADE;
             }
 
-            int subAmount = 3;
+            int subAmount = 2;
 
-            for (int point = 100; topTotalPoints > point; point += 50)
+            for (int point = 50; topTotalPoints > point; point += 20)
             {
                 bettingAmount = (point / 10) - subAmount;
-                subAmount += 4;
+                subAmount += 1;
             }
 
             bettingAmount += diamondRunAmount + clubRunAmount + heartRunAmount + spadeRunAmount;
