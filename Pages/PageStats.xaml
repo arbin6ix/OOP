@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel Margin="30,0">
             <TextBlock Text="Statistics" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Margin="20" Foreground="White"/>
-            
+
             <!-- Grid to separate left and right of page -->
             <Grid Background="AliceBlue" Height="350">
                 <!-- Definition of grid columns  -->
@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="0.5*"></ColumnDefinition>
                     <ColumnDefinition Width="0.5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-            
+
                 <!-- Vertical StackPanel containing Left Side Stats -->
                 <StackPanel Grid.Column="0" Margin="40" HorizontalAlignment="Left">
                     <!-- "Wins" title -->
@@ -95,16 +95,19 @@
             <Grid>
                 <!-- Definition of grid columns  -->
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.33*"/>
+                    <ColumnDefinition Width="0.33*"/>
+                    <ColumnDefinition Width="0.33*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Name="btnStatsBack" Content="&lt; Main Menu" Margin="0,50,0,0" VerticalAlignment="Bottom" 
-                    HorizontalAlignment="Left" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnStatsBackClick"></Button>
-                <Button Grid.Column="1" Name="btnStatsReset" Content="RESET" Margin="0,50,0,0" VerticalAlignment="Bottom" 
-                    HorizontalAlignment="Right" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnResetClick"></Button>
+                <Button Grid.Column="0" x:Name="btnStatsBack" Content="&lt; Main Menu" Margin="0,50,0,0" VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Left" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnStatsBackClick"/>
+                <Button Grid.Column="1" x:Name="btnLaunchLogWindow" Content="Log Window" Margin="0,50,0,0" VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Center" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnLogWindowClick"/>
+                <Button Grid.Column="2" x:Name="btnStatsReset" Content="RESET" Margin="0,50,0,0" VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Right" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnResetClick"/>
             </Grid>
         </StackPanel>
-        
+
     </Grid>
 </Page>

@@ -66,6 +66,12 @@ namespace OOP4200_Tarneeb
             txtHoursPlayed.Text = elapsedTime;
         }
 
+        private void btnLogWindowClick(object sender, RoutedEventArgs e)
+        {
+            Pages.LogWindow lw = new Pages.LogWindow();
+            lw.Show();
+        }
+
         private async void btnUpdateNameClick(object sender, RoutedEventArgs e)
         {
             Globals.gameStats.PlayerName = txtPlayerName.Text;

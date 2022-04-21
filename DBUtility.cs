@@ -61,10 +61,12 @@ namespace OOP4200_Tarneeb
                 LogDTO logDTO = ToLogDTO(log);
 
                 context.Logs.Add(logDTO);
-                
+
                 await context.SaveChangesAsync();
             }
         }
+
+
 
         private static LogDTO ToLogDTO(Log log)
         {
@@ -91,6 +93,36 @@ namespace OOP4200_Tarneeb
         private static Log ToLog(LogDTO dto)
         {
             return new Log(dto.EventType, dto.EventActor, dto.EventDetails, dto.EventTime);
+        }
+
+        public static IEnumerable<LogDTO> FetchAndReturnLogs()
+        {
+            using (TarneebDbContext context = App.tarneebDbContextFactory.CreateDbContext())
+            {
+                IEnumerable<LogDTO> logDTOs = context.Logs.ToList();
+
+                return logDTOs;
+
+            }
+
+        }
+        public static void FetchAndClearLogs()
+        {
+            using (TarneebDbContext context = App.tarneebDbContextFactory.CreateDbContext())
+            {
+
+                foreach (var id in context.Logs.Select(e => e.Id))
+                {
+                    var entity = new LogDTO { Id = id };
+                    //dbContext.MyEntities.Attach(entity);
+                    context.Logs.Remove(entity);
+                }
+                context.SaveChanges();
+
+
+
+            }
+
         }
     }
 }
