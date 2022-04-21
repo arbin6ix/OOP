@@ -20,5 +20,14 @@ namespace OOP4200_Tarneeb.Models
             EventDetails = eventDetails;
             EventTime = DateTime.Now;
         }
+
+        public Log(string eventType, string eventActor, string eventDetails, DateTime eventTime)
+        {
+            Id = Guid.NewGuid();
+            EventType = eventType;
+            EventActor = eventActor;
+            EventDetails = eventDetails;
+            EventTime = eventTime;
+        }
     }
 }

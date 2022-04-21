@@ -77,5 +77,20 @@ namespace OOP4200_Tarneeb
                 EventTime = log.EventTime,
             };
         }
+
+        public static async void FetchAndPrintLogs()
+        {
+            using (TarneebDbContext context = App.tarneebDbContextFactory.CreateDbContext())
+            {
+                IEnumerable<LogDTO> logDTOs = await context.Logs.ToListAsync();
+
+                Console.WriteLine(string.Join(System.Environment.NewLine, logDTOs.Select(log => ToLog(log)).ToList())); //need fixing.
+            }
+        }
+
+        private static Log ToLog(LogDTO dto)
+        {
+            return new Log(dto.EventType, dto.EventActor, dto.EventDetails, dto.EventTime);
+        }
     }
 }
