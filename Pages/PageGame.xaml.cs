@@ -1421,11 +1421,12 @@ namespace OOP4200_Tarneeb
 
             //// If teammate is either winning the hand, or likely to win with Queen or above,
             //// immediately return the worst card in hand
-            if ((playerNumber == 2 && playerToBeat == 4 && (playedCard3.Source != null || (int)cardToBeat.CardNumber > 11)) ||
-                (playerNumber == 3 && playerToBeat == 1 && (playedCard4.Source != null || (int)cardToBeat.CardNumber > 11)) ||
-                (playerNumber == 4 && playerToBeat == 2 && (playedCard1.Source != null || (int)cardToBeat.CardNumber > 11)))
+            if ((playerNumber == 2 && playerToBeat == 4 && (playedCard3.Source != null || (int)cardToBeat.CardNumber > 10)) ||
+                (playerNumber == 3 && playerToBeat == 1 && (playedCard4.Source != null || (int)cardToBeat.CardNumber > 10)) ||
+                (playerNumber == 4 && playerToBeat == 2 && (playedCard1.Source != null || (int)cardToBeat.CardNumber > 10)))
             {
-                MessageBox.Show("Matching = " + matchingList.Count);
+                // Testing code
+                // MessageBox.Show("Matching = " + matchingList.Count);
 
                 // If there are no cards with a matching suit...
                 if (matchingList.Count == 0)
