@@ -18,7 +18,7 @@
 
 
             <TextBlock Background="Beige" Canvas.Left="75" Canvas.Top="153" FontSize="16" TextWrapping="Wrap" Height="480" Width="850" Padding="15">
-                Tarneeb is a card game played with 4-players. The players are split into 2 teams of two players each where players from the same team are seated opposite to each other on the table. It requires just a standard 52-card Anglo-American deck to play.               
+                Tarneeb is a card game played with 4-players. The players are split into 2 teams of two players each where players from the same team are seated opposite to each other. It requires a standard 52-card Anglo-American deck to play.               
                 <LineBreak></LineBreak>
                 <LineBreak></LineBreak>
                 <TextBlock Text="Rules:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" FontWeight="DemiBold" Foreground="DarkOrange"/>
