@@ -9,11 +9,11 @@
       Title="PageStats">
 
     <Canvas>
-        <TextBlock Text="Statistics" Canvas.Left="364" Canvas.Top="20" FontSize="70" Foreground="Black"/>
-        <TextBlock Text="Statistics" Canvas.Left="364" Canvas.Top="24" FontSize="70" Foreground="Black"/>
-        <TextBlock Text="Statistics" Canvas.Left="368" Canvas.Top="20" FontSize="70" Foreground="Black"/>
-        <TextBlock Text="Statistics" Canvas.Left="368" Canvas.Top="24" FontSize="70" Foreground="Black"/>
-        <TextBlock Text="Statistics" Canvas.Left="366" Canvas.Top="22" FontSize="70" Foreground="#e8c133"/>
+        <TextBlock Text="Statistics" Canvas.Left="345" Canvas.Top="20" FontSize="80" Foreground="Black"/>
+        <TextBlock Text="Statistics" Canvas.Left="345" Canvas.Top="24" FontSize="80" Foreground="Black"/>
+        <TextBlock Text="Statistics" Canvas.Left="349" Canvas.Top="20" FontSize="80" Foreground="Black"/>
+        <TextBlock Text="Statistics" Canvas.Left="349" Canvas.Top="24" FontSize="80" Foreground="Black"/>
+        <TextBlock Text="Statistics" Canvas.Left="347" Canvas.Top="22" FontSize="80" Foreground="#e8c133"/>
 
         <!-- Grid to separate left and right of page -->
         <Grid Background="Beige" Height="350" Width="750" Canvas.Left="125" Canvas.Top="184">
@@ -44,7 +44,7 @@
                 </StackPanel>
 
                 <!-- Line spacing between wins and totals -->
-                <TextBlock FontSize="20"><LineBreak /></TextBlock>
+                <TextBlock FontSize="24"><LineBreak /></TextBlock>
 
                 <!-- Total times played -->
                 <StackPanel Orientation="Horizontal">
@@ -83,6 +83,9 @@
 
                 <!-- Line spacing between wins and totals -->
                 <TextBlock FontSize="20"><LineBreak /></TextBlock>
+                <TextBlock FontSize="22">Update Player Name</TextBlock>
+                <TextBlock FontSize="4"><LineBreak /></TextBlock>
+
 
                 <!-- Update PlayerName  -->
                 <StackPanel Orientation="Horizontal">

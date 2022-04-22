@@ -10,14 +10,14 @@
 
     <Grid>
         <Canvas>
-            <TextBlock Text="How To Play" Canvas.Left="337" Canvas.Top="20" FontSize="60" Foreground="Black"/>
-            <TextBlock Text="How To Play" Canvas.Left="337" Canvas.Top="24" FontSize="60" Foreground="Black"/>
-            <TextBlock Text="How To Play" Canvas.Left="341" Canvas.Top="20" FontSize="60" Foreground="Black"/>
-            <TextBlock Text="How To Play" Canvas.Left="341" Canvas.Top="24" FontSize="60" Foreground="Black"/>
-            <TextBlock Text="How To Play" Canvas.Left="339" Canvas.Top="22" FontSize="60" Foreground="#e8c133"/>
+            <TextBlock Text="How To Play" Canvas.Left="283" Canvas.Top="20" FontSize="80" Foreground="Black"/>
+            <TextBlock Text="How To Play" Canvas.Left="283" Canvas.Top="24" FontSize="80" Foreground="Black"/>
+            <TextBlock Text="How To Play" Canvas.Left="287" Canvas.Top="20" FontSize="80" Foreground="Black"/>
+            <TextBlock Text="How To Play" Canvas.Left="287" Canvas.Top="24" FontSize="80" Foreground="Black"/>
+            <TextBlock Text="How To Play" Canvas.Left="285" Canvas.Top="22" FontSize="80" Foreground="#e8c133"/>
 
 
-            <TextBlock Background="Beige" Canvas.Left="75" Canvas.Top="125" FontSize="16" TextWrapping="Wrap" Height="500" Width="850" Padding="15">
+            <TextBlock Background="Beige" Canvas.Left="75" Canvas.Top="165" FontSize="16" TextWrapping="Wrap" Height="500" Width="850" Padding="15">
                 Tarneeb is a card game played with 4-players. The players are split into 2 teams of two players each where players from the same team are seated opposite to each other on the table. It requires just a standard 52-card Anglo-American deck to play.               
                 <LineBreak></LineBreak>
                 <LineBreak></LineBreak>
@@ -46,7 +46,7 @@
 
 
             </TextBlock>
-            <Button x:Name="btnHowToBack" Canvas.Left="75" Canvas.Top="675" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnHowToBackClick"/>
+            <Button x:Name="btnHowToBack" Canvas.Left="75" Canvas.Top="701" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnHowToBackClick"/>
         </Canvas>
     </Grid>
 </Page>
