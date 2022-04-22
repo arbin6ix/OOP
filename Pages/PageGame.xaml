@@ -131,7 +131,7 @@
 
 
         <!-- Back to menu button -->
-        <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue"
+        <Button Name="btnStatsBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="#d4b02f"
                 Canvas.Left="10" Canvas.Top="10" Click="BtnGameBackClick"></Button>
 
         <!-- Next Round button & Label-->

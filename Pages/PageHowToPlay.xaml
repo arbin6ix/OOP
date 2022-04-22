@@ -10,11 +10,11 @@
 
     <Grid>
         <Canvas>
-            <TextBlock Text="How To Play" Canvas.Left="337" Canvas.Top="22" FontSize="60" Foreground="Black"/>
-            <TextBlock Text="How To Play" Canvas.Left="337" Canvas.Top="26" FontSize="60" Foreground="Black"/>
-            <TextBlock Text="How To Play" Canvas.Left="341" Canvas.Top="22" FontSize="60" Foreground="Black"/>
-            <TextBlock Text="How To Play" Canvas.Left="341" Canvas.Top="26" FontSize="60" Foreground="Black"/>
-            <TextBlock Text="How To Play" Canvas.Left="339" Canvas.Top="24" FontSize="60" Foreground="#e8c133"/>
+            <TextBlock Text="How To Play" Canvas.Left="337" Canvas.Top="20" FontSize="60" Foreground="Black"/>
+            <TextBlock Text="How To Play" Canvas.Left="337" Canvas.Top="24" FontSize="60" Foreground="Black"/>
+            <TextBlock Text="How To Play" Canvas.Left="341" Canvas.Top="20" FontSize="60" Foreground="Black"/>
+            <TextBlock Text="How To Play" Canvas.Left="341" Canvas.Top="24" FontSize="60" Foreground="Black"/>
+            <TextBlock Text="How To Play" Canvas.Left="339" Canvas.Top="22" FontSize="60" Foreground="#e8c133"/>
 
 
             <TextBlock Background="Beige" Canvas.Left="75" Canvas.Top="125" FontSize="16" TextWrapping="Wrap" Height="500" Width="850" Padding="15">
@@ -46,7 +46,7 @@
 
 
             </TextBlock>
-            <Button x:Name="btnHowToBack" Canvas.Left="75" Canvas.Top="675" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="DarkGoldenrod" Click="btnHowToBackClick"/>
+            <Button x:Name="btnHowToBack" Canvas.Left="75" Canvas.Top="675" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnHowToBackClick"/>
         </Canvas>
     </Grid>
 </Page>

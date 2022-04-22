@@ -5,109 +5,105 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OOP4200_Tarneeb"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1000"
       Title="PageStats">
 
-    <Grid>
-        <StackPanel Margin="30,0">
-            <TextBlock Text="Statistics" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Margin="20" Foreground="White"/>
+    <Canvas>
+        <TextBlock Text="Statistics" Canvas.Left="364" Canvas.Top="20" FontSize="70" Foreground="Black"/>
+        <TextBlock Text="Statistics" Canvas.Left="364" Canvas.Top="24" FontSize="70" Foreground="Black"/>
+        <TextBlock Text="Statistics" Canvas.Left="368" Canvas.Top="20" FontSize="70" Foreground="Black"/>
+        <TextBlock Text="Statistics" Canvas.Left="368" Canvas.Top="24" FontSize="70" Foreground="Black"/>
+        <TextBlock Text="Statistics" Canvas.Left="366" Canvas.Top="22" FontSize="70" Foreground="#e8c133"/>
 
-            <!-- Grid to separate left and right of page -->
-            <Grid Background="AliceBlue" Height="350">
-                <!-- Definition of grid columns  -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+        <!-- Grid to separate left and right of page -->
+        <Grid Background="Beige" Height="350" Width="750" Canvas.Left="125" Canvas.Top="184">
+            <!-- Definition of grid columns  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-                <!-- Vertical StackPanel containing Left Side Stats -->
-                <StackPanel Grid.Column="0" Margin="40" HorizontalAlignment="Left">
-                    <!-- "Wins" title -->
-                    <TextBlock FontSize="22">
+            <!-- Vertical StackPanel containing Left Side Stats -->
+            <StackPanel Grid.Column="0" Margin="40" HorizontalAlignment="Left">
+                <!-- "Wins" title -->
+                <TextBlock FontSize="22">
                         Wins
                         <LineBreak />
-                    </TextBlock>
+                </TextBlock>
 
-                    <!-- Number of wins -->
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="txtNumberOfWins" Text="42" FontSize="18" />
-                        <TextBlock FontSize="18" Text=" Wins" />
-                    </StackPanel>
-
-                    <!-- Win rate % -->
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="txtWinRate" Text="58" FontSize="18" />
-                        <TextBlock FontSize="18" Text="% Win Rate" />
-                    </StackPanel>
-
-                    <!-- Line spacing between wins and totals -->
-                    <TextBlock FontSize="20"><LineBreak /></TextBlock>
-
-                    <!-- Total times played -->
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontSize="18" Text="Total Games Played:  " />
-                        <TextBlock Name="txtTimesPlayed" Text="73" FontSize="18" />
-                    </StackPanel>
-
-                    <!-- Total hours played -->
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontSize="18" Text="Total Hours Played:  " />
-                        <TextBlock Name="txtHoursPlayed" Text="6" FontSize="18" />
-                    </StackPanel>
-
+                <!-- Number of wins -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="txtNumberOfWins" Text="42" FontSize="18" />
+                    <TextBlock FontSize="18" Text=" Wins" />
                 </StackPanel>
 
-                <!-- Vertical StackPanel containing Right Side Stats -->
-                <!-- Vertical StackPanel containing Left Side Stats -->
-                <StackPanel Grid.Column="1" Margin="40" HorizontalAlignment="Left">
-                    <!-- "Losses" title -->
-                    <TextBlock FontSize="22">
+                <!-- Win rate % -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="txtWinRate" Text="58" FontSize="18" />
+                    <TextBlock FontSize="18" Text="% Win Rate" />
+                </StackPanel>
+
+                <!-- Line spacing between wins and totals -->
+                <TextBlock FontSize="20"><LineBreak /></TextBlock>
+
+                <!-- Total times played -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="18" Text="Total Games Played:  " />
+                    <TextBlock Name="txtTimesPlayed" Text="73" FontSize="18" />
+                </StackPanel>
+
+                <!-- Total hours played -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="18" Text="Total Hours Played:  " />
+                    <TextBlock Name="txtHoursPlayed" Text="6" FontSize="18" />
+                </StackPanel>
+
+            </StackPanel>
+
+            <!-- Vertical StackPanel containing Right Side Stats -->
+            <!-- Vertical StackPanel containing Left Side Stats -->
+            <StackPanel Grid.Column="1" Margin="40" HorizontalAlignment="Left">
+                <!-- "Losses" title -->
+                <TextBlock FontSize="22">
                         Losses
                         <LineBreak />
-                    </TextBlock>
+                </TextBlock>
 
-                    <!-- Number of losses -->
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="txtNumberOfLosses" Text="31" FontSize="18" />
-                        <TextBlock FontSize="18" Text=" Losses" />
-                    </StackPanel>
-
-                    <!-- Lose rate % -->
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="txtLoseRate" Text="42" FontSize="18" />
-                        <TextBlock FontSize="18" Text="% Lose Rate" />
-                    </StackPanel>
-
-                    <!-- Line spacing between wins and totals -->
-                    <TextBlock FontSize="20"><LineBreak /></TextBlock>
-
-                    <!-- Update PlayerName  -->
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Name="txtPlayerName" Text="" 
-                                 Height="35" Width="130" FontSize="18"/>
-                        <Button Name="btnUpdateName" Content="Update" 
-                                Height="35" Width="130" FontSize="16" 
-                                Background="PowderBlue" Click="btnUpdateNameClick"/>
-                    </StackPanel>
-
+                <!-- Number of losses -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="txtNumberOfLosses" Text="31" FontSize="18" />
+                    <TextBlock FontSize="18" Text=" Losses" />
                 </StackPanel>
-            </Grid>
-            <Grid>
-                <!-- Definition of grid columns  -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.33*"/>
-                    <ColumnDefinition Width="0.33*"/>
-                    <ColumnDefinition Width="0.33*"/>
-                </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" x:Name="btnStatsBack" Content="&lt; Main Menu" Margin="0,50,0,0" VerticalAlignment="Bottom" 
-                    HorizontalAlignment="Left" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnStatsBackClick"/>
-                <Button Grid.Column="1" x:Name="btnLaunchLogWindow" Content="Log Window" Margin="0,50,0,0" VerticalAlignment="Bottom" 
-                    HorizontalAlignment="Center" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnLogWindowClick"/>
-                <Button Grid.Column="2" x:Name="btnStatsReset" Content="RESET" Margin="0,50,0,0" VerticalAlignment="Bottom" 
-                    HorizontalAlignment="Right" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnResetClick"/>
-            </Grid>
-        </StackPanel>
+                <!-- Lose rate % -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="txtLoseRate" Text="42" FontSize="18" />
+                    <TextBlock FontSize="18" Text="% Lose Rate" />
+                </StackPanel>
 
-    </Grid>
+                <!-- Line spacing between wins and totals -->
+                <TextBlock FontSize="20"><LineBreak /></TextBlock>
+
+                <!-- Update PlayerName  -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="txtPlayerName" Text="" 
+                                 Height="35" Width="130" FontSize="18"/>
+                    <Button Name="btnUpdateName" Content="Update" 
+                                Height="35" Width="130" FontSize="16" 
+                                Background="#d4b02f" Click="btnUpdateNameClick"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+
+
+        <Button x:Name="btnStatsBack" Content="&lt; Main Menu" Canvas.Left="125" Canvas.Top="618"
+                Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnStatsBackClick"/>
+        <Button x:Name="btnLaunchLogWindow" Content="Log Window" Canvas.Left="435" Canvas.Top="618"
+                Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnLogWindowClick"/>
+        <Button x:Name="btnStatsReset" Content="RESET" Canvas.Left="745" Canvas.Top="618"
+                Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnResetClick"/>
+
+
+    </Canvas>
 </Page>
