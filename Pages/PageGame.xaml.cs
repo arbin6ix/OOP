@@ -753,12 +753,12 @@ namespace OOP4200_Tarneeb
                 topSuit = Enums.Suit.SPADE;
             }
 
-            int betNum = 2;
+            int betNum = 3;
             float points = 40;
             while(topTotalPoints > points)
             {
                 bettingAmount = betNum;
-                points += points - 30;
+                points += points - 20;
                 betNum += 1;
             }
 
@@ -787,8 +787,6 @@ namespace OOP4200_Tarneeb
             int spadeTotalPoints = 0;
 
             Enums.Suit topSuit = Enums.Suit.DIAMOND;
-
-            int bettingAmount = 0;
 
 
             sortedCards = deck.Sort(cards);
