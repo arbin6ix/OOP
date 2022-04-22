@@ -23,7 +23,7 @@
                 Bids are done beginning with the player to the right of the dealer. 
                 The highest bidder can declare the Tarneeb (trump) suit for the round. 
                 Trick-taking goes as usual. 
-                The first team to reach a score of 41 wins the game.
+                The first team to reach a score of 31 wins the game.
                 <LineBreak></LineBreak>
                 <LineBreak></LineBreak>
                 <TextBlock Text="Scoring:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
