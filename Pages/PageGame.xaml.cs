@@ -1412,14 +1412,19 @@ namespace OOP4200_Tarneeb
                 // Set properties of card to beat
                 playedSuit = (int)cardToBeat.Suit;
                 playedNumber = (int)cardToBeat.CardNumber;
+
+                if (firstCard == null)
+                {
+                    firstCard = cardToBeat;
+                }
             }
 
 
             // Dividing hand into three convenient lists:
             for (int i = 0; i < hand.Count; i++)
             {
-                // 1. List of cards matching suit played
-                if ((int)hand[i].Suit == playedSuit)
+                // 1. List of cards matching first suit played
+                if ((int)hand[i].Suit == (int)firstCard.Suit)
                 {
                     matchingList.Add(hand[i]);
                 }
@@ -1600,8 +1605,40 @@ namespace OOP4200_Tarneeb
                         }
                     }
                 }
-            }
 
+                // Cutting logic as last player in trick
+                if (tarneebList.Count > 0)
+                {
+                    if ((playerNumber == 2 && playedCard3.Source != null && playerToBeat != 4) ||
+                        (playerNumber == 3 && playedCard4.Source != null && playerToBeat != 1) ||
+                        (playerNumber == 4 && playedCard1.Source != null && playerToBeat != 2))
+                    {
+                        // Set placeholder to check lowest value tarneeb
+                        Card lowestTarneeb = null;
+
+                        // ...loop through the remaining cards and pick out the lowest value tarneeb
+                        for (int i = 0; i < tarneebList.Count; i++)
+                        {
+                            // If a card hasn't been chosen OR the current card's number is lower than
+                            // the chosen card's number...
+                            if (i == 0 || (int)tarneebList[i].CardNumber < (int)lowestTarneeb.CardNumber)
+                            {
+                                // ... choose the current tarneeb
+                                lowestTarneeb = tarneebList[i];
+
+                                // Play the tarneeb if it's less than a Jack
+                                if ((int)lowestTarneeb.CardNumber < 10)
+                                {
+                                    // The tarneeb played beats the non-tarneeb cardToBeat
+                                    chosenCard = lowestTarneeb;
+                                    cardToBeat = lowestTarneeb;
+                                    playerToBeat = playerNumber;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             // Return the AI's card choice
             return chosenCard;
