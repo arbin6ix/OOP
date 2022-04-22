@@ -1405,14 +1405,19 @@ namespace OOP4200_Tarneeb
                 // Set properties of card to beat
                 playedSuit = (int)cardToBeat.Suit;
                 playedNumber = (int)cardToBeat.CardNumber;
+
+                if (firstCard == null)
+                {
+                    firstCard = cardToBeat;
+                }
             }
 
 
             // Dividing hand into three convenient lists:
             for (int i = 0; i < hand.Count; i++)
             {
-                // 1. List of cards matching suit played
-                if ((int)hand[i].Suit == playedSuit)
+                // 1. List of cards matching first suit played
+                if ((int)hand[i].Suit == (int)firstCard.Suit)
                 {
                     matchingList.Add(hand[i]);
                 }
