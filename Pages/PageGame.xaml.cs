@@ -753,112 +753,16 @@ namespace OOP4200_Tarneeb
                 topSuit = Enums.Suit.SPADE;
             }
 
-            //for (int point = 50; topTotalPoints > point; point += 20)
-            //{
-            //    bettingAmount = betNum - subAmount;
-            //    subAmount += 1;
-            //}
-
             int betNum = 2;
-            float points = 50;
+            float points = 40;
             while(topTotalPoints > points)
             {
                 bettingAmount = betNum;
-                points += points - 40;
+                points += points - 30;
                 betNum += 1;
             }
 
             bettingAmount += diamondRunAmount + clubRunAmount + heartRunAmount + spadeRunAmount;
-
-            return bettingAmount;
-        }
-
-        public int AIBettingAmount2(List<Card> cards)
-        {
-            int numOfClub = 0;
-            int totalClubValue = 0;
-            int numOfDiamond = 0;
-            int totalDiamondValue = 0;
-            int numOfHeart = 0;
-            int totalHeartValue = 0;
-            int numOfSpade = 0;
-            int totalSpadeValue = 0;
-
-            int numOfAces = 0;
-            int bettingAmount = 0;
-            int bettingSuit = 1;
-
-            foreach (Card card in cards)
-            {
-                if ((int)card.Suit == 1)
-                {
-                    numOfClub += 1;
-                    totalClubValue += (int)card.CardNumber;
-                }
-                if ((int)card.Suit == 2)
-                {
-                    numOfDiamond += 1;
-                    totalDiamondValue += (int)card.CardNumber;
-                }
-                if ((int)card.Suit == 3)
-                {
-                    numOfHeart += 1;
-                    totalHeartValue += (int)card.CardNumber;
-                }
-                if ((int)card.Suit == 4)
-                {
-                    numOfSpade += 1;
-                    totalSpadeValue += (int)card.CardNumber;
-                }
-                if ((int)card.CardNumber == 13)
-                {
-                    numOfAces += 1;
-                }
-            }
-
-            bettingAmount += numOfAces;
-
-            // determine top suit for betting amount
-            int topNumOfSuit = numOfClub;
-            int topValue = totalClubValue;
-
-            if ((totalDiamondValue > topValue) || ((numOfDiamond == topNumOfSuit) && (totalDiamondValue > topValue)))
-            {
-                topNumOfSuit = numOfDiamond;
-                topValue = totalDiamondValue;
-                bettingSuit = 2;
-            }
-            if ((numOfHeart > topNumOfSuit) || ((numOfHeart == topNumOfSuit) && (totalHeartValue > topValue)))
-            {
-                topNumOfSuit = numOfHeart;
-                topValue = totalHeartValue;
-                bettingSuit = 3;
-            }
-            if ((numOfSpade > topNumOfSuit) || ((numOfSpade == topNumOfSuit) && (totalSpadeValue > topValue)))
-            {
-                topNumOfSuit = numOfSpade;
-                topValue = totalSpadeValue;
-                bettingSuit = 4;
-            }
-
-            if (bettingSuit == 1)
-            {
-                bettingAmount += numOfClub;
-            }
-            if (bettingSuit == 2)
-            {
-                bettingAmount += numOfDiamond;
-            }
-            if (bettingSuit == 3)
-            {
-                bettingAmount += numOfHeart;
-            }
-            if (bettingSuit == 4)
-            {
-                bettingAmount += numOfSpade;
-            }
-
-            bettingAmount += 1;
 
             return bettingAmount;
         }
@@ -985,13 +889,6 @@ namespace OOP4200_Tarneeb
                 topTotalPoints = spadeTotalPoints;
                 topSuit = Enums.Suit.SPADE;
             }
-
-            for (int point = 70; topTotalPoints > point; point += 10)
-            {
-                bettingAmount = point / 10;
-            }
-
-            bettingAmount += diamondRunAmount + clubRunAmount + heartRunAmount + spadeRunAmount;
 
             DBUtility.SaveLog(new Log("AITarneeb-selected", "Computer", topSuit.ToString()));
 
