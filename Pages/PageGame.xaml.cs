@@ -95,9 +95,8 @@ namespace OOP4200_Tarneeb
         public Card player3Card = new Card();
         public Card player4Card = new Card();
 
-        // AI Difficulty setting (1 = easy, 2 = hard)
-        // Not currently implemented
-        public int computerDifficulty = 2;
+        // AI Difficulty setting (1 = easy, 2 = medium, 3 = hard)
+        public int computerDifficulty = ((MainWindow)Application.Current.MainWindow).difficulty;
 
         // Betting
         public int bettingPlayer = 0;
@@ -1515,11 +1514,10 @@ namespace OOP4200_Tarneeb
                 }
             }
 
+
             // If there are no cards with a matching suit...
             if (matchingList.Count == 0)
             {
-
-
                 // If there's a non-tarneeb card left to play
                 if (otherList.Count > 0)
                 {

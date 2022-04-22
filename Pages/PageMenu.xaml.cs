@@ -38,18 +38,33 @@ namespace OOP4200_Tarneeb
             HighlightBorder(currentBackground);
         }
 
+        /// <summary>
+        /// Opens the How To Play page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHowToClick(object sender, RoutedEventArgs e)
         {
             PageHowToPlay howToPage = new PageHowToPlay();
             NavigationService.Navigate(howToPage);
         }
 
+        /// <summary>
+        /// Opens the Statistics page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStatsClick(object sender, RoutedEventArgs e)
         {
             PageStats statsPage = new PageStats();
             NavigationService.Navigate(statsPage);
         }
 
+        /// <summary>
+        /// Exits the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExitClick(object sender, RoutedEventArgs e)
         {
             DBUtility.FetchAndPrintLogs();
@@ -57,8 +72,38 @@ namespace OOP4200_Tarneeb
             Application.Current.Shutdown();
         }
 
-        private void btnPlayClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Starts a game of Tarneeb vs. Easy computer difficulty
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPlayEasyClick(object sender, RoutedEventArgs e)
         {
+            ((MainWindow)Application.Current.MainWindow).difficulty = 1;
+            PageGame gamePage = new PageGame();
+            NavigationService.Navigate(gamePage);
+        }
+
+        /// <summary>
+        /// Starts a game of Tarneeb vs. Medium computer difficulty
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPlayMediumClick(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).difficulty = 2;
+            PageGame gamePage = new PageGame();
+            NavigationService.Navigate(gamePage);
+        }
+
+        /// <summary>
+        /// Starts a game of Tarneeb vs. Hard computer difficulty
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPlayHardClick(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).difficulty = 3;
             PageGame gamePage = new PageGame();
             NavigationService.Navigate(gamePage);
         }
@@ -170,5 +215,7 @@ namespace OOP4200_Tarneeb
                     break;
             }
         }
+
+        
     }
 }

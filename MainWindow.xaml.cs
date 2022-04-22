@@ -28,6 +28,10 @@ namespace OOP4200_Tarneeb
         // The current background colour
         public int currentBackground = 1;
 
+        // The AI difficulty selected by user
+        // 1 = Easy, 2 = Medium, 3 = Hard
+        public int difficulty = 1;
+
         public MainWindow()
         {
             InitializeComponent();

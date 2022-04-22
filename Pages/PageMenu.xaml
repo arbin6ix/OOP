@@ -17,15 +17,22 @@
             <TextBlock Text="Tarneeb" Canvas.Left="362" Canvas.Top="22" FontSize="80" Foreground="#e8c133"/>
 
             <!-- Vertical StackPanel containing menu buttons -->
-            <StackPanel Margin="40,200" Canvas.Left="40" Canvas.Top="80">
-                <Button Name="btnMainPlay" Content="Play" Margin="0,4"  
-                            Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnPlayClick"></Button>
+            <StackPanel Margin="40,200" Canvas.Left="40" Canvas.Top="40">
+                
+                <Button Name="btnMainPlayEasy" Content="Play Easy" Margin="0,4"  
+                            Height="35" Width="130" FontSize="16" Background="Beige" Click="btnPlayEasyClick"></Button>
+                <Button Name="btnMainPlayMedium" Content="Play Medium" Margin="0,4"  
+                            Height="35" Width="130" FontSize="16" Background="Beige" Click="btnPlayMediumClick"></Button>
+                <Button Name="btnMainPlayHard" Content="Play Hard" Margin="0,4"  
+                            Height="35" Width="130" FontSize="16" Background="Beige" Click="btnPlayHardClick"></Button>
+                
                 <Button Name="btnMainHowTo" Content="How To Play" Margin="0,4" 
-                            Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnHowToClick"></Button>
+                            Height="35" Width="130" FontSize="16" Background="DarkGoldenrod" Click="btnHowToClick"></Button>
                 <Button Name="btnMainStats" Content="Statistics" Margin="0,4"  
-                            Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnStatsClick"></Button>
+                            Height="35" Width="130" FontSize="16" Background="DarkGoldenrod" Click="btnStatsClick"></Button>
                 <Button Name="btnMainExit" Content="Exit" Margin="0,4" 
-                            Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnExitClick"></Button>
+                            Height="35" Width="130" FontSize="16" Background="DarkGoldenrod" Click="btnExitClick"></Button>
+                
             </StackPanel>
 
             <!-- Image of cards -->
