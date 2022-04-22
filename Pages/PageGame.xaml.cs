@@ -649,8 +649,6 @@ namespace OOP4200_Tarneeb
             int heartTotalPoints = 0;
             int spadeTotalPoints = 0;
 
-            Enums.Suit topSuit = Enums.Suit.DIAMOND;
-
             int bettingAmount = 0;
 
 
@@ -740,17 +738,14 @@ namespace OOP4200_Tarneeb
             if (clubTotalPoints > topTotalPoints)
             {
                 topTotalPoints = clubTotalPoints;
-                topSuit = Enums.Suit.CLUB;
             }
             if (heartTotalPoints > topTotalPoints)
             {
                 topTotalPoints = heartTotalPoints;
-                topSuit = Enums.Suit.HEART;
             }
             if (spadeTotalPoints > topTotalPoints)
             {
                 topTotalPoints = spadeTotalPoints;
-                topSuit = Enums.Suit.SPADE;
             }
 
             int betNum = 3;
@@ -815,43 +810,6 @@ namespace OOP4200_Tarneeb
             clubs.Reverse();
             hearts.Reverse();
             spades.Reverse();
-
-            try
-            {
-                for (int i = 0; diamonds[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < diamonds.Count; i++)
-                {
-                    diamondRunAmount += 1;
-                }
-            }
-            catch
-            { }
-            try
-            {
-                for (int i = 0; clubs[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < clubs.Count; i++)
-                {
-                    clubRunAmount += 1;
-                }
-            }
-            catch
-            { }
-            try
-            {
-                for (int i = 0; hearts[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < hearts.Count; i++)
-                {
-                    heartRunAmount += 1;
-                }
-            }
-            catch
-            { }
-            try
-            {
-                for (int i = 0; spades[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < spades.Count; i++)
-                {
-                    spadeRunAmount += 1;
-                }
-            }
-            catch
-            { }
 
             foreach (Card card in diamonds)
             {
