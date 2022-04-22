@@ -1421,13 +1421,13 @@ namespace OOP4200_Tarneeb
             // Teamplay section:
             // If teammate is either winning the hand, or likely to win with a high value card,
             // immediately return the worst card in hand.
-            // DIFFICULTY SCALING: Opponent's ability to judge likelihood of card winning depends on difficulty:
+            // DIFFICULTY SCALING: Opponent's ability to judge likelihood of winning depends on difficulty:
             // Hard mode   = Opponent sees 'Queen' or higher as likely to win
             // Medium mode = Opponent sees '10' or higher as likely to win
             // Easy mode   = Opponent sees '8' or higher as likely to win
-            if ((playerNumber == 2 && playerToBeat == 4 && (playedCard3.Source != null || (int)cardToBeat.CardNumber > (7 + (2 * computerDifficulty)))) ||
+            if ((playerNumber == 2 && playerToBeat == 4 && (playedCard3.Source != null || (int)cardToBeat.CardNumber > (4 + (2 * computerDifficulty)))) ||
                 (playerNumber == 3 && playerToBeat == 1 && (playedCard4.Source != null || (int)cardToBeat.CardNumber > 10)) ||
-                (playerNumber == 4 && playerToBeat == 2 && (playedCard1.Source != null || (int)cardToBeat.CardNumber > (7 + (2 * computerDifficulty)))))
+                (playerNumber == 4 && playerToBeat == 2 && (playedCard1.Source != null || (int)cardToBeat.CardNumber > (4 + (2 * computerDifficulty)))))
             {
                 // If there are no cards with a matching suit...
                 if (matchingList.Count == 0)
