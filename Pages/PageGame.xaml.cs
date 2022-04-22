@@ -357,10 +357,11 @@ namespace OOP4200_Tarneeb
             Player3Bet();
             Player4Bet();
 
-            // No bets were made, reshuffle
+            // No bets were made, restart the game (reshuffle)
             if (bettingPlayer == 0)
             {
-                NewRound();
+                PageGame gamePage = new PageGame();
+                NavigationService.Navigate(gamePage);
             }
         }
         private void BtnBetClick(object sender, RoutedEventArgs e)
