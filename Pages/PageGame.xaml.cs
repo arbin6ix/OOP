@@ -67,8 +67,7 @@ namespace OOP4200_Tarneeb
         public int team1Total = 0;
         public int team2Total = 0;
 
-        // List of String that holds Tarneeb suit betting (1. Tarneeb Suit, 2. Bet number, 3. Player who betted the most) global variable
-        public static List<string> tarneebSuit = new List<string>() { };
+        
 
         // Team Colours + Misc Colours
         public SolidColorBrush team1Color = new SolidColorBrush(Color.FromRgb(51, 188, 255));
@@ -251,8 +250,11 @@ namespace OOP4200_Tarneeb
             {
                 Player4Bet();
             }
+            
             ChangeBettingButtons();
-            await DBUtility.SaveLog(new Log("Betting Done", "", ""));
+
+            //await DBUtility.SaveLog(new Log("Betting Done", "", ""));
+
         }
 
         #endregion
@@ -382,6 +384,7 @@ namespace OOP4200_Tarneeb
             bettingPlayer = player1Betting;
 
             topBet = bet;
+            
 
             minimumBet = bet + 1;
 
@@ -463,6 +466,8 @@ namespace OOP4200_Tarneeb
 
                         topBet = playerBetAmount;
 
+                        
+
                         lblP2Betting5.Content = playerBetAmount.ToString();
                         lblP2Betting4.Content = playerBetAmount.ToString();
                         lblP2Betting3.Content = playerBetAmount.ToString();
@@ -534,6 +539,8 @@ namespace OOP4200_Tarneeb
 
                         topBet = playerBetAmount;
 
+                        
+
                         lblP3Betting5.Content = playerBetAmount.ToString();
                         lblP3Betting4.Content = playerBetAmount.ToString();
                         lblP3Betting3.Content = playerBetAmount.ToString();
@@ -603,6 +610,8 @@ namespace OOP4200_Tarneeb
                         bettingPlayer = 4;
 
                         topBet = playerBetAmount;
+
+                        
 
                         lblP4Betting5.Content = playerBetAmount.ToString();
                         lblP4Betting4.Content = playerBetAmount.ToString();
@@ -1012,10 +1021,14 @@ namespace OOP4200_Tarneeb
             if (bettingPlayer == 1 || bettingPlayer == 3)
             {
                 lblBet1.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#33BCFF"));
+                //log betting
+                DBUtility.SaveLog(new Log("Betting Done", "Team 1 bet", topBet.ToString()));
             }
             else if (bettingPlayer == 2 || bettingPlayer == 4)
             {
                 lblBet1.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5A5A"));
+                //log betting
+                DBUtility.SaveLog(new Log("Betting Done", "Team 2 bet" , topBet.ToString()));
             }
             lblBet1.Visibility = Visibility.Visible;
 
