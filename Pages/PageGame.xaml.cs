@@ -753,12 +753,19 @@ namespace OOP4200_Tarneeb
                 topSuit = Enums.Suit.SPADE;
             }
 
-            int subAmount = 2;
+            //for (int point = 50; topTotalPoints > point; point += 20)
+            //{
+            //    bettingAmount = betNum - subAmount;
+            //    subAmount += 1;
+            //}
 
-            for (int point = 50; topTotalPoints > point; point += 20)
+            int betNum = 2;
+            float points = 50;
+            while(topTotalPoints > points)
             {
-                bettingAmount = (point / 10) - subAmount;
-                subAmount += 1;
+                bettingAmount = betNum;
+                points += points - 40;
+                betNum += 1;
             }
 
             bettingAmount += diamondRunAmount + clubRunAmount + heartRunAmount + spadeRunAmount;
