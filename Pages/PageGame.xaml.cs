@@ -946,19 +946,19 @@ namespace OOP4200_Tarneeb
 
             foreach (Card card in diamonds)
             {
-                diamondTotalPoints = (int)card.CardNumber + 10;
+                diamondTotalPoints += (int)card.CardNumber + 10;
             }
             foreach (Card card in clubs)
             {
-                clubTotalPoints = (int)card.CardNumber + 10;
+                clubTotalPoints += (int)card.CardNumber + 10;
             }
             foreach (Card card in hearts)
             {
-                heartTotalPoints = (int)card.CardNumber + 10;
+                heartTotalPoints += (int)card.CardNumber + 10;
             }
             foreach (Card card in spades)
             {
-                spadeTotalPoints = (int)card.CardNumber + 10;
+                spadeTotalPoints += (int)card.CardNumber + 10;
             }
 
             int topTotalPoints = diamondTotalPoints;
