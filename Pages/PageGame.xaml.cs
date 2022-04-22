@@ -1563,7 +1563,6 @@ namespace OOP4200_Tarneeb
                     cardToBeat.Suit != tarneeb &&
                     tarneebList.Count > 0)
                 {
-                    MessageBox.Show("Cut " + playerNumber);
                     // ...loop through the remaining cards and pick out the lowest value tarneeb
                     for (int i = 0; i < tarneebList.Count; i++)
                     {
