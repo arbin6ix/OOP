@@ -1394,7 +1394,7 @@ namespace OOP4200_Tarneeb
             }
 
 
-            // Sort the cards in the AI's hand into up to three lists:
+            // Dividing hand into three convenient lists:
             for (int i = 0; i < hand.Count; i++)
             {
                 // 1. List of cards matching suit played
@@ -1418,15 +1418,17 @@ namespace OOP4200_Tarneeb
                 }
             }
 
-            //// If teammate is either winning the hand, or likely to win with Queen or above,
-            //// immediately return the worst card in hand
-            if ((playerNumber == 2 && playerToBeat == 4 && (playedCard3.Source != null || (int)cardToBeat.CardNumber > 10)) ||
+            // Teamplay section:
+            // If teammate is either winning the hand, or likely to win with a high value card,
+            // immediately return the worst card in hand.
+            // DIFFICULTY SCALING: Opponent's ability to judge likelihood of card winning depends on difficulty:
+            // Hard mode   = Opponent sees 'Queen' or higher as likely to win
+            // Medium mode = Opponent sees '10' or higher as likely to win
+            // Easy mode   = Opponent sees '8' or higher as likely to win
+            if ((playerNumber == 2 && playerToBeat == 4 && (playedCard3.Source != null || (int)cardToBeat.CardNumber > (7 + (2 * computerDifficulty)))) ||
                 (playerNumber == 3 && playerToBeat == 1 && (playedCard4.Source != null || (int)cardToBeat.CardNumber > 10)) ||
-                (playerNumber == 4 && playerToBeat == 2 && (playedCard1.Source != null || (int)cardToBeat.CardNumber > 10)))
+                (playerNumber == 4 && playerToBeat == 2 && (playedCard1.Source != null || (int)cardToBeat.CardNumber > (7 + (2 * computerDifficulty)))))
             {
-                // Testing code
-                // MessageBox.Show("Matching = " + matchingList.Count);
-
                 // If there are no cards with a matching suit...
                 if (matchingList.Count == 0)
                 {
@@ -1479,6 +1481,8 @@ namespace OOP4200_Tarneeb
                 return chosenCard;
             }
 
+
+            // Comparing matching suits in hand:
             // Loop through the new list of matching cards...
             for (int i = 0; i < matchingList.Count; i++)
             {
@@ -1515,6 +1519,7 @@ namespace OOP4200_Tarneeb
             }
 
 
+            // Comparing non-matching suits in hand:
             // If there are no cards with a matching suit...
             if (matchingList.Count == 0)
             {
@@ -1549,11 +1554,16 @@ namespace OOP4200_Tarneeb
                 }
 
 
-
+                // Tarneeb cutting logic (steal high value hand with low value tarneeb)
                 // If the card to beat is a non-tarneeb KING or ACE and AI has at least one tarneeb in hand,
-                // play the lowest value tarneeb
-                if ((int)cardToBeat.CardNumber > 11 && cardToBeat.Suit != tarneeb && tarneebList.Count > 0)
+                // play the lowest value tarneeb.
+                // DIFFICULTY SCALING: Opponent does not do this on Easy mode
+                if ((playerNumber == 3 || computerDifficulty > 1) &&
+                    (int)cardToBeat.CardNumber > 11 &&
+                    cardToBeat.Suit != tarneeb &&
+                    tarneebList.Count > 0)
                 {
+                    MessageBox.Show("Cut " + playerNumber);
                     // ...loop through the remaining cards and pick out the lowest value tarneeb
                     for (int i = 0; i < tarneebList.Count; i++)
                     {
