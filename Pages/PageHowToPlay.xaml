@@ -11,15 +11,37 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="How To Play Tarneeb" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Foreground="White"/>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" Margin="10" TextWrapping="Wrap" Foreground="White">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer maximus felis eget elit malesuada posuere. Nullam dapibus dignissim feugiat. Maecenas rutrum nec urna at consequat. Nullam maximus molestie neque, id lacinia ipsum varius sit amet. Integer laoreet fermentum efficitur. Nullam ac lectus vitae nisl vulputate pharetra. Nulla sit amet diam sagittis, aliquet sem sed, pellentesque libero.
-                <LineBreak /><LineBreak />
-                Curabitur in quam accumsan, pretium turpis eu, molestie magna. Donec laoreet, augue quis mollis mollis, tortor dui tempus est, id bibendum odio lectus in dolor. Donec consectetur sapien et luctus convallis. Suspendisse blandit purus dui, et varius mi bibendum quis. Cras sodales dapibus eros, et facilisis risus ultricies dapibus. Cras vestibulum purus et mauris rhoncus commodo. Vivamus auctor enim in tincidunt condimentum.
-                <LineBreak /><LineBreak />
-                Curabitur molestie fermentum fringilla. Vestibulum non tempus ipsum, ut finibus lacus. Nulla rhoncus mi in nibh ultrices tempus. Cras venenatis fermentum velit ac lacinia. Sed vestibulum ac nisi vitae efficitur. Phasellus porta cursus vulputate. Cras consequat augue justo, ac imperdiet augue porttitor et. Nunc rhoncus mollis finibus. Nunc eget elementum libero, ac lobortis arcu.
+            
+            
+            <TextBlock HorizontalAlignment="Center" FontSize="16" Margin="10" TextWrapping="Wrap" Foreground="White" Height="474" Width="746">
+                Tarneeb is designed for 4-players, played in 2 partnerships of two players each, and simply requires the standard 52-card Anglo American deck to play.
+                Players from the same team are seated opposite to each other on the table.
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <TextBlock Text="Rules:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
+                Each player is dealt 13 cards.
+                Bids are done beginning with the player to the right of the dealer. 
+                The highest bidder can declare the Tarneeb (trump) suit for the round. 
+                Trick-taking goes as usual. 
+                The first team to reach a score of 41 wins the game.
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <TextBlock Text="Scoring:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
+                Tarneeb scoring is based on the bids of each team, and the number of take tricks.
+                Each team’s score is the sum of the number of tricks taken by both players. The team’s bid threshold is the highest bid among the team members.
+                For example, if Player A and B are from the same team, and Player A bids 9, whereas Player B bids 8.
+                The team therefore has a bid threshold of 9.
+                If the bid is met or exceeded, the team is awarded a score equivalent to the number of tricks won.
+                If the bid requirement is not met, the team has the bid number subtracted from their score.
+                This means it is possible for a team to have negative scores at any given time.
+                <LineBreak></LineBreak>
+                <LineBreak></LineBreak>
+                <TextBlock Text="Betting:" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
+                Bidding starts with the player to the dealer’s right and moves counterclockwise. The lowest bid is 7 and the highest is 13, and they represent the number of tricks that the bidder’s team thinks they can take.
+                Each bid must be higher than the last, and a player who does not wish to bid at their turn can pass.
+                Once you pass you are out of the bidding for the current round, and the bidding continues around the table as many times as necessary until it settles on the highest bidder.
             </TextBlock>
-            <Button Name="btnHowToBack" Content="&lt; Main Menu" Margin="30,100,0,0" VerticalAlignment="Bottom" 
-                    HorizontalAlignment="Left" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnHowToBackClick"></Button>
+            <Button x:Name="btnHowToBack" Content="&lt; Main Menu" Height="35" Width="130" FontSize="16" Background="PowderBlue" Click="btnHowToBackClick"/>
         </StackPanel>
     </Grid>
 </Page>
