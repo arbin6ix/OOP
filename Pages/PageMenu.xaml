@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OOP4200_Tarneeb"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1000"
       Title="PageMenu">
 
     <Grid>
@@ -27,11 +27,11 @@
                             Height="35" Width="130" FontSize="16" Background="Beige" Click="btnPlayHardClick"></Button>
                 
                 <Button Name="btnMainHowTo" Content="How To Play" Margin="0,4" 
-                            Height="35" Width="130" FontSize="16" Background="DarkGoldenrod" Click="btnHowToClick"></Button>
+                            Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnHowToClick"></Button>
                 <Button Name="btnMainStats" Content="Statistics" Margin="0,4"  
-                            Height="35" Width="130" FontSize="16" Background="DarkGoldenrod" Click="btnStatsClick"></Button>
+                            Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnStatsClick"></Button>
                 <Button Name="btnMainExit" Content="Exit" Margin="0,4" 
-                            Height="35" Width="130" FontSize="16" Background="DarkGoldenrod" Click="btnExitClick"></Button>
+                            Height="35" Width="130" FontSize="16" Background="#d4b02f" Click="btnExitClick"></Button>
                 
             </StackPanel>
 
