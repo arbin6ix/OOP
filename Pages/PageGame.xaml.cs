@@ -19,23 +19,6 @@ namespace OOP4200_Tarneeb
     public partial class PageGame : Page
     {
 
-        #region READ ME:
-
-        /*
-        
-        TODO: List of things still needed:
-
-         - Log & Stats (tough)
-
-         - How To Play (easy)
-
-         - Multiple Round Tarneeb to 31 Points(tough): right now it's single round, also idk if this is needed
-
-        */
-        // 
-
-        #endregion
-
         #region Fields & Properties
 
         // Speed of the game in milliseconds
