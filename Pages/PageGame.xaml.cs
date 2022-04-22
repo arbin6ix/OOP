@@ -1425,6 +1425,8 @@ namespace OOP4200_Tarneeb
                 (playerNumber == 3 && playerToBeat == 1 && (playedCard4.Source != null || (int)cardToBeat.CardNumber > 11)) ||
                 (playerNumber == 4 && playerToBeat == 2 && (playedCard1.Source != null || (int)cardToBeat.CardNumber > 11)))
             {
+                MessageBox.Show("Matching = " + matchingList.Count);
+
                 // If there are no cards with a matching suit...
                 if (matchingList.Count == 0)
                 {
@@ -1826,6 +1828,38 @@ namespace OOP4200_Tarneeb
             }
         }
 
+        private void SetCardToBeat(Card playersCard)
+        {
+            int playersNumber = (int)playersCard.CardNumber;
+            Enums.Suit playersSuit = playersCard.Suit;
+
+            // If card to beat is already set, compare players card to the card to beat
+            if (cardToBeat != null)
+            {
+                int opponentNumber = (int)cardToBeat.CardNumber;
+                Enums.Suit opponentSuit = cardToBeat.Suit;
+
+                // Set cardToBeat to player's card if player cuts with tarneeb ...
+                if (opponentSuit != tarneeb && playersSuit == tarneeb)
+                {
+                    cardToBeat = playersCard;
+                    playerToBeat = 1;
+                }
+                // ... or if the player's card is a better card of the same suit
+                else if (opponentSuit == playersSuit && playersNumber > opponentNumber)
+                {
+                    cardToBeat = playersCard;
+                    playerToBeat = 1;
+                }
+            }
+            // If card to beat is not already set, set it to player's card (first card of hand)
+            else
+            {
+                cardToBeat = playersCard;
+                playerToBeat = 1;
+            }
+        }
+
         /// <summary>
         /// Plays the card that is clicked on
         /// </summary>
@@ -1845,6 +1879,9 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(0);
                 playerDone = true;
                 playerTurn = false;
+
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
 
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
@@ -1872,6 +1909,9 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
+
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1897,6 +1937,9 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(2);
                 playerDone = true;
                 playerTurn = false;
+
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
 
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
@@ -1925,6 +1968,9 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
+
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -1950,6 +1996,9 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(4);
                 playerDone = true;
                 playerTurn = false;
+
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
 
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
@@ -1977,6 +2026,9 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
+
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -2002,6 +2054,9 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(6);
                 playerDone = true;
                 playerTurn = false;
+
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
 
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
@@ -2029,6 +2084,9 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
+
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -2054,6 +2112,9 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(8);
                 playerDone = true;
                 playerTurn = false;
+
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
 
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
@@ -2081,6 +2142,9 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
+
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -2106,6 +2170,9 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(10);
                 playerDone = true;
                 playerTurn = false;
+
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
 
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
@@ -2133,6 +2200,9 @@ namespace OOP4200_Tarneeb
                 playerDone = true;
                 playerTurn = false;
 
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
+
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
                 ComputerTurnLogic();
@@ -2158,6 +2228,9 @@ namespace OOP4200_Tarneeb
                 playerHand.RemoveAt(12);
                 playerDone = true;
                 playerTurn = false;
+
+                // Set card to beat (if applicable)
+                SetCardToBeat(player1Card);
 
                 await DBUtility.SaveLog(new Log("Player1 turn", "Player1", player1Card.ToString()));
                 // Complete computer turns
