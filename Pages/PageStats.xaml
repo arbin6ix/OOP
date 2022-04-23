@@ -54,8 +54,8 @@
 
                 <!-- Total hours played -->
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock FontSize="18" Text="Total Hours Played:  " />
-                    <TextBlock Name="txtHoursPlayed" Text="6" FontSize="18" />
+                    <TextBlock FontSize="18" Text="Current Session Time:  " />
+                    <TextBlock Name="txtHoursPlayed" Text="" FontSize="18" />
                 </StackPanel>
 
             </StackPanel>
