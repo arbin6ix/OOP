@@ -286,7 +286,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region Betting
+        #region Betting (Matt)
 
         private void BtnBetAddClick(object sender, RoutedEventArgs e)
         {
@@ -990,7 +990,7 @@ namespace OOP4200_Tarneeb
         }
         #endregion
 
-        #region Tarneeb Selection
+        #region Tarneeb Selection (Matt)
 
         /// <summary>
         /// Hides all of the Tarneeb selection images
@@ -1148,7 +1148,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region AI Logic
+        #region AI Logic (Kellen)
 
         /// <summary>
         /// Completes the turns of the computer players 2-4 and starts the next round
@@ -1622,7 +1622,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region Button Functionality
+        #region Button Functionality (Kellen)
 
         /// <summary>
         /// Starts the next round of tarneeb
@@ -1717,7 +1717,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region Card Click Functionality (Arbin)
+        #region Card Click Functionality (David)
 
         /// <summary>
         /// Determines if the card clicked is playable based on first card played on the current round
@@ -1772,6 +1772,10 @@ namespace OOP4200_Tarneeb
             }
         }
 
+        /// <summary>
+        /// Sets the card to beat
+        /// </summary>
+        /// <param name="playersCard">The player's card</param>
         private void SetCardToBeat(Card playersCard)
         {
             int playersNumber = (int)playersCard.CardNumber;
@@ -2184,7 +2188,7 @@ namespace OOP4200_Tarneeb
 
         #endregion
 
-        #region Scoring & Win Determination
+        #region Scoring & Win Determination (Fatema)
 
         /// <summary>
         /// Main Scoring & Win Determination function that performs the end of round functions
