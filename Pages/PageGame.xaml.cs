@@ -288,8 +288,14 @@ namespace OOP4200_Tarneeb
 
         #region Betting (Matt)
 
+        /// <summary>
+        /// Add 1 to selecting bet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBetAddClick(object sender, RoutedEventArgs e)
         {
+            // can't go above maximum bet
             if (bet < maximumBet)
             {
                 bet += 1;
@@ -300,8 +306,15 @@ namespace OOP4200_Tarneeb
                 lblBetting5.Content = bet.ToString();
             }
         }
+
+        /// <summary>
+        /// Subtract 1 from selecting bet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBetSubClick(object sender, RoutedEventArgs e)
         {
+            // can't go under minimum bet
             if (bet > minimumBet)
             {
                 bet -= 1;
@@ -312,6 +325,12 @@ namespace OOP4200_Tarneeb
                 lblBetting5.Content = bet.ToString();
             }
         }
+
+        /// <summary>
+        /// Pass button. Pass then AIs bet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnPassClick(object sender, RoutedEventArgs e)
         {
 
@@ -330,14 +349,14 @@ namespace OOP4200_Tarneeb
             lblPrevBetting1.Visibility = Visibility.Visible;
 
 
-            // AI betting functionality
+            // AIs bet until 2 passed
             while ((player2IsBetting && player3IsBetting) || (player2IsBetting && player4IsBetting) || (player3IsBetting && player4IsBetting))
             {
                 Player2Bet();
                 Player3Bet();
                 Player4Bet();
             }
-
+            // comes back to AI that made bet so it knows it won
             Player2Bet();
             Player3Bet();
             Player4Bet();
@@ -349,15 +368,20 @@ namespace OOP4200_Tarneeb
                 NavigationService.Navigate(gamePage);
             }
         }
+
+        /// <summary>
+        /// Bet button. Makes bet then AIs bet.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBetClick(object sender, RoutedEventArgs e)
         {
-
+            // display labels
             lblPrevBetting5.Content = bet.ToString();
             lblPrevBetting4.Content = bet.ToString();
             lblPrevBetting3.Content = bet.ToString();
             lblPrevBetting2.Content = bet.ToString();
             lblPrevBetting1.Content = bet.ToString();
-
             lblPrevBetting5.Visibility = Visibility.Visible;
             lblPrevBetting4.Visibility = Visibility.Visible;
             lblPrevBetting3.Visibility = Visibility.Visible;
@@ -367,7 +391,6 @@ namespace OOP4200_Tarneeb
             bettingPlayer = player1Betting;
 
             topBet = bet;
-            
 
             minimumBet = bet + 1;
 
@@ -383,6 +406,7 @@ namespace OOP4200_Tarneeb
             lblBetting4.Content = bet.ToString();
             lblBetting5.Content = bet.ToString();
 
+            // if AIs passed
             if (bettingPlayer == player1Betting)
             {
                 HideBettingButtons();
@@ -390,12 +414,14 @@ namespace OOP4200_Tarneeb
             }
         }
 
-        // AI betting and tarneeb selection
+        /// <summary>
+        /// Player 2 betting functionality
+        /// </summary>
         public void Player2Bet()
         {
-            // no one made a bet. AI selects tarneeb
             if (bettingPlayer == 2)
             {
+                // no one made a bet. AI selects tarneeb
                 HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand2));
                 winner = bettingPlayer;
@@ -403,6 +429,7 @@ namespace OOP4200_Tarneeb
             }
             else
             {
+                // AI has not passed
                 if (player2IsBetting == true)
                 {
                     int roundNum = 1;
@@ -443,8 +470,10 @@ namespace OOP4200_Tarneeb
                             player4IsBetting = false;
                         }
 
+                        // minimum bet is 1 above the bet made
                         minimumBet = playerBetAmount + 1;
 
+                        // player 2 is the current player betting
                         bettingPlayer = 2;
 
                         topBet = playerBetAmount;
@@ -467,10 +496,14 @@ namespace OOP4200_Tarneeb
             }
         }
 
+        /// <summary>
+        /// Player 3 betting functionality
+        /// </summary>
         public void Player3Bet()
         {
             if (bettingPlayer == 3)
             {
+                // Everyone passed. Select Tarneeb
                 HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand4));
                 winner = bettingPlayer;
@@ -478,6 +511,7 @@ namespace OOP4200_Tarneeb
             }
             else
             {
+                // AI has not passed
                 if (player3IsBetting == true)
                 {
                     int roundNum = 1;
@@ -492,6 +526,7 @@ namespace OOP4200_Tarneeb
                     }
                     if (playerBetAmount < minimumBet)
                     {
+                        // pass
                         player3IsBetting = false;
 
                         lblP3Betting5.Content = "Pass";
@@ -507,6 +542,7 @@ namespace OOP4200_Tarneeb
                     }
                     else
                     {
+                        // bet
                         if (playerBetAmount >= maximumBet)
                         {
                             playerBetAmount = maximumBet;
@@ -516,13 +552,13 @@ namespace OOP4200_Tarneeb
                             player4IsBetting = false;
                         }
 
+                        // minimum bet is 1 above the bet made
                         minimumBet = playerBetAmount + 1;
 
+                        // player 3 is the current player betting
                         bettingPlayer = 3;
 
                         topBet = playerBetAmount;
-
-                        
 
                         lblP3Betting5.Content = playerBetAmount.ToString();
                         lblP3Betting4.Content = playerBetAmount.ToString();
@@ -539,10 +575,14 @@ namespace OOP4200_Tarneeb
                 }
             }
         }
+        /// <summary>
+        /// Player 4 betting functionality
+        /// </summary>
         public void Player4Bet()
         {
             if (bettingPlayer == 4)
             {
+                // Everyone passed. Select Tarneeb
                 HideBettingButtons();
                 SetTarneeb(AITarneebSelection(hand4));
                 winner = bettingPlayer;
@@ -550,6 +590,7 @@ namespace OOP4200_Tarneeb
             }
             else
             {
+                // AI has not passed
                 if (player4IsBetting == true)
                 {
                     int roundNum = 1;
@@ -564,6 +605,7 @@ namespace OOP4200_Tarneeb
                     }
                     if (playerBetAmount < minimumBet)
                     {
+                        // pass
                         player4IsBetting = false;
 
                         lblP4Betting5.Content = "Pass";
@@ -579,6 +621,7 @@ namespace OOP4200_Tarneeb
                     }
                     else
                     {
+                        // bet
                         if (playerBetAmount >= maximumBet)
                         {
                             playerBetAmount = maximumBet;
@@ -588,13 +631,13 @@ namespace OOP4200_Tarneeb
                             player3IsBetting = false;
                         }
 
+                        // minimum bet is 1 above the bet made
                         minimumBet = playerBetAmount + 1;
 
+                        // player 4 is the current player betting
                         bettingPlayer = 4;
 
                         topBet = playerBetAmount;
-
-                        
 
                         lblP4Betting5.Content = playerBetAmount.ToString();
                         lblP4Betting4.Content = playerBetAmount.ToString();
@@ -612,7 +655,11 @@ namespace OOP4200_Tarneeb
             }
         }
 
-        // betting AI functionality
+        /// <summary>
+        /// AI betting functionality
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <returns>bettingAmount</returns>
         public int AIBettingAmount(List<Card> cards)
         {
             Deck deck = new Deck();
@@ -632,13 +679,11 @@ namespace OOP4200_Tarneeb
             int heartTotalPoints = 0;
             int spadeTotalPoints = 0;
 
-            Enums.Suit topSuit = Enums.Suit.DIAMOND;
-
             int bettingAmount = 0;
-
 
             sortedCards = deck.Sort(cards);
 
+            // create 4 lists for each suit
             foreach (Card card in sortedCards)
             {
                 if (card.Suit == Enums.Suit.DIAMOND)
@@ -658,12 +703,13 @@ namespace OOP4200_Tarneeb
                     spades.Add(card);
                 }
             }
-
+            // highest to lowest
             diamonds.Reverse();
             clubs.Reverse();
             hearts.Reverse();
             spades.Reverse();
 
+            // count number of runs from Ace down. They are almost always guarenteed wins
             try
             {
                 for (int i = 0; (int)diamonds[i].CardNumber + i == (int)Enums.CardNumber.ACE && i + 1 < diamonds.Count; i++)
@@ -701,6 +747,7 @@ namespace OOP4200_Tarneeb
             catch
             { }
 
+            // point system to determine which suit is the top suit
             foreach (Card card in diamonds)
             {
                 diamondTotalPoints += (int)card.CardNumber + 10;
@@ -723,19 +770,17 @@ namespace OOP4200_Tarneeb
             if (clubTotalPoints > topTotalPoints)
             {
                 topTotalPoints = clubTotalPoints;
-                topSuit = Enums.Suit.CLUB;
             }
             if (heartTotalPoints > topTotalPoints)
             {
                 topTotalPoints = heartTotalPoints;
-                topSuit = Enums.Suit.HEART;
             }
             if (spadeTotalPoints > topTotalPoints)
             {
                 topTotalPoints = spadeTotalPoints;
-                topSuit = Enums.Suit.SPADE;
             }
 
+            // bettting amount is based on how many points the top suit has
             int betNum = 3;
             float points = 40;
             while(topTotalPoints > points)
@@ -745,11 +790,17 @@ namespace OOP4200_Tarneeb
                 betNum += 1;
             }
 
+            // each run is almost a guaranteed hand win
             bettingAmount += diamondRunAmount + clubRunAmount + heartRunAmount + spadeRunAmount;
 
             return bettingAmount;
         }
 
+        /// <summary>
+        /// AI Tarneeb selection functionality
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <returns>topSuit</returns>
         public Enums.Suit AITarneebSelection(List<Card> cards)
         {
             Deck deck = new Deck();
@@ -759,11 +810,6 @@ namespace OOP4200_Tarneeb
             List<Card> spades = new List<Card>();
             List<Card> sortedCards = new List<Card>();
 
-            int diamondRunAmount = 0;
-            int clubRunAmount = 0;
-            int heartRunAmount = 0;
-            int spadeRunAmount = 0;
-
             int diamondTotalPoints = 0;
             int clubTotalPoints = 0;
             int heartTotalPoints = 0;
@@ -771,9 +817,9 @@ namespace OOP4200_Tarneeb
 
             Enums.Suit topSuit = Enums.Suit.DIAMOND;
 
-
             sortedCards = deck.Sort(cards);
 
+            // similar to AIBettingAmount. 
             foreach (Card card in sortedCards)
             {
                 if (card.Suit == Enums.Suit.DIAMOND)
@@ -799,43 +845,7 @@ namespace OOP4200_Tarneeb
             hearts.Reverse();
             spades.Reverse();
 
-            try
-            {
-                for (int i = 0; diamonds[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < diamonds.Count; i++)
-                {
-                    diamondRunAmount += 1;
-                }
-            }
-            catch
-            { }
-            try
-            {
-                for (int i = 0; clubs[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < clubs.Count; i++)
-                {
-                    clubRunAmount += 1;
-                }
-            }
-            catch
-            { }
-            try
-            {
-                for (int i = 0; hearts[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < hearts.Count; i++)
-                {
-                    heartRunAmount += 1;
-                }
-            }
-            catch
-            { }
-            try
-            {
-                for (int i = 0; spades[i].CardNumber + i == Enums.CardNumber.ACE && i + 1 < spades.Count; i++)
-                {
-                    spadeRunAmount += 1;
-                }
-            }
-            catch
-            { }
-
+            // point system to determine top suit
             foreach (Card card in diamonds)
             {
                 diamondTotalPoints += (int)card.CardNumber + 10;
@@ -873,8 +883,13 @@ namespace OOP4200_Tarneeb
 
             DBUtility.SaveLog(new Log("AITarneeb-selected", "Computer", topSuit.ToString()));
 
+            // return the top suit
             return topSuit;
         }
+
+        /// <summary>
+        /// Hide betting buttons and labels and display the bet won
+        /// </summary>
         public void HideBettingButtons()
         {
             // Hide the buttons
@@ -942,6 +957,9 @@ namespace OOP4200_Tarneeb
             lblP4Betting1.Visibility = Visibility.Hidden;
         }
 
+        /// <summary>
+        /// Reset betting fields to default values
+        /// </summary>
         public void ResetBettingButtons()
         {
             bettingPlayer = 0;
@@ -973,6 +991,9 @@ namespace OOP4200_Tarneeb
             winner = 0;
         }
 
+        /// <summary>
+        /// Change betting number to the minimum betting amount
+        /// </summary>
         public void ChangeBettingButtons()
         {
             lblBetting1.Content = minimumBet.ToString();
